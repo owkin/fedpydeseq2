@@ -1,0 +1,68 @@
+name: Python dev
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  testing:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ["3.10", "3.11", "3.12"]
+    name: Testing Python ${{ matrix.python }}
+    steps:
+      - name: Checkout fedpydeseq2
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+
+      - name: Install Poetry
+        run: |
+          python --version
+          pip install poetry==1.8.2
+
+      - name: Install dependencies
+        run: |
+          which python
+          python --version
+          poetry install --with testing
+
+      - name: Download data
+        run: |
+          mkdir -p /opt/conda
+          wget https://repo.anaconda.com/miniconda/Miniconda3-py39_24.5.0-0-Linux-x86_64.sh -O /opt/conda/miniconda.sh
+          bash /opt/conda/miniconda.sh -b -p /opt/miniconda
+          poetry run fedpydeseq2-download-data --only_luad --raw_data_output_path /home/runner/work/fedpydeseq2/fedpydeseq2/data/raw --conda_activate_path /opt/miniconda/bin/activate
+          ls /home/runner/work/fedpydeseq2/fedpydeseq2/data/raw
+          ls /home/runner/work/fedpydeseq2/fedpydeseq2/data/raw/tcga
+      - name: Testing
+        run: |
+          poetry run pytest -v tests -m "not self_hosted_slow and not self_hosted_fast and not local and not docker"
+
+  linting:
+    runs-on: ubuntu-latest
+    name: Test Linting
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install Poetry
+        run: pip install poetry==1.8.2
+
+      - name: Install dependencies
+        run: |
+          which python
+          python --version
+          poetry install --with linting
+
+      - name: Pre-commit checks
+        run: |
+          poetry run pre-commit run --all-files --show-diff-on-failure

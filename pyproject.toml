@@ -1,0 +1,99 @@
+[tool.poetry]
+name = "fedpydeseq2"
+version = "0.1.0"
+description = "This package is a SubstraFL implementation FL of PyDESeq2."
+authors = ["Boris MUZELLEC <boris.muzellec@owkin.com>", "Ulysse MARTEAU <ulysse.marteau@owkin.com>", "Tanguy MARCHAND <tanguy.marchand@owkin.com>"]
+readme = "README.md"
+packages = [{include = "fedpydeseq2"}]
+
+[build-system]
+requires = ["poetry-core>=1.0.0", "setuptools>=65.6.3"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.poetry.dependencies]
+python = ">=3.10,<3.13"
+substrafl = "0.47.0"
+numpy = "1.26.4"
+pandas = "2.2.2"
+pyarrow = "15.0.2"
+gitpython = "3.1.43"
+anndata = "0.10.8"
+pydeseq2 = "0.4.9"
+loguru = "0.7.2"
+toml = "0.10.2"
+pyyaml = ">=5.1"
+
+[tool.poetry.group.linting]
+optional = true
+
+[tool.poetry.group.linting.dependencies]
+ruff = "^0.2.2"
+pre-commit = "^3.6.2"
+mypy = "^1.8.0"
+black = "^24.2.0"
+pandas-stubs = "^2.2.0.240218"
+
+[tool.poetry.group.testing]
+optional = true
+
+[tool.poetry.group.testing.dependencies]
+pytest = "^8.0.1"
+fedpydeseq2_datasets="^0.1.0"
+
+[tool.black]
+line-length = 88
+
+[tool.ruff]
+target-version = "py311"
+line-length = 88
+lint.select = [
+    "F",  # Errors detected by Pyflakes
+    "E",  # Error detected by Pycodestyle
+    "W",  # Warning detected by Pycodestyle
+    "I",  # isort
+    "D",  # pydocstyle
+    "B",  # flake8-bugbear
+    "TID",  # flake8-tidy-imports
+    "C4",  # flake8-comprehensions
+    "BLE",  # flake8-blind-except
+    "UP",  # pyupstage
+    "RUF100",  # Report unused noqa directives
+    "D401",  # Start docstrgins with an imperative verb
+    "D415",  # End docstrings with a period
+    "D417",  # Missing argument descriptions in the docstring
+]
+
+lint.ignore = [
+    # Missing docstring in public package
+    "D104",
+    # Missing docstring in public module
+    "D100",
+    # Missing docstring in __init__
+    "D107",
+    # We don’t want a blank line before a class docstring
+    "D203",
+    # We want docstrings to start immediately after the opening triple quote
+    "D213",
+]
+
+[tool.ruff.lint.isort]
+force-single-line = true
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["D"]
+# Ignore unused imports in __init__.py files
+"*/__init__.py" = ["F401", "I"]
+
+
+[tool.pytest.ini_options]
+markers = [
+    "self_hosted_slow: mark a test as a slow test with data",
+    "self_hosted_fast: mark a test as a fast test with data",
+    "docker: mark a test as a docker test",
+    "local: mark a test as a local test",
+    "dev: mark a test as a dev test",
+]

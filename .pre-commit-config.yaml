@@ -1,0 +1,33 @@
+default_language_version:
+    python: python3.11
+repos:
+  - repo: https://github.com/sirosen/check-jsonschema
+    rev: 0.27.0
+    hooks:
+      - id: check-github-actions
+      - id: check-github-workflows
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: trailing-whitespace
+        name: Trim trailing whitespace
+      - id: end-of-file-fixer
+        name: Fix end of files
+        exclude: \.ipynb$
+  - repo: https://github.com/psf/black
+    rev: 23.11.0
+    hooks:
+      - id: black
+        additional_dependencies: ["click==8.0.4"]
+        args: # arguments to configure black
+          - --line-length=88
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.1.5
+    hooks:
+      - id: ruff
+        args: [--fix, --exit-non-zero-on-fix]
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.7.0
+    hooks:
+      - id: mypy
+        exclude: ^(tests/|docs/source/conf.py|datasets/)
