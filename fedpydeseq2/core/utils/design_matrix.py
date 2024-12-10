@@ -28,17 +28,17 @@ def build_design_matrix(
         Name of the columns of metadata to be used as design_matrix variables.
         (default: ``"condition"``).
 
-    levels : dict or None
+    levels : dict, optional
         An optional dictionary of lists of strings specifying the levels of each factor
         in the global design, e.g. ``{"condition": ["A", "B"]}``. (default: ``None``).
 
-    ref_levels : dict or None
+    ref_levels : dict, optional
         An optional dictionary of the form ``{"factor": "test_level"}``
         specifying for each factor the reference (control) level against which
         we're testing, e.g. ``{"condition", "A"}``. Factors that are left out
         will be assigned random reference levels. (default: ``None``).
 
-    continuous_factors : list or None
+    continuous_factors : list, optional
         An optional list of continuous (as opposed to categorical) factors, that should
         also be in ``design_factors``. Any factor in ``design_factors`` but not in
         ``continuous_factors`` will be considered categorical (default: ``None``).

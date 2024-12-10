@@ -59,7 +59,7 @@ class ComputeDispersionsGridSearch(
         local_states: dict
             Local states. Required to propagate intermediate results.
 
-        shared_state: dict or None
+        shared_state: dict, optional
             If the fit_mode is "MLE", it is None.
             If the fit_mode is "MAP", it contains the output of the trend fitting,
             that is a dictionary with a "fitted_dispersion" field containing

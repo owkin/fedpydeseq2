@@ -1,0 +1,116 @@
+site_name: FedPyDESeq2
+site_url: https://github.com/owkin/fedpydeseq2
+site_author: Boris Muzellec, Ulysse Marteau-Ferey, Tangy Marchand
+site_description: "A federated learning implementation of DESeq2 for differential expression analysis."
+
+repo_name: owkin/fedpydeseq2
+repo_url: https://github.com/owkin/fedpydeseq2
+
+copyright: Copyright (c) 2024-present Owkin Inc.
+
+theme:
+  name: material
+  palette:
+    primary: indigo
+    accent: indigo
+    scheme: default
+    toggle:
+      icon: material/toggle-switch-off-outline
+      name: Switch to dark mode
+  dark:
+    scheme: slate
+    toggle:
+      icon: material/toggle-switch
+      name: Switch to light mode
+  font:
+    text: Roboto
+    code: Roboto Mono
+  features:
+    - content.code.copy
+    - content.tabs.link
+    - palette.switch
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - attr_list
+  - md_in_html
+  - tables
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - footnotes
+
+
+extra_javascript:
+  - javascripts/katex.js
+  - https://unpkg.com/katex@0/dist/katex.min.js
+  - https://unpkg.com/katex@0/dist/contrib/auto-render.min.js
+
+extra_css:
+  - https://unpkg.com/katex@0/dist/katex.min.css
+
+
+plugins:
+  - search:
+  - git-revision-date-localized:
+      type: timeago
+      enable_creation_date: true
+  - mkdocstrings:
+      handlers:
+         python:
+            options:
+              docstring_style: numpy
+              docstring_section_style: table
+              docstring_options:
+                ignore_init_summary: false
+              merge_init_into_class: false
+  - bibtex:
+      bib_file: "./docs/references.bib"
+  - include-markdown:
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/owkin/fedpydeseq2
+
+nav:
+  - General:
+    - Home: index.md
+    - Installation: usage/installation.md
+    - Contributing: usage/contributing.md
+    - References: usage/references.md
+  - API:
+    - Home: api/index.md
+    - Running an experiment: api/fedpydeseq2_pipeline.md
+    - Core:
+      - Home: api/core/deseq2_core/index.md
+      - Build design matrix: api/core/deseq2_core/build_design_matrix.md
+      - Compute size factors: api/core/deseq2_core/compute_size_factors.md
+      - Estimating LFCs and dispersions: api/core/deseq2_core/deseq2_lfc_dispersions.md
+      - Computing the Cooks distance: api/core/deseq2_core/compute_cook_distance.md
+      - Replacing outliers: api/core/deseq2_core/replace_outliers.md
+      - Replace refitted values: api/core/deseq2_core/replace_refitted_values.md
+      - Computing statistics and p-values: api/core/deseq2_core/deseq2_stats.md
+      - Saving results: api/core/deseq2_core/save_pipeline_results.md
+      - Strategy: api/core/strategy.md
+    - Utils:
+      - Core: api/core/utils.md
+      - Substra: api/substra_utils.md
+    - Federated algorithms:
+      - Home: api/core/federated_algorithms/index.md
+      - Compute trimmed mean: api/core/federated_algorithms/compute_trimmed_mean.md
+      - Compute dispersions with grid search: api/core/federated_algorithms/dispersions_grid_search.md
+      - Federated IRLS: api/core/federated_algorithms/fed_irls.md
+      - Federated ProxQuasiNewton: api/core/federated_algorithms/fed_pqn.md

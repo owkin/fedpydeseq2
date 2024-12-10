@@ -1,4 +1,5 @@
 """Module to implement the base Mixin class for Cooks filtering."""
+
 from fedpydeseq2.core.deseq2_core.deseq2_stats.cooks_filtering.substeps import (
     AggCooksFiltering,
 )
@@ -68,7 +69,7 @@ class CooksFiltering(
             Local states. Required to propagate intermediate results.
 
         wald_test_shared_state : dict
-           A shared state containing the Wald test results.
+            A shared state containing the Wald test results.
             These results are the following fields:
             - "p_values": p-values of the Wald test.
             - "wald_statistics" : Wald statistics.

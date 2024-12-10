@@ -1,0 +1,29 @@
+name: docs
+
+on:
+  push:
+    branches:
+      - "main"
+  workflow_dispatch: # This line makes the workflow manually triggerable
+
+jobs:
+  deploy-docs:
+    if: (github.event_name == 'release') || (github.event_name == 'push' && github.ref == 'refs/heads/main')
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: Install Poetry
+        run: pip install poetry==1.8.2
+
+      - name: Install dependencies
+        run: poetry install --with docs
+
+      - name: Build docs
+        run: poetry run mkdocs gh-deploy --force

@@ -49,7 +49,7 @@ def run_fedpydeseq2_experiment(
     asset_directory : Path
         Path to the directory containing the assets (opener.py and description.md).
 
-    centers_root_directory : Path or None
+    centers_root_directory : Path, optional
         Path to the directory containing the centers data. Can be None only in remote
         mode when register_data is False.
         The centers data should be organized as follows:
@@ -92,7 +92,7 @@ def run_fedpydeseq2_experiment(
         Only used for the remote backend.
         Is filled in if register_data is True, and read if register_data is False.
 
-    cp_id_path : str or Path or None
+    cp_id_path : str or Path, optional
         Path to the file containing the compute plan id.
         This file is a yaml file with the following structure:
         ```
@@ -101,11 +101,11 @@ def run_fedpydeseq2_experiment(
         compute_plan_key: str
         ```
 
-    parameter_file : str or Path or None
+    parameter_file : str or Path, optional
         If not None, yaml file containing the parameters to pass to the DESeq2Strategy.
         If None, the default parameters are used.
 
-    fedpydeseq2_wheel_path : str or Path or None
+    fedpydeseq2_wheel_path : str or Path, optional
         Path to the wheel file of the fedpydeseq2 package. If provided and the backend
         is remote, this wheel will be added to the dependencies.
 
