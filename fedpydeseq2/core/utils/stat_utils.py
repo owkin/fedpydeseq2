@@ -31,9 +31,9 @@ def build_contrast(
         The design factors.
     design_columns : list
         The names of the columns of the design matrices in the centers.
-    continuous_factors : list or None
+    continuous_factors : list, optional
         The continuous factors in the design, if any. (default: ``None``).
-    contrast : list or None
+    contrast : list, optional
         A list of three strings, in the following format:
         ``['variable_of_interest', 'tested_level', 'reference_level']``.
         (default: ``None``).
@@ -82,7 +82,7 @@ def build_contrast_vector(contrast, LFC_columns) -> tuple[np.ndarray, int | None
     -------
     contrast_vector : ndarray
         The contrast vector, containing multipliers to apply to the LFCs.
-    contrast_idx : int or None
+    contrast_idx : int, optional
         The index of the tested contrast in the LFC matrix.
     """
     factor = contrast[0]
@@ -141,7 +141,7 @@ def wald_test(
     lfc : ndarray
         Log-fold change estimate (in natural log scale).
 
-    ridge_factor : ndarray or None
+    ridge_factor : ndarray, optional
         Regularization factors.
 
     contrast_vector : ndarray
@@ -150,7 +150,7 @@ def wald_test(
     lfc_null : float
         The log fold change (in natural log scale) under the null hypothesis.
 
-    alt_hypothesis : str or None
+    alt_hypothesis : str, optional
         The alternative hypothesis for computing wald p-values.
 
     Returns

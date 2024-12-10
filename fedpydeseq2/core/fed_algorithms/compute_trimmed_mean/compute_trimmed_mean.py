@@ -1,4 +1,5 @@
 """Module containing the steps to compute trimmed mean."""
+
 from typing import Literal
 
 from fedpydeseq2.core.fed_algorithms.compute_trimmed_mean.substeps import (
@@ -77,7 +78,7 @@ class ComputeTrimmedMean(
             If "normal", the local trimmed mean is computed on the whole dataset, as
             expected, using the trim_ratio parameter.
 
-        trim_ratio : float or None
+        trim_ratio : float, optional
             The ratio to trim. Should be between 0 and 0.5.
             Is only used in "normal" mode, and should be None in "cooks" mode.
 

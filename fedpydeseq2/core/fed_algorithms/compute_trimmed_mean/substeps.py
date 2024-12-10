@@ -2,6 +2,7 @@
 
 This module contains all these substeps as mixin classes.
 """
+
 from typing import Literal
 
 import numpy as np
@@ -298,7 +299,7 @@ class LocalIterationTrimmedMean:
             If "normal", the function will be applied on the whole dataset, using the
             trim_ratio parameter.
 
-        trim_ratio : float or None
+        trim_ratio : float, optional
             Ratio of the samples to be trimmed. Must be between 0 and 0.5. Must be
             None if mode is "cooks", and float if mode is "normal".
 
@@ -578,7 +579,7 @@ class LocFinalTrimmedMean:
             If "normal", the function will be applied on the whole dataset, using the
             trim_ratio parameter.
 
-        trim_ratio : float or None
+        trim_ratio : float, optional
             Ratio of the samples to be trimmed. Must be between 0 and 0.5. Must be
             None if mode is "cooks", and float if mode is "normal".
 

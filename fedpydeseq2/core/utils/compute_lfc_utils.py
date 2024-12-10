@@ -16,7 +16,7 @@ def get_lfc_utils_from_gene_mask_adata(
     adata : ad.AnnData
         The local AnnData object.
 
-    gene_mask : np.ndarray or None
+    gene_mask : np.ndarray, optional
         The mask of genes to use for the IRLS algorithm.
         This mask identifies the genes in the non_zero_gene_names.
         If None, all non zero genes are used.

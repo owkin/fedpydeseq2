@@ -116,7 +116,7 @@ def load_layers(
     adata : ad.AnnData
         The AnnData object to load the layers into.
 
-    shared_state : dict or None
+    shared_state : dict, optional
         The shared state containing the Cook's dispersion values.
 
     layers_to_load : list[str]

@@ -143,7 +143,7 @@ def run_federated_experiment(
         This file is generated if register_data is True and backend is "remote".
         This file is loaded if register_data is False and backend is "remote".
 
-    cp_id_path : str or Path or None
+    cp_id_path : str or Path, optional
         The path to a file where we save the necessary information to
         retrieve the compute plan. This parameter
         is only used in remote mode.
