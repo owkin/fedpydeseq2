@@ -1,9 +1,9 @@
 # Installation
 
-## 1 - Create a conda environment with python 3.9+
+## 1 - Create a conda environment with python 3.10+
 
 ```
-conda create -n fedpydeseq2 python=3.9 # or a higher python version
+conda create -n fedpydeseq2 python=3.10 # or a higher python version
 conda activate fedpydeseq2
 ```
 

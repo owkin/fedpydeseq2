@@ -6,7 +6,7 @@ site_description: "A federated learning implementation of DESeq2 for differentia
 repo_name: owkin/fedpydeseq2
 repo_url: https://github.com/owkin/fedpydeseq2
 
-copyright: Copyright (c) 2024-present Owkin
+copyright: Copyright (c) 2024-present Owkin Inc.
 
 theme:
   name: material
@@ -100,7 +100,10 @@ nav:
       - Computing statistics and p-values: api/core/deseq2_core/deseq2_stats.md
       - Saving results: api/core/deseq2_core/save_pipeline_results.md
       - Strategy: api/core/strategy.md
-    - Utils: api/core/utils.md
+      - Running an exiperiment: api/fedpydeseq2_pipeline.md
+    - Utils:
+      - Core: api/core/utils.md
+      - Substra: api/substra_utils.md
     - Federated algorithms:
       - Home: api/core/federated_algorithms/index.md
       - Compute trimmed mean: api/core/federated_algorithms/compute_trimmed_mean.md
