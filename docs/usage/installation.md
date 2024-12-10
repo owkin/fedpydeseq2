@@ -38,8 +38,4 @@ If you wish to manually create the documentation, please run
 poetry install --with docs
 ```
 
-If you want to run the paper experiments, please run
-
-```
-poetry install --with experiments
-```
+If you want to run the paper experiments, please visit https://github.com/owkin/fedpydeseq2-paper-experiments.
