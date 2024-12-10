@@ -25,18 +25,18 @@ class DESeq2Strategy(ComputePlanBuilder, DESeq2FullPipe):
         If you are using categorical and continuous factors, you must put
         all of them here.
 
-    ref_levels : dict or None
+    ref_levels : dict, optional
         An optional dictionary of the form ``{"factor": "test_level"}``
         specifying for each factor the reference (control) level against which
         we're testing, e.g. ``{"condition", "A"}``. Factors that are left out
         will be assigned random reference levels. (default: ``None``).
 
-    continuous_factors : list or None
+    continuous_factors : list, optional
         An optional list of continuous (as opposed to categorical) factors. Any factor
         not in ``continuous_factors`` will be considered categorical
         (default: ``None``).
 
-    contrast : list or None
+    contrast : list, optional
         A list of three strings, in the following format:
         ``['variable_of_interest', 'tested_level', 'ref_level']``.
         Names must correspond to the metadata data passed to the DeseqDataSet.
@@ -51,7 +51,7 @@ class DESeq2Strategy(ComputePlanBuilder, DESeq2FullPipe):
     lfc_null : float
         The (log2) log fold change under the null hypothesis. (default: ``0``).
 
-    alt_hypothesis : str or None
+    alt_hypothesis : str, optional
         The alternative hypothesis for computing wald p-values. By default, the normal
         Wald test assesses deviation of the estimated log fold change from the null
         hypothesis, as given by ``lfc_null``.
@@ -129,7 +129,7 @@ class DESeq2Strategy(ComputePlanBuilder, DESeq2FullPipe):
     PQN_num_iters_ls : int
         The number of iterations performed in the line search at each prox newton step.
 
-    PQN_num_iters : int,
+    PQN_num_iters : int
         The number of iterations in the prox newton catch of IRLS.
 
     PQN_min_mu : float

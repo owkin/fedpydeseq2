@@ -68,10 +68,14 @@ plugins:
       type: timeago
       enable_creation_date: true
   - mkdocstrings:
-      default_handler: python
       handlers:
-          options:
-            docstring_style: numpy
+         python:
+            options:
+              docstring_style: numpy
+              docstring_section_style: table
+              docstring_options:
+                ignore_init_summary: false
+              merge_init_into_class: false
   - bibtex:
       bib_file: "./docs/references.bib"
   - include-markdown:
@@ -89,6 +93,7 @@ nav:
     - References: usage/references.md
   - API:
     - Home: api/index.md
+    - Running an experiment: api/fedpydeseq2_pipeline.md
     - Core:
       - Home: api/core/deseq2_core/index.md
       - Build design matrix: api/core/deseq2_core/build_design_matrix.md
@@ -100,7 +105,6 @@ nav:
       - Computing statistics and p-values: api/core/deseq2_core/deseq2_stats.md
       - Saving results: api/core/deseq2_core/save_pipeline_results.md
       - Strategy: api/core/strategy.md
-      - Running an exiperiment: api/fedpydeseq2_pipeline.md
     - Utils:
       - Core: api/core/utils.md
       - Substra: api/substra_utils.md
