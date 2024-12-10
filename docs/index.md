@@ -14,8 +14,8 @@ Currently, available features broadly correspond to the default settings of DESe
 multi-factor analysis (with categorical or continuous factors) using Wald tests, without the LFC shrinkage step.
 
 
-
-
 ## Citing this work
 
 ## License
+
+FedPyDESeq2 is released under an [MIT license](https://github.com/owkin/fedpydeseq2/blob/main/LICENSE).
