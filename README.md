@@ -109,7 +109,7 @@ print them continuously.
 
 ## Running on a real Substra environment
 
-### running the CP
+### Running the compute plan
 To run a compute plan on an environment with the substra front-end, you need first to generate token in each of the
 substra nodes. Then you need to duplicate
 [credentials-template.yaml](fedpydeseq2/substra_utils/credentials/credentials-template.yaml)
@@ -118,3 +118,30 @@ into a new file
 tokens. You should not need to rebuild the wheel manually by running
 `poetry build` as the script will try to do it for you, but watch out for
 related error message when executing the file.
+
+## Citing this work
+
+```
+@article{muzellec2024fedpydeseq2,
+  title={FedPyDESeq2: a federated framework for bulk RNA-seq differential expression analysis},
+  author={Muzellec, Boris and Marteau-Ferey, Ulysse and Marchand, Tanguy},
+  journal={bioRxiv},
+  pages={2024--12},
+  year={2024},
+  publisher={Cold Spring Harbor Laboratory}
+}
+```
+
+## References
+
+[1] Love, M. I., Huber, W., & Anders, S. (2014). "Moderated estimation of fold
+        change and dispersion for RNA-seq data with DESeq2." Genome biology, 15(12), 1-21.
+        <https://genomebiology.biomedcentral.com/articles/10.1186/s13059-014-0550-8>
+
+[2] Muzellec, B., Teleńczuk, M., Cabeli, V., & Andreux, M. (2023). "PyDESeq2: a python package 
+        for bulk RNA-seq differential expression analysis." Bioinformatics, 39(9), btad547.
+        <https://academic.oup.com/bioinformatics/article/39/9/btad547/7260507>
+
+## License
+
+FedPyDESeq2 is released under an [MIT license](https://github.com/owkin/FedPyDESeq2/blob/main/LICENSE](https://github.com/owkin/fedpydeseq2/blob/main/LICENSE)).
