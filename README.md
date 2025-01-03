@@ -138,7 +138,7 @@ related error message when executing the file.
         change and dispersion for RNA-seq data with DESeq2." Genome biology, 15(12), 1-21.
         <https://genomebiology.biomedcentral.com/articles/10.1186/s13059-014-0550-8>
 
-[2] Muzellec, B., Teleńczuk, M., Cabeli, V., & Andreux, M. (2023). "PyDESeq2: a python package 
+[2] Muzellec, B., Teleńczuk, M., Cabeli, V., & Andreux, M. (2023). "PyDESeq2: a python package
         for bulk RNA-seq differential expression analysis." Bioinformatics, 39(9), btad547.
         <https://academic.oup.com/bioinformatics/article/39/9/btad547/7260507>
 
