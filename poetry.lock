@@ -1139,6 +1139,23 @@ setuptools = ">=68.0.0"
 validators = ">=0.19.0"
 
 [[package]]
+name = "mkdocs-gallery"
+version = "0.10.4"
+description = "a `mkdocs` plugin to generate example galleries from python scripts, similar to `sphinx-gallery`."
+optional = false
+python-versions = "*"
+files = [
+    {file = "mkdocs_gallery-0.10.4-py2.py3-none-any.whl", hash = "sha256:8669d162b412714c52792f2959d4d211bf92bf5f820f5916c0686ff1ccd89806"},
+    {file = "mkdocs_gallery-0.10.4.tar.gz", hash = "sha256:469f84a0c842ea87aa59e8679bd6237607f2a578788b50a50132abd9937d14d4"},
+]
+
+[package.dependencies]
+mkdocs = ">=1,<2"
+mkdocs-material = "*"
+packaging = "*"
+tqdm = "*"
+
+[[package]]
 name = "mkdocs-get-deps"
 version = "0.2.0"
 description = "MkDocs extension that lists all dependencies according to a mkdocs.yml file"
@@ -2812,4 +2829,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.10,<3.13"
-content-hash = "ef366cdc2a57b9e038de99b2af99f6e20b04e34dba6d5d03180374ff2d872ea1"
+content-hash = "8f4e5a67065d7c7a8946998eba7a92061e33237e1071125ac767169c99899bf9"
