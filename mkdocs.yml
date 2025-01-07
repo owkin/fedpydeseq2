@@ -63,6 +63,9 @@ extra_css:
 
 
 plugins:
+  - gallery:
+      examples_dirs: docs/examples          # path to example scripts
+      gallery_dirs: docs/generated/gallery  # where to save generated gallery
   - search:
   - git-revision-date-localized:
       type: timeago
@@ -91,6 +94,7 @@ nav:
     - Installation: usage/installation.md
     - Contributing: usage/contributing.md
     - References: usage/references.md
+    - generated/gallery
   - API:
     - Home: api/index.md
     - Running an experiment: api/fedpydeseq2_pipeline.md
