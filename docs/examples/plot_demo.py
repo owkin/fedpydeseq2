@@ -24,7 +24,7 @@ from fedpydeseq2.fedpydeseq2_pipeline import run_fedpydeseq2_experiment
 # and must be registered with Substra beforehand. Hence, each center would have a folder
 # containing two csvs (one fore the counts and one for the metadata), as well as an
 # opener python file and a markdown readme file (see
-# [Substra's documentation](https://docs.substra.org/en/stable/documentation/concepts.html#assets) # noqa: E501
+# [Substra's documentation](https://docs.substra.org/en/stable/documentation/concepts.html#assets)
 # on how to register a datasample).
 # Then, we would only need pass the `dataset_datasample_keys path`.
 #
@@ -107,7 +107,7 @@ experiment_id = "TCGA-LUAD-stage"
 #
 # * `asset_directory`: This directory should contain an opener.py file, containing an
 #   Opener class, and datasets.description.md file. Here, we copy them from
-#   [`fedpydeseq2_datasets/assets/tcga`](https://github.com/owkin/fedpydeseq2-datasets/tree/main/fedpydeseq2_datasets/assets/tcga) # noqa: E501
+#   [`fedpydeseq2_datasets/assets/tcga`](https://github.com/owkin/fedpydeseq2-datasets/tree/main/fedpydeseq2_datasets/assets/tcga)
 #
 # * `centers_root_directory`: Where the processed data for each center is stored
 #
