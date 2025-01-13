@@ -1,7 +1,7 @@
 """FedPyDESeq2 demo on the TCGA-LUAD dataset.
 
 This example demonstrates how to run a FedPyDESeq2 experiment on the TCGA-LUAD dataset
-from a single machine, using Substra's simulated mode.
+from a single machine, using Substra's simulation mode.
 
 We will show how to perform a simple differential expression analysis, comparing samples
 with `"Advanced"` vs `"Non-advanced"` tumoral `stage`.
@@ -20,7 +20,18 @@ from fedpydeseq2.fedpydeseq2_pipeline import run_fedpydeseq2_experiment
 # %%
 # ## Dataset setup
 #
-# FedPyDESeq2 assumes the data to be organized in the following structure:
+# In a real federated setup, the data is distributed across multiple medical centers
+# and must be registered with Substra beforehand. Hence, each center would have a folder
+# containing two csvs (one fore the counts and one for the metadata), as well as an
+# opener python file and a markdown readme file (see
+# [Substra's documentation](https://docs.substra.org/en/stable/documentation/concepts.html#assets) # noqa: E501
+# on how to register a datasample).
+# Then, we would only need pass the `dataset_datasample_keys path`.
+#
+# In this tutorial, however, we use FedPyDESeq2's simulation mode, which
+# allows us to emulate a federated setup from a single machine.
+#
+# The simulation mode assumes the data to be organized in the following structure:
 #
 # ```
 # processed_data_path/
