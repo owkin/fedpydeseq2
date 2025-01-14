@@ -174,11 +174,21 @@ fedpydeseq2/substra_utils/credentials/*
 tests/local-worker/*
 tmp_substrafl*
 
+# Experiments
 /experiments/credentials/
 /paper_experiments/gsea/gsea.sh
+
+# Lock files
 *.lock
 !poetry.lock
 
 tests/datasets_parent_dir.txt
 
 data/raw/*
+
+# MKDocs
+/docs/build.out
+docs/generated/gallery/
+docs/examples/data/raw/tcga/
+docs/generated/gallery/
+docs/examples/data/processed/
