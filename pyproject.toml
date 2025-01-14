@@ -54,6 +54,7 @@ mkdocs-bibtex = "^2.16.2"
 mkdocs-gallery = "^0.10.4"
 ipynb = "*"
 fedpydeseq2-datasets = "^0.1.0"
+ipython = "^8.31.0"
 
 [tool.black]
 line-length = 88
