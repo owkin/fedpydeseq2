@@ -31,6 +31,8 @@ jobs:
           wget https://repo.anaconda.com/miniconda/Miniconda3-py39_24.5.0-0-Linux-x86_64.sh -O /opt/conda/miniconda.sh
           bash /opt/conda/miniconda.sh -b -p /opt/miniconda
           poetry run fedpydeseq2-download-data --only_luad --raw_data_output_path /home/runner/work/fedpydeseq2/docs/examples/data/raw --conda_activate_path /opt/miniconda/bin/activate
+          ls /home/runner/work/fedpydeseq2/docs/examples/data/raw
+          ls /home/runner/work/fedpydeseq2/docs/examples/data/raw/tcga
 
       - name: Build docs
         run: poetry run mkdocs gh-deploy --force
