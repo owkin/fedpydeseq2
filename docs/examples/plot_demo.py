@@ -70,6 +70,7 @@ raw_data_path = Path("data/raw").resolve()
 processed_data_path = Path("data/processed").resolve()
 design_factors = "stage"
 
+print(raw_data_path)
 
 setup_tcga_dataset(
     raw_data_path,
