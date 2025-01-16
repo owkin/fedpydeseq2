@@ -66,7 +66,6 @@ plugins:
   - gallery:
       examples_dirs: docs/examples          # path to example scripts
       gallery_dirs: docs/generated/gallery  # where to save generated gallery
-      conf_script: docs/gallery_conf.py
 
   - search:
   - git-revision-date-localized:
