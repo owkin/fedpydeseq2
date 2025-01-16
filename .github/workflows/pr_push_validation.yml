@@ -39,8 +39,7 @@ jobs:
           wget https://repo.anaconda.com/miniconda/Miniconda3-py39_24.5.0-0-Linux-x86_64.sh -O /opt/conda/miniconda.sh
           bash /opt/conda/miniconda.sh -b -p /opt/miniconda
           poetry run fedpydeseq2-download-data --only_luad --raw_data_output_path /home/runner/work/fedpydeseq2/fedpydeseq2/data/raw --conda_activate_path /opt/miniconda/bin/activate
-          ls /home/runner/work/fedpydeseq2/fedpydeseq2/data/raw
-          ls /home/runner/work/fedpydeseq2/fedpydeseq2/data/raw/tcga
+
       - name: Testing
         run: |
           poetry run pytest -v tests -m "not self_hosted_slow and not self_hosted_fast and not local and not docker"
