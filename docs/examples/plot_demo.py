@@ -115,9 +115,6 @@ experiment_id = "TCGA-LUAD-stage"
 #
 # * `dataset_name`: We're working with the TCGA-LUAD lung cancer dataset
 #
-# * `dataset_datasamples_keys_path`: Path to a YAML file containing the keys for our
-#   data samples. This is only used in the case of a real (unsimulated) federated setup.
-#
 # * `design_factors`: This should be a list of the design factors we wish to include in
 #   our analysis. Here, we're studying how "stage" (the cancer stage) affects gene
 #   expression
@@ -144,9 +141,6 @@ fl_results = run_fedpydeseq2_experiment(
     / experiment_id,
     compute_plan_name="Example-TCGA-LUAD-pipeline",
     dataset_name="TCGA-LUAD",
-    dataset_datasamples_keys_path=Path(
-        f"credentials/{experiment_id}-datasamples-keys.yaml"
-    ).resolve(),
     design_factors="stage",
     ref_levels={"stage": "Non-advanced"},
     contrast=["stage", "Advanced", "Non-advanced"],
