@@ -11,6 +11,7 @@ from fedpydeseq2.core.deseq2_core.deseq2_lfc_dispersions.compute_genewise_disper
 )
 from fedpydeseq2.core.utils import aggregation_step
 from fedpydeseq2.core.utils import local_step
+from fedpydeseq2.core.utils.logging.logging_decorators import log_organisation_method
 
 
 class ComputeRoughDispersions(
@@ -28,6 +29,7 @@ class ComputeRoughDispersions(
 
     """
 
+    @log_organisation_method
     def compute_rough_dispersions(
         self,
         train_data_nodes,

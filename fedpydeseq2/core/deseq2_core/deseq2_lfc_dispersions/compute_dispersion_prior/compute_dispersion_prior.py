@@ -10,6 +10,7 @@ from fedpydeseq2.core.deseq2_core.deseq2_lfc_dispersions.compute_dispersion_prio
 )
 from fedpydeseq2.core.utils import aggregation_step
 from fedpydeseq2.core.utils import local_step
+from fedpydeseq2.core.utils.logging.logging_decorators import log_organisation_method
 
 
 class ComputeDispersionPrior(
@@ -26,6 +27,7 @@ class ComputeDispersionPrior(
 
     """
 
+    @log_organisation_method
     def compute_dispersion_prior(
         self,
         train_data_nodes,

@@ -5,6 +5,7 @@ from fedpydeseq2.core.deseq2_core.deseq2_stats.compute_padj import (
 )
 from fedpydeseq2.core.deseq2_core.deseq2_stats.cooks_filtering import CooksFiltering
 from fedpydeseq2.core.deseq2_core.deseq2_stats.wald_tests import RunWaldTests
+from fedpydeseq2.core.utils.logging.logging_decorators import log_organisation_method
 
 
 class DESeq2Stats(RunWaldTests, CooksFiltering, ComputeAdjustedPValues):
@@ -23,6 +24,7 @@ class DESeq2Stats(RunWaldTests, CooksFiltering, ComputeAdjustedPValues):
 
     cooks_filter: bool
 
+    @log_organisation_method
     def run_deseq2_stats(
         self,
         train_data_nodes,

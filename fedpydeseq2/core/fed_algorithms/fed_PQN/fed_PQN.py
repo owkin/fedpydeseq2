@@ -8,6 +8,11 @@ from fedpydeseq2.core.fed_algorithms.fed_PQN.substeps import (
 )
 from fedpydeseq2.core.utils import aggregation_step
 from fedpydeseq2.core.utils import local_step
+from fedpydeseq2.core.utils.logging.logging_decorators import end_iteration
+from fedpydeseq2.core.utils.logging.logging_decorators import end_loop
+from fedpydeseq2.core.utils.logging.logging_decorators import log_organisation_method
+from fedpydeseq2.core.utils.logging.logging_decorators import start_iteration
+from fedpydeseq2.core.utils.logging.logging_decorators import start_loop
 
 
 class FedProxQuasiNewton(
@@ -31,6 +36,7 @@ class FedProxQuasiNewton(
 
     PQN_num_iters: int
 
+    @log_organisation_method
     def run_fed_PQN(
         self,
         train_data_nodes,
@@ -91,7 +97,9 @@ class FedProxQuasiNewton(
         """
         #### ---- Main training loop ---- #####
 
+        start_loop()
         for pqn_iter in range(self.PQN_num_iters + 1):
+            start_iteration(pqn_iter)
             # ---- Compute local IRLS summands and nlls ---- #
 
             (
@@ -127,6 +135,8 @@ class FedProxQuasiNewton(
                 description="Update the log fold changes and nlls in IRLS.",
                 clean_models=clean_models,
             )
+            end_iteration()
+        end_loop()
 
         #### ---- End of training ---- ####
 

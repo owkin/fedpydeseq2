@@ -10,6 +10,7 @@ from fedpydeseq2.core.deseq2_core.compute_cook_distance.substeps import (
 from fedpydeseq2.core.fed_algorithms import ComputeTrimmedMean
 from fedpydeseq2.core.utils import aggregation_step
 from fedpydeseq2.core.utils import local_step
+from fedpydeseq2.core.utils.logging.logging_decorators import log_organisation_method
 
 
 class ComputeCookDistances(
@@ -29,6 +30,7 @@ class ComputeCookDistances(
 
     trimmed_mean_num_iter: int
 
+    @log_organisation_method
     def compute_cook_distance(
         self,
         train_data_nodes,

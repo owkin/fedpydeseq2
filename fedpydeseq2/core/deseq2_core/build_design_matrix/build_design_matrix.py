@@ -11,6 +11,7 @@ from fedpydeseq2.core.deseq2_core.build_design_matrix.substeps import (
 from fedpydeseq2.core.deseq2_core.build_design_matrix.substeps import LocSetLocalDesign
 from fedpydeseq2.core.utils import aggregation_step
 from fedpydeseq2.core.utils import local_step
+from fedpydeseq2.core.utils.logging.logging_decorators import log_organisation_method
 
 
 class BuildDesignMatrix(
@@ -33,6 +34,7 @@ class BuildDesignMatrix(
         pipeline while we are testing.
     """
 
+    @log_organisation_method
     def build_design_matrix(
         self, train_data_nodes, aggregation_node, local_states, round_idx, clean_models
     ):

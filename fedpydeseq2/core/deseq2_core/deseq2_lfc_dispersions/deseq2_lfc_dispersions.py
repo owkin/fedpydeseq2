@@ -11,6 +11,7 @@ from fedpydeseq2.core.deseq2_core.deseq2_lfc_dispersions.compute_MAP_dispersions
     ComputeMAPDispersions,
 )
 from fedpydeseq2.core.utils import local_step
+from fedpydeseq2.core.utils.logging.logging_decorators import log_organisation_method
 
 
 class DESeq2LFCDispersions(
@@ -35,6 +36,7 @@ class DESeq2LFCDispersions(
         is applied/
     """
 
+    @log_organisation_method
     def run_deseq2_lfc_dispersions(
         self,
         train_data_nodes,

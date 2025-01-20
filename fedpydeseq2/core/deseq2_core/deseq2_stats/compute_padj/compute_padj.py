@@ -5,6 +5,7 @@ from fedpydeseq2.core.deseq2_core.deseq2_stats.compute_padj.substeps import (
     PValueAdjustment,
 )
 from fedpydeseq2.core.utils import local_step
+from fedpydeseq2.core.utils.logging.logging_decorators import log_organisation_method
 
 
 class ComputeAdjustedPValues(IndependentFiltering, PValueAdjustment):
@@ -26,6 +27,7 @@ class ComputeAdjustedPValues(IndependentFiltering, PValueAdjustment):
 
     independent_filter: bool = False
 
+    @log_organisation_method
     def compute_adjusted_p_values(
         self,
         train_data_nodes,

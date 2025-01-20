@@ -14,6 +14,7 @@ from fedpydeseq2.core.deseq2_core.deseq2_lfc_dispersions.compute_genewise_disper
 from fedpydeseq2.core.deseq2_core.deseq2_lfc_dispersions.compute_lfc import ComputeLFC
 from fedpydeseq2.core.fed_algorithms import ComputeDispersionsGridSearch
 from fedpydeseq2.core.utils import local_step
+from fedpydeseq2.core.utils.logging.logging_decorators import log_organisation_method
 
 
 class ComputeGenewiseDispersions(
@@ -46,6 +47,7 @@ class ComputeGenewiseDispersions(
 
     """
 
+    @log_organisation_method
     def fit_genewise_dispersions(
         self,
         train_data_nodes,

@@ -6,6 +6,7 @@ from fedpydeseq2.core.deseq2_core.compute_size_factors.substeps import (
 )
 from fedpydeseq2.core.utils import aggregation_step
 from fedpydeseq2.core.utils import local_step
+from fedpydeseq2.core.utils.logging.logging_decorators import log_organisation_method
 
 
 class ComputeSizeFactors(
@@ -24,6 +25,7 @@ class ComputeSizeFactors(
 
     """
 
+    @log_organisation_method
     def compute_size_factors(
         self,
         train_data_nodes,

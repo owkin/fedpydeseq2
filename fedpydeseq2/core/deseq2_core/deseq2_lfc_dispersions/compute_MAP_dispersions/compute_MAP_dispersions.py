@@ -5,6 +5,7 @@ from fedpydeseq2.core.deseq2_core.deseq2_lfc_dispersions.compute_MAP_dispersions
 )
 from fedpydeseq2.core.fed_algorithms import ComputeDispersionsGridSearch
 from fedpydeseq2.core.utils import local_step
+from fedpydeseq2.core.utils.logging.logging_decorators import log_organisation_method
 
 
 class ComputeMAPDispersions(
@@ -23,6 +24,7 @@ class ComputeMAPDispersions(
 
     """
 
+    @log_organisation_method
     def fit_MAP_dispersions(
         self,
         train_data_nodes,

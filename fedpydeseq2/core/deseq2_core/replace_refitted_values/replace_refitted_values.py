@@ -4,6 +4,7 @@ from substrafl.remote import remote_data
 from fedpydeseq2.core.utils import local_step
 from fedpydeseq2.core.utils.layers import reconstruct_adatas
 from fedpydeseq2.core.utils.logging import log_remote_data
+from fedpydeseq2.core.utils.logging.logging_decorators import log_organisation_method
 
 
 class ReplaceRefittedValues:
@@ -12,6 +13,7 @@ class ReplaceRefittedValues:
     local_adata: ad.AnnData | None
     refit_adata: ad.AnnData | None
 
+    @log_organisation_method
     def replace_refitted_values(
         self,
         train_data_nodes,

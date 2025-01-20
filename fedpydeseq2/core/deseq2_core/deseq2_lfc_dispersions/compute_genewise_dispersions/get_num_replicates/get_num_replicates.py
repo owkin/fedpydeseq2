@@ -9,6 +9,7 @@ from fedpydeseq2.core.deseq2_core.deseq2_lfc_dispersions.compute_genewise_disper
 )
 from fedpydeseq2.core.utils import aggregation_step
 from fedpydeseq2.core.utils import local_step
+from fedpydeseq2.core.utils.logging.logging_decorators import log_organisation_method
 
 
 class GetNumReplicates(
@@ -16,6 +17,7 @@ class GetNumReplicates(
 ):
     """Mixin class to get the number of replicates for each combination of factors."""
 
+    @log_organisation_method
     def get_num_replicates(
         self, train_data_nodes, aggregation_node, local_states, round_idx, clean_models
     ):
