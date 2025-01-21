@@ -187,6 +187,9 @@ tests/datasets_parent_dir.txt
 data/raw/*
 fedpydeseq2/core/utils/logging/logging_paths.json
 logs/*
+logging/*
+!logging/logger_configuration_template.ini
+!logging/logging_configuration_template.json
 
 # MKDocs
 /docs/build.out
