@@ -1,9 +1,11 @@
 from pathlib import Path
 
 import yaml  # type: ignore
+from loguru import logger
 from substra.sdk.schemas import BackendType
 
 from fedpydeseq2.core.deseq2_strategy import DESeq2Strategy
+from fedpydeseq2.fedpydeseq2.core.utils.logging.utils import set_log_config_path
 from fedpydeseq2.substra_utils.federated_experiment import run_federated_experiment
 
 
@@ -24,6 +26,7 @@ def run_fedpydeseq2_experiment(
     cp_id_path: str | Path | None = None,
     parameter_file: str | Path | None = None,
     fedpydeseq2_wheel_path: str | Path | None = None,
+    logging_configuration_file_path: str | Path | None = None,
     **kwargs,
 ) -> dict:
     """Run a federated experiment using the DESeq2 strategy.
@@ -109,6 +112,10 @@ def run_fedpydeseq2_experiment(
         Path to the wheel file of the fedpydeseq2 package. If provided and the backend
         is remote, this wheel will be added to the dependencies.
 
+    logging_configuration_file_path : str or Path or None
+        Path to the logging configuration file.
+        Only used in subprocess backend.
+
     **kwargs
         Arguments to pass to the DESeq2Strategy. They will overwrite those specified
         in the parameter_file if the file is not None.
@@ -121,6 +128,15 @@ def run_fedpydeseq2_experiment(
 
 
     """
+    if backend != "subprocess" and logging_configuration_file_path is not None:
+        logger.warning(
+            "logging_configuration_file_path is only used in subprocess backend."
+            "It will be ignored."
+        )
+        logging_configuration_file_path = None
+
+    set_log_config_path(logging_configuration_file_path)
+
     if parameter_file is not None:
         with open(parameter_file, "rb") as file:
             parameters = yaml.load(file, Loader=yaml.FullLoader)
