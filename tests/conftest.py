@@ -6,6 +6,37 @@ import pytest
 
 
 @pytest.fixture(scope="session")
+def workflow_file_path():
+    current_dir = Path(__file__).parent
+    return current_dir.parent / "logging" / "workflow.txt"
+
+
+@pytest.fixture(scope="session")
+def logging_configuration_path(workflow_file_path):
+    current_dir = Path(__file__).parent
+
+    logger_configuration_path = (
+        current_dir.parent / "logging" / "logger_configuration_template.ini"
+    )
+
+    logging_config = {
+        "logger_configuration_ini_path": str(logger_configuration_path),
+        "generate_workflow": {
+            "create_workflow": True,
+            "workflow_file_path": str(workflow_file_path),
+            "clean_workflow_file": True,
+        },
+        "log_shared_state_adata_content": False,
+        "log_shared_state_size": False,
+    }
+
+    loggging_config_path = current_dir / "logging_configuration.json"
+    with loggging_config_path.open("w") as f:
+        json.dump(logging_config, f)
+    return loggging_config_path
+
+
+@pytest.fixture(scope="session")
 def raw_data_path():
     """Fixture to get the path to the raw data."""
     default_paths = Path(__file__).parent / "paths_default.json"
