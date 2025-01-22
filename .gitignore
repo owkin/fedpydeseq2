@@ -190,6 +190,7 @@ logs/*
 logging/*
 !logging/logger_configuration_template.ini
 !logging/logging_configuration_template.json
+!logging/README.md
 tests/paths.json
 fedpydeseq2/core/utils/logging/log_config_path.json
 # MKDocs
