@@ -154,12 +154,36 @@ def raw_data_path():
         raw_data_path = Path(raw_data_path)
     else:
         raw_data_path = Path(__file__).parent / raw_data_path
-    print("Test raw data path")
     return raw_data_path
 
 
+def get_processed_data_path_from_jsons() -> Path | None:
+    default_paths = Path(__file__).parent / "paths_default.json"
+    specified_paths = Path(__file__).parent / "paths.json"
+    if specified_paths.exists():
+        with open(specified_paths) as f:
+            specified_paths_data = json.load(f)
+            if "processed_data" in specified_paths_data:
+                processed_data_path = specified_paths_data["processed_data"]
+                if processed_data_path is not None:
+                    if processed_data_path.startswith("/"):
+                        return Path(processed_data_path)
+                    return Path(__file__).parent / processed_data_path
+    with open(default_paths) as f:
+        processed_data_path = json.load(f)["processed_data"]
+        if processed_data_path is not None:
+            if processed_data_path.startswith("/"):
+                return Path(processed_data_path)
+            return Path(__file__).parent / processed_data_path
+    return None
+
+
 @pytest.fixture(scope="session")
-def tmp_processed_data_path(tmpdir_factory):
+def processed_data_path(tmpdir_factory):
+    """Fixture to get the path to the processed data."""
+    optional_processed_data_path = get_processed_data_path_from_jsons()
+    if optional_processed_data_path is not None:
+        return optional_processed_data_path
     return Path(tmpdir_factory.mktemp("processed"))
 
 
@@ -177,24 +201,3 @@ def tcga_assets_directory():
 
     fedpydeseq2_datasets_dir = Path(fedpydeseq2_datasets.__file__).parent
     return fedpydeseq2_datasets_dir / "assets/tcga"
-
-
-@pytest.fixture(scope="session")
-def local_processed_data_path():
-    default_paths = Path(__file__).parent / "paths_default.json"
-    specified_paths = Path(__file__).parent / "paths.json"
-    found = False
-    if specified_paths.exists():
-        with open(specified_paths) as f:
-            json_data = json.load(f)
-            if "processed_data" in json_data:
-                found = True
-                processed_data_path = json_data["processed_data"]
-    if not found:
-        with open(default_paths) as f:
-            processed_data_path = json_data["processed_data"]
-    if processed_data_path.startswith("/"):
-        processed_data_path = Path(processed_data_path)
-    else:
-        processed_data_path = Path(__file__).parent / processed_data_path
-    return processed_data_path

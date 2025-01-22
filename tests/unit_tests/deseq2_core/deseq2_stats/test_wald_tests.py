@@ -36,19 +36,19 @@ from tests.unit_tests.unit_test_helpers.unit_tester import UnitTester
     ],
 )
 @pytest.mark.usefixtures(
-    "raw_data_path", "local_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 def test_wald_tests_contrasts_on_small_genes(
     design_factors,
     continuous_factors,
     contrast,
     raw_data_path,
-    local_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
 ):
     wald_tests_testing_pipe(
         raw_data_path,
-        processed_data_path=local_processed_data_path,
+        processed_data_path=processed_data_path,
         tcga_assets_directory=tcga_assets_directory,
         dataset_name="TCGA-LUAD",
         small_samples=False,
@@ -74,19 +74,19 @@ def test_wald_tests_contrasts_on_small_genes(
     ],
 )
 @pytest.mark.usefixtures(
-    "raw_data_path", "local_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 def test_wald_tests_alt_on_small_genes(
     design_factors,
     continuous_factors,
     alt_hypothesis,
     raw_data_path,
-    local_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
 ):
     wald_tests_testing_pipe(
         raw_data_path,
-        processed_data_path=local_processed_data_path,
+        processed_data_path=processed_data_path,
         tcga_assets_directory=tcga_assets_directory,
         dataset_name="TCGA-LUAD",
         small_samples=False,
@@ -104,16 +104,16 @@ def test_wald_tests_alt_on_small_genes(
 
 @pytest.mark.self_hosted_fast
 @pytest.mark.usefixtures(
-    "raw_data_path", "tmp_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 def test_wald_tests_on_small_samples_on_self_hosted_fast(
     raw_data_path,
-    tmp_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
 ):
     wald_tests_testing_pipe(
         raw_data_path,
-        processed_data_path=tmp_processed_data_path,
+        processed_data_path=processed_data_path,
         tcga_assets_directory=tcga_assets_directory,
         dataset_name="TCGA-LUAD",
         small_samples=True,
@@ -137,19 +137,19 @@ def test_wald_tests_on_small_samples_on_self_hosted_fast(
 )
 @pytest.mark.self_hosted_slow
 @pytest.mark.usefixtures(
-    "raw_data_path", "tmp_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 def test_wald_tests_on_self_hosted_slow(
     design_factors,
     continuous_factors,
     contrast,
     raw_data_path,
-    tmp_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
 ):
     wald_tests_testing_pipe(
         raw_data_path,
-        processed_data_path=tmp_processed_data_path,
+        processed_data_path=processed_data_path,
         tcga_assets_directory=tcga_assets_directory,
         dataset_name="TCGA-LUAD",
         small_samples=False,

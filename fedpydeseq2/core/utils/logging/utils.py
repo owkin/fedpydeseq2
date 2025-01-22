@@ -5,6 +5,46 @@ from typing import Any
 from loguru import logger
 
 
+def setup_workflow_file(log_config_path: str | Path) -> None:
+    """Create the workflow file if the configuration is set to True.
+
+    Parameters
+    ----------
+    log_config_path : str or Path
+        The path to the log configuration file.
+    """
+    log_config_path = Path(log_config_path)
+    if not log_config_path.exists():
+        return
+    with log_config_path.open("r") as log_config_file:
+        log_config = json.load(log_config_file)
+
+    workflow_config = log_config.get("generate_workflow")
+    if workflow_config is None:
+        return
+    # Get the create workflow flag
+    create_workflow = workflow_config.get("create_workflow")
+    if create_workflow is None or not create_workflow:
+        return
+    # Get the workflow file path
+    workflow_file_path = workflow_config.get("workflow_file_path")
+    # If it is not provided, return
+    if workflow_file_path is None:
+        return
+    # Create parent directories and the file
+    workflow_file_path = Path(workflow_file_path)
+    workflow_file_path.parent.mkdir(parents=True, exist_ok=True)
+    workflow_file_path.touch(exist_ok=True)
+
+    clean_workflow = workflow_config.get("clean_workflow_files")
+    if clean_workflow is None or not clean_workflow:
+        return
+    # Clean the workflow file
+    with workflow_file_path.open("w") as workflow_file:
+        workflow_file.write("")
+    return
+
+
 def set_log_config_path(log_config_path: str | Path | None) -> None:
     """Create a log_config_path.json in the same directory as this Python file.
 
@@ -43,6 +83,10 @@ def set_log_config_path(log_config_path: str | Path | None) -> None:
     with config_file_path.open("w") as config_file:
         json.dump(config_content, config_file, indent=4)
 
+    # Set up the workflow file
+    if log_config_path is not None:
+        setup_workflow_file(log_config_path)
+
 
 def read_log_config_path() -> dict[str, Any] | None:
     """Read the log_config_path.json file and returns its content as a dictionary.
@@ -73,7 +117,8 @@ def read_log_config_path() -> dict[str, Any] | None:
         )
 
     with log_config_path.open("r") as log_config_file:
-        return json.load(log_config_file)
+        log_config = json.load(log_config_file)
+        return log_config
 
 
 def get_logger_configuration() -> str | None:
@@ -130,39 +175,6 @@ def log_shared_state_size_flag() -> bool | None:
     if config is None:
         return None
     return config.get("log_shared_state_size")
-
-
-def setup_workflow_file() -> None:
-    """Create the workflow file if the configuration is set to True.
-
-    Returns
-    -------
-    None
-    """
-    # Get the workflow configuration
-    workflow_config = get_workflow_configuration()
-    if workflow_config is None:
-        return
-    # Get the create workflow flag
-    create_workflow = workflow_config.get("create_workflow")
-    if create_workflow is None or not create_workflow:
-        return
-    workflow_file_path = workflow_config.get("workflow_file_path")
-    # If it is not provided, return
-    if workflow_file_path is None:
-        return
-    # Create parent directories and the file
-    workflow_file_path = Path(workflow_file_path)
-    workflow_file_path.parent.mkdir(parents=True, exist_ok=True)
-    workflow_file_path.touch(exist_ok=True)
-
-    clean_workflow = workflow_config.get("clean_workflow_files")
-    if clean_workflow is None or not clean_workflow:
-        return
-    # Clean the workflow file
-    with workflow_file_path.open("w") as workflow_file:
-        workflow_file.write("")
-    return
 
 
 def get_workflow_file() -> Path | None:

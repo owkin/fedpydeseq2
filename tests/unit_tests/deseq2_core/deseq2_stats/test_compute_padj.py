@@ -39,19 +39,19 @@ from tests.unit_tests.unit_test_helpers.unit_tester import UnitTester
     ],
 )
 @pytest.mark.usefixtures(
-    "raw_data_path", "local_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 def test_compute_adj_small_genes(
     design_factors,
     continuous_factors,
     raw_data_path,
-    local_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
     independent_filter: bool,
 ):
     compute_padj_testin_pipe(
         raw_data_path,
-        processed_data_path=local_processed_data_path,
+        processed_data_path=processed_data_path,
         tcga_assets_directory=tcga_assets_directory,
         dataset_name="TCGA-LUAD",
         independent_filter=independent_filter,
@@ -69,18 +69,18 @@ def test_compute_adj_small_genes(
 
 @pytest.mark.self_hosted_fast
 @pytest.mark.usefixtures(
-    "raw_data_path", "tmp_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 @pytest.mark.parametrize("independent_filter", [True, False])
 def test_compute_adj_small_samples(
     raw_data_path,
-    tmp_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
     independent_filter: bool,
 ):
     compute_padj_testin_pipe(
         raw_data_path,
-        processed_data_path=tmp_processed_data_path,
+        processed_data_path=processed_data_path,
         tcga_assets_directory=tcga_assets_directory,
         dataset_name="TCGA-LUAD",
         independent_filter=independent_filter,
@@ -97,18 +97,18 @@ def test_compute_adj_small_samples(
 
 @pytest.mark.self_hosted_slow
 @pytest.mark.usefixtures(
-    "raw_data_path", "tmp_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 @pytest.mark.parametrize("independent_filter", [True, False])
 def test_compute_adj_on_self_hosted(
     raw_data_path,
-    tmp_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
     independent_filter: bool,
 ):
     compute_padj_testin_pipe(
         raw_data_path,
-        processed_data_path=tmp_processed_data_path,
+        processed_data_path=processed_data_path,
         tcga_assets_directory=tcga_assets_directory,
         dataset_name="TCGA-LUAD",
         independent_filter=independent_filter,
@@ -125,18 +125,18 @@ def test_compute_adj_on_self_hosted(
 
 @pytest.mark.local
 @pytest.mark.usefixtures(
-    "raw_data_path", "local_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 @pytest.mark.parametrize("independent_filter", [True, False])
 def test_compute_adj_on_local(
     raw_data_path,
-    local_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
     independent_filter: bool,
 ):
     compute_padj_testin_pipe(
         raw_data_path,
-        processed_data_path=local_processed_data_path,
+        processed_data_path=processed_data_path,
         tcga_assets_directory=tcga_assets_directory,
         dataset_name="TCGA-LUAD",
         independent_filter=independent_filter,

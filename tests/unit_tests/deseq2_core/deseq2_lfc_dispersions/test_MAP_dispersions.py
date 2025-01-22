@@ -34,7 +34,7 @@ from tests.unit_tests.unit_test_helpers.unit_tester import UnitTester
 
 
 @pytest.mark.usefixtures(
-    "raw_data_path", "local_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 @pytest.mark.parametrize(
     "design_factors, continuous_factors",
@@ -46,14 +46,14 @@ from tests.unit_tests.unit_test_helpers.unit_tester import UnitTester
 )
 def test_MAP_dispersions_on_small_genes_small_samples(
     raw_data_path,
-    local_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
     design_factors,
     continuous_factors,
 ):
     MAP_dispersions_testing_pipe(
         raw_data_path,
-        local_processed_data_path,
+        processed_data_path,
         tcga_assets_directory,
         dataset_name="TCGA-LUAD",
         small_samples=True,
@@ -70,7 +70,7 @@ def test_MAP_dispersions_on_small_genes_small_samples(
 
 @pytest.mark.self_hosted_fast
 @pytest.mark.usefixtures(
-    "raw_data_path", "tmp_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 @pytest.mark.parametrize(
     "design_factors, continuous_factors, tolerated_failed_genes",
@@ -82,7 +82,7 @@ def test_MAP_dispersions_on_small_genes_small_samples(
 )
 def test_MAP_dispersions_on_small_samples_on_self_hosted_fast(
     raw_data_path,
-    tmp_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
     design_factors,
     continuous_factors,
@@ -90,7 +90,7 @@ def test_MAP_dispersions_on_small_samples_on_self_hosted_fast(
 ):
     MAP_dispersions_testing_pipe(
         raw_data_path,
-        tmp_processed_data_path,
+        processed_data_path,
         tcga_assets_directory,
         dataset_name="TCGA-LUAD",
         small_samples=True,
@@ -108,7 +108,7 @@ def test_MAP_dispersions_on_small_samples_on_self_hosted_fast(
 
 @pytest.mark.self_hosted_slow
 @pytest.mark.usefixtures(
-    "raw_data_path", "tmp_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 @pytest.mark.parametrize(
     "design_factors, continuous_factors",
@@ -120,14 +120,14 @@ def test_MAP_dispersions_on_small_samples_on_self_hosted_fast(
 )
 def test_MAP_dispersions_on_self_hosted_slow(
     raw_data_path,
-    tmp_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
     design_factors,
     continuous_factors,
 ):
     MAP_dispersions_testing_pipe(
         raw_data_path,
-        tmp_processed_data_path,
+        processed_data_path,
         tcga_assets_directory,
         dataset_name="TCGA-LUAD",
         small_samples=False,
@@ -144,7 +144,7 @@ def test_MAP_dispersions_on_self_hosted_slow(
 
 @pytest.mark.self_hosted_slow
 @pytest.mark.usefixtures(
-    "raw_data_path", "tmp_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 @pytest.mark.parametrize(
     "design_factors, continuous_factors",
@@ -155,14 +155,14 @@ def test_MAP_dispersions_on_self_hosted_slow(
 )
 def test_MAP_dispersions_paad_on_self_hosted_slow(
     raw_data_path,
-    tmp_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
     design_factors,
     continuous_factors,
 ):
     MAP_dispersions_testing_pipe(
         raw_data_path,
-        tmp_processed_data_path,
+        processed_data_path,
         tcga_assets_directory,
         dataset_name="TCGA-PAAD",
         small_samples=False,
@@ -179,7 +179,7 @@ def test_MAP_dispersions_paad_on_self_hosted_slow(
 
 def MAP_dispersions_testing_pipe(
     raw_data_path,
-    local_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
     dataset_name="TCGA-LUAD",
     small_samples=True,
@@ -207,7 +207,7 @@ def MAP_dispersions_testing_pipe(
     raw_data_path: Path
         The path to the root data.
 
-    local_processed_data_path: Path
+    processed_data_path: Path
         The path to the processed data. The subdirectories will
         be created if needed
 
@@ -281,9 +281,7 @@ def MAP_dispersions_testing_pipe(
         continuous_factors=continuous_factors,
     )
 
-    reference_data_path = (
-        local_processed_data_path / "centers_data" / "tcga" / experiment_id
-    )
+    reference_data_path = processed_data_path / "centers_data" / "tcga" / experiment_id
     # Get FL results.
     fl_results = run_tcga_testing_pipe(
         MAPDispersionsTester(
@@ -294,7 +292,7 @@ def MAP_dispersions_testing_pipe(
             reference_dds_ref_level=reference_dds_ref_level,
         ),
         raw_data_path=raw_data_path,
-        processed_data_path=local_processed_data_path,
+        processed_data_path=processed_data_path,
         assets_directory=tcga_assets_directory,
         simulate=simulate,
         dataset_name=dataset_name,
@@ -312,7 +310,7 @@ def MAP_dispersions_testing_pipe(
     pooled_dds_file_name = get_ground_truth_dds_name(reference_dds_ref_level)
 
     pooled_dds_file_path = (
-        local_processed_data_path
+        processed_data_path
         / "pooled_data"
         / "tcga"
         / experiment_id

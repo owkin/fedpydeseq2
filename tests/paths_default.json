@@ -1,1 +1,1 @@
-{"raw_data": "../data/raw", "processed_data": "../data/processed", "default_logging_config" : null, "workflow_logging_config": null}
+{"raw_data": "../data/raw", "processed_data": null, "default_logging_config" : null, "workflow_logging_config": null}

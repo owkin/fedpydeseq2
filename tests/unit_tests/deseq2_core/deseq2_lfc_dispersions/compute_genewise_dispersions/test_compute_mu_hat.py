@@ -27,13 +27,13 @@ from tests.unit_tests.deseq2_core.deseq2_lfc_dispersions.compute_lfc.compute_lfc
     ],
 )
 @pytest.mark.usefixtures(
-    "raw_data_path", "local_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 def test_mu_hat_small_genes(
     design_factors,
     continuous_factors,
     raw_data_path,
-    local_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
 ):
     """Perform a unit test to see if mu_hat is working as expected.
@@ -56,7 +56,7 @@ def test_mu_hat_small_genes(
     raw_data_path: Path
         The path to the root data.
 
-    local_processed_data_path: Path
+    processed_data_path: Path
         The path to the processed data. The subdirectories will
         be created if needed
 
@@ -68,7 +68,7 @@ def test_mu_hat_small_genes(
     pipe_test_compute_lfc(
         lfc_mode="mu_init",
         data_path=raw_data_path,
-        processed_data_path=local_processed_data_path,
+        processed_data_path=processed_data_path,
         tcga_assets_directory=tcga_assets_directory,
         dataset_name="TCGA-LUAD",
         small_samples=False,
@@ -96,13 +96,13 @@ def test_mu_hat_small_genes(
     ],
 )
 @pytest.mark.usefixtures(
-    "raw_data_path", "tmp_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 def test_mu_hat_small_samples(
     design_factors,
     continuous_factors,
     raw_data_path,
-    tmp_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
 ):
     """Perform a unit test to see if computing mu hat is working as expected.
@@ -129,7 +129,7 @@ def test_mu_hat_small_samples(
     raw_data_path: Path
         The path to the root data.
 
-    tmp_processed_data_path: Path
+    processed_data_path: Path
         The path to the processed data. The subdirectories will
         be created if needed
 
@@ -141,7 +141,7 @@ def test_mu_hat_small_samples(
     pipe_test_compute_lfc(
         lfc_mode="mu_init",
         data_path=raw_data_path,
-        processed_data_path=tmp_processed_data_path,
+        processed_data_path=processed_data_path,
         tcga_assets_directory=tcga_assets_directory,
         dataset_name="TCGA-LUAD",
         small_samples=True,
@@ -171,13 +171,13 @@ def test_mu_hat_small_samples(
     ],
 )
 @pytest.mark.usefixtures(
-    "raw_data_path", "tmp_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 def test_mu_hat_luad(
     design_factors,
     continuous_factors,
     raw_data_path,
-    tmp_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
 ):
     """Perform a unit test to see if computing mu hat is working as expected.
@@ -200,7 +200,7 @@ def test_mu_hat_luad(
     raw_data_path: Path
         The path to the root data.
 
-    tmp_processed_data_path: Path
+    processed_data_path: Path
         The path to the processed data. The subdirectories will
         be created if needed
 
@@ -212,7 +212,7 @@ def test_mu_hat_luad(
     pipe_test_compute_lfc(
         lfc_mode="mu_init",
         data_path=raw_data_path,
-        processed_data_path=tmp_processed_data_path,
+        processed_data_path=processed_data_path,
         tcga_assets_directory=tcga_assets_directory,
         dataset_name="TCGA-LUAD",
         small_samples=False,
@@ -241,13 +241,13 @@ def test_mu_hat_luad(
     ],
 )
 @pytest.mark.usefixtures(
-    "raw_data_path", "tmp_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 def test_mu_hat_paad(
     design_factors,
     continuous_factors,
     raw_data_path,
-    tmp_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
 ):
     """Perform a unit test to see if computing mu hat is working as expected.
@@ -273,7 +273,7 @@ def test_mu_hat_paad(
     raw_data_path: Path
         The path to the root data.
 
-    tmp_processed_data_path: Path
+    processed_data_path: Path
         The path to the processed data. The subdirectories will
         be created if needed
 
@@ -285,7 +285,7 @@ def test_mu_hat_paad(
     pipe_test_compute_lfc(
         lfc_mode="mu_init",
         data_path=raw_data_path,
-        processed_data_path=tmp_processed_data_path,
+        processed_data_path=processed_data_path,
         tcga_assets_directory=tcga_assets_directory,
         dataset_name="TCGA-PAAD",
         small_samples=False,

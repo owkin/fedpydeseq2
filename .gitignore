@@ -191,7 +191,7 @@ logging/*
 !logging/logger_configuration_template.ini
 !logging/logging_configuration_template.json
 tests/paths.json
-
+fedpydeseq2/core/utils/logging/log_config_path.json
 # MKDocs
 /docs/build.out
 docs/generated/gallery/

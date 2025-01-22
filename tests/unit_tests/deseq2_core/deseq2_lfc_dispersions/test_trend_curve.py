@@ -29,7 +29,7 @@ from tests.unit_tests.unit_test_helpers.unit_tester import UnitTester
 
 
 @pytest.mark.usefixtures(
-    "raw_data_path", "local_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 @pytest.mark.parametrize(
     "design_factors, continuous_factors",
@@ -41,7 +41,7 @@ from tests.unit_tests.unit_test_helpers.unit_tester import UnitTester
 )
 def test_trend_curve(
     raw_data_path,
-    local_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
     design_factors,
     continuous_factors,
@@ -57,7 +57,7 @@ def test_trend_curve(
     raw_data_path: Path
         The path to the root data.
 
-    local_processed_data_path: Path
+    processed_data_path: Path
         The path to the processed data. The subdirectories will
         be created if needed
 
@@ -68,7 +68,7 @@ def test_trend_curve(
 
     trend_curve_testing_pipe(
         raw_data_path,
-        local_processed_data_path,
+        processed_data_path,
         tcga_assets_directory,
         design_factors=design_factors,
         continuous_factors=continuous_factors,

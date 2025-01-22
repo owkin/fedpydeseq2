@@ -29,16 +29,16 @@ from tests.tcga_testing_pipe import run_tcga_testing_pipe
 
 
 @pytest.mark.usefixtures(
-    "raw_data_path", "local_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 def test_save_pipeline_results_on_small_genes(
     raw_data_path,
-    local_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
 ):
     save_pipeline_results_testing_pipe(
         raw_data_path,
-        processed_data_path=local_processed_data_path,
+        processed_data_path=processed_data_path,
         tcga_assets_directory=tcga_assets_directory,
         dataset_name="TCGA-LUAD",
         small_samples=False,
@@ -50,16 +50,16 @@ def test_save_pipeline_results_on_small_genes(
 
 
 @pytest.mark.usefixtures(
-    "raw_data_path", "local_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 def test_save_pipeline_results_on_subprocess(
     raw_data_path,
-    local_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
 ):
     save_pipeline_results_testing_pipe(
         raw_data_path,
-        processed_data_path=local_processed_data_path,
+        processed_data_path=processed_data_path,
         tcga_assets_directory=tcga_assets_directory,
         dataset_name="TCGA-LUAD",
         small_samples=True,
@@ -72,16 +72,16 @@ def test_save_pipeline_results_on_subprocess(
 
 @pytest.mark.self_hosted_fast
 @pytest.mark.usefixtures(
-    "raw_data_path", "tmp_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 def test_save_pipeline_results_on_small_samples_on_self_hosted_fast(
     raw_data_path,
-    tmp_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
 ):
     save_pipeline_results_testing_pipe(
         raw_data_path,
-        processed_data_path=tmp_processed_data_path,
+        processed_data_path=processed_data_path,
         tcga_assets_directory=tcga_assets_directory,
         dataset_name="TCGA-LUAD",
         small_samples=True,
@@ -94,16 +94,16 @@ def test_save_pipeline_results_on_small_samples_on_self_hosted_fast(
 
 @pytest.mark.self_hosted_slow
 @pytest.mark.usefixtures(
-    "raw_data_path", "tmp_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 def test_save_pipeline_results_on_self_hosted_slow(
     raw_data_path,
-    tmp_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
 ):
     save_pipeline_results_testing_pipe(
         raw_data_path,
-        processed_data_path=tmp_processed_data_path,
+        processed_data_path=processed_data_path,
         tcga_assets_directory=tcga_assets_directory,
         dataset_name="TCGA-LUAD",
         small_samples=False,
@@ -116,16 +116,16 @@ def test_save_pipeline_results_on_self_hosted_slow(
 
 @pytest.mark.self_hosted_slow
 @pytest.mark.usefixtures(
-    "raw_data_path", "tmp_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 def test_save_pipeline_results_on_subprocess_on_self_hosted_slow(
     raw_data_path,
-    tmp_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
 ):
     save_pipeline_results_testing_pipe(
         raw_data_path,
-        processed_data_path=tmp_processed_data_path,
+        processed_data_path=processed_data_path,
         tcga_assets_directory=tcga_assets_directory,
         dataset_name="TCGA-LUAD",
         small_samples=True,

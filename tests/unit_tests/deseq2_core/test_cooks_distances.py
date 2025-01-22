@@ -34,13 +34,13 @@ from tests.unit_tests.unit_test_helpers.unit_tester import UnitTester
     ],
 )
 @pytest.mark.usefixtures(
-    "raw_data_path", "local_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 def test_cooks_distances_on_small_genes(
     design_factors,
     continuous_factors,
     raw_data_path,
-    local_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
 ):
     """Test Cook's distances on a small number of genes.
@@ -50,7 +50,7 @@ def test_cooks_distances_on_small_genes(
     """
     cooks_distances_testing_pipe(
         raw_data_path,
-        processed_data_path=local_processed_data_path,
+        processed_data_path=processed_data_path,
         tcga_assets_directory=tcga_assets_directory,
         dataset_name="TCGA-LUAD",
         small_samples=False,
@@ -75,13 +75,13 @@ def test_cooks_distances_on_small_genes(
 )
 @pytest.mark.self_hosted_fast
 @pytest.mark.usefixtures(
-    "raw_data_path", "tmp_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 def test_cooks_distances_on_small_samples_on_self_hosted_fast(
     design_factors,
     continuous_factors,
     raw_data_path,
-    tmp_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
 ):
     """Test Cook's distances on a small number of samples on a self hosted runner.
@@ -93,7 +93,7 @@ def test_cooks_distances_on_small_samples_on_self_hosted_fast(
     """
     cooks_distances_testing_pipe(
         raw_data_path,
-        processed_data_path=tmp_processed_data_path,
+        processed_data_path=processed_data_path,
         tcga_assets_directory=tcga_assets_directory,
         dataset_name="TCGA-LUAD",
         small_samples=True,
@@ -118,13 +118,13 @@ def test_cooks_distances_on_small_samples_on_self_hosted_fast(
 )
 @pytest.mark.self_hosted_slow
 @pytest.mark.usefixtures(
-    "raw_data_path", "tmp_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 def test_cooks_distances_on_self_hosted_slow(
     design_factors,
     continuous_factors,
     raw_data_path,
-    tmp_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
 ):
     """Test Cook's distances on a self hosted runner.
@@ -136,7 +136,7 @@ def test_cooks_distances_on_self_hosted_slow(
     """
     cooks_distances_testing_pipe(
         raw_data_path,
-        processed_data_path=tmp_processed_data_path,
+        processed_data_path=processed_data_path,
         tcga_assets_directory=tcga_assets_directory,
         dataset_name="TCGA-LUAD",
         small_samples=False,

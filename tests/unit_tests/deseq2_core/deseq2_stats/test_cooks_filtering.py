@@ -29,7 +29,7 @@ from tests.unit_tests.unit_test_helpers.unit_tester import UnitTester
 
 
 @pytest.mark.usefixtures(
-    "raw_data_path", "local_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 @pytest.mark.parametrize(
     "cooks_filter, refit_cooks, design_factors, continuous_factors",
@@ -47,7 +47,7 @@ from tests.unit_tests.unit_test_helpers.unit_tester import UnitTester
 )
 def test_cooks_filtering_small_genes(
     raw_data_path,
-    local_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
     cooks_filter: bool,
     refit_cooks: bool,
@@ -56,7 +56,7 @@ def test_cooks_filtering_small_genes(
 ):
     cooks_filtering_testing_pipe(
         raw_data_path,
-        processed_data_path=local_processed_data_path,
+        processed_data_path=processed_data_path,
         tcga_assets_directory=tcga_assets_directory,
         dataset_name="TCGA-LUAD",
         cooks_filter=cooks_filter,
@@ -75,18 +75,18 @@ def test_cooks_filtering_small_genes(
 
 @pytest.mark.self_hosted_slow
 @pytest.mark.usefixtures(
-    "raw_data_path", "tmp_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 @pytest.mark.parametrize("cooks_filter", [True, False])
 def test_cooks_filtering_on_self_hosted(
     raw_data_path,
-    tmp_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
     cooks_filter: bool,
 ):
     cooks_filtering_testing_pipe(
         raw_data_path,
-        processed_data_path=tmp_processed_data_path,
+        processed_data_path=processed_data_path,
         tcga_assets_directory=tcga_assets_directory,
         dataset_name="TCGA-LUAD",
         cooks_filter=cooks_filter,
@@ -103,18 +103,18 @@ def test_cooks_filtering_on_self_hosted(
 
 @pytest.mark.local
 @pytest.mark.usefixtures(
-    "raw_data_path", "local_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 @pytest.mark.parametrize("cooks_filter", [True, False])
 def test_cooks_filtering_on_local(
     raw_data_path,
-    local_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
     cooks_filter: bool,
 ):
     cooks_filtering_testing_pipe(
         raw_data_path,
-        processed_data_path=local_processed_data_path,
+        processed_data_path=processed_data_path,
         tcga_assets_directory=tcga_assets_directory,
         dataset_name="TCGA-LUAD",
         cooks_filter=cooks_filter,

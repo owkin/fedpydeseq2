@@ -14,11 +14,11 @@ TESTING_PARAMETERS_LIST = [
 
 
 @pytest.mark.usefixtures(
-    "raw_data_path", "tmp_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 def test_lfc_with_irls(
     raw_data_path,
-    tmp_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
 ):
     """Perform a unit test to see if compute_lfc is working as expected.
@@ -38,7 +38,7 @@ def test_lfc_with_irls(
     raw_data_path: Path
         The path to the root data.
 
-    tmp_processed_data_path: Path
+    processed_data_path: Path
         The path to the processed data. The subdirectories will
         be created if needed
 
@@ -49,7 +49,7 @@ def test_lfc_with_irls(
 
     pipe_test_compute_lfc_with_irls(
         data_path=raw_data_path,
-        processed_data_path=tmp_processed_data_path,
+        processed_data_path=processed_data_path,
         tcga_assets_directory=tcga_assets_directory,
         dataset_name="TCGA-LUAD",
         small_samples=False,
@@ -67,7 +67,7 @@ def test_lfc_with_irls(
 
 @pytest.mark.self_hosted_slow
 @pytest.mark.usefixtures(
-    "raw_data_path", "tmp_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 @pytest.mark.parametrize(
     "dataset_name",
@@ -75,7 +75,7 @@ def test_lfc_with_irls(
 )
 def test_lfc_with_irls_on_self_hosted(
     raw_data_path,
-    tmp_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
     dataset_name: TCGADatasetNames,
 ):
@@ -86,7 +86,7 @@ def test_lfc_with_irls_on_self_hosted(
     raw_data_path: Path
         The path to the root data.
 
-    tmp_processed_data_path: Path
+    processed_data_path: Path
         The path to the processed data. The subdirectories will
         be created if needed
 
@@ -100,7 +100,7 @@ def test_lfc_with_irls_on_self_hosted(
 
     pipe_test_compute_lfc_with_irls(
         data_path=raw_data_path,
-        processed_data_path=tmp_processed_data_path,
+        processed_data_path=processed_data_path,
         tcga_assets_directory=tcga_assets_directory,
         dataset_name=dataset_name,
         small_samples=False,
@@ -118,7 +118,7 @@ def test_lfc_with_irls_on_self_hosted(
 
 @pytest.mark.local
 @pytest.mark.usefixtures(
-    "raw_data_path", "local_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 @pytest.mark.parametrize(
     "dataset_name",
@@ -126,7 +126,7 @@ def test_lfc_with_irls_on_self_hosted(
 )
 def test_lfc_with_irls_on_local(
     raw_data_path,
-    local_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
     dataset_name: TCGADatasetNames,
 ):
@@ -137,7 +137,7 @@ def test_lfc_with_irls_on_local(
     raw_data_path: Path
         The path to the root data.
 
-    local_processed_data_path: Path
+    processed_data_path: Path
         The path to the processed data. The subdirectories will
         be created if needed
 
@@ -151,7 +151,7 @@ def test_lfc_with_irls_on_local(
 
     pipe_test_compute_lfc_with_irls(
         data_path=raw_data_path,
-        processed_data_path=local_processed_data_path,
+        processed_data_path=processed_data_path,
         tcga_assets_directory=tcga_assets_directory,
         dataset_name=dataset_name,
         small_samples=False,
