@@ -190,6 +190,7 @@ logs/*
 logging/*
 !logging/logger_configuration_template.ini
 !logging/logging_configuration_template.json
+tests/paths.json
 
 # MKDocs
 /docs/build.out

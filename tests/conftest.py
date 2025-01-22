@@ -18,8 +18,9 @@ def get_default_logging_path_from_json() -> Path | None:
     specified_paths = Path(__file__).parent / "paths.json"
     if specified_paths.exists():
         with open(specified_paths) as f:
-            if "default_logging_config" in json.load(f):
-                logging_config_path = json.load(f)["default_logging_config"]
+            json_data = json.load(f)
+            if "default_logging_config" in json_data:
+                logging_config_path = json_data["default_logging_config"]
                 if logging_config_path is None:
                     return None
                 if logging_config_path.startswith("/"):
@@ -39,8 +40,9 @@ def get_workflow_logging_path_from_json() -> Path | None:
     specified_paths = Path(__file__).parent / "paths.json"
     if specified_paths.exists():
         with open(specified_paths) as f:
-            if "workflow_logging_config" in json.load(f):
-                logging_config_path = json.load(f)["workflow_logging_config"]
+            json_data = json.load(f)
+            if "workflow_logging_config" in json_data:
+                logging_config_path = json_data["workflow_logging_config"]
                 if logging_config_path is None:
                     return None
                 if logging_config_path.startswith("/"):
@@ -166,8 +168,9 @@ def tcga_assets_directory():
     specified_paths = Path(__file__).parent / "paths.json"
     if specified_paths.exists():
         with open(specified_paths) as f:
-            if "assets_tcga" in json.load(f):
-                tcga_assets_directory = json.load(f)["assets_tcga"]
+            json_data = json.load(f)
+            if "assets_tcga" in json_data:
+                tcga_assets_directory = json_data["assets_tcga"]
                 if tcga_assets_directory.startswith("/"):
                     return Path(tcga_assets_directory)
                 return Path(__file__).parent / tcga_assets_directory
@@ -183,12 +186,13 @@ def local_processed_data_path():
     found = False
     if specified_paths.exists():
         with open(specified_paths) as f:
-            if "processed_data" in json.load(f):
+            json_data = json.load(f)
+            if "processed_data" in json_data:
                 found = True
-                processed_data_path = json.load(f)["processed_data"]
+                processed_data_path = json_data["processed_data"]
     if not found:
         with open(default_paths) as f:
-            processed_data_path = json.load(f)["processed_data"]
+            processed_data_path = json_data["processed_data"]
     if processed_data_path.startswith("/"):
         processed_data_path = Path(processed_data_path)
     else:
