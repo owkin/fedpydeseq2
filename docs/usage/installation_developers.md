@@ -59,5 +59,3 @@ And create a file in the `tests` directory named `paths.json` containing
 if you want to run tests locally without reprocessing the data during each test session. Otherwise, the processed data will be saved in a temporary file during each test session.
 - An optional `default_logging_config` field with the path to the logging configuration used by default in tests. For more details on how logging works, please refer to the README in the logging folder.
 - An optional `workflow_logging_config` field with the path to the logging configuration used in the logging tests.
-
-

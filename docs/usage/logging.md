@@ -80,7 +80,7 @@ A workflow is simply a text file that logs the different shared states during su
 The log_shared_state_adata_content flag determines whether to log the shared state keys and local adata keys to a file. This can be useful for debugging and tracking the data being processed.
 
 ### log_shared_state_size
-The log_shared_state_size flag determines whether to evaluate the size of the shared state. This is used for memory management purposes, helping to ensure that the application does not exceed memory limits. 
+The log_shared_state_size flag determines whether to evaluate the size of the shared state. This is used for memory management purposes, helping to ensure that the application does not exceed memory limits.
 
 ## Usage
 
