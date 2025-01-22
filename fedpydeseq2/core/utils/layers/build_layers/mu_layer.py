@@ -38,7 +38,6 @@ def can_set_mu_layer(
     ------
     ValueError
         If the mu layer cannot be reconstructed and raise_error is True.
-
     """
     if mu_param_name in local_adata.layers.keys():
         return True
@@ -95,7 +94,6 @@ def set_mu_layer(
 
     batch_size : int
         Batch size for parallelization.
-
     """
     can_set_mu_layer(
         local_adata, lfc_param_name, mu_param_name=mu_param_name, raise_error=True
@@ -134,8 +132,7 @@ def make_mu_batch(
     design_matrix: np.ndarray,
     size_factors: np.ndarray,
 ) -> np.ndarray:
-    """
-    Compute the mu matrix for a batch of LFC estimates.
+    """Compute the mu matrix for a batch of LFC estimates.
 
     Parameters
     ----------
@@ -150,7 +147,6 @@ def make_mu_batch(
     -------
     mu : np.ndarray
         The mu matrix, of shape (n_obs, batch_size).
-
     """
     mu = size_factors[:, None] * np.exp(design_matrix @ beta.T)
 

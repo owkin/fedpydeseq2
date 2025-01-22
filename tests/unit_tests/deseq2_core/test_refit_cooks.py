@@ -683,7 +683,6 @@ class RefitOutliersTester(
         Returns
         -------
         dict
-
         """
         tot_num_samples = np.sum([state["num_samples"] for state in shared_states])
         # Sum the local gram matrices
@@ -728,7 +727,8 @@ class RefitOutliersTester(
     ) -> dict:
         """Return adatas.
 
-        Used for testing only."""
+        Used for testing only.
+        """
 
         return {
             "local_adata": self.local_adata,
@@ -743,7 +743,10 @@ class RefitOutliersTester(
         self,
         shared_states: list,
     ):
-        """Return the adatas as lists. Used for testing only."""
+        """Return the adatas as lists.
+
+        Used for testing only.
+        """
 
         local_adatas = [shared_state["local_adata"] for shared_state in shared_states]
 

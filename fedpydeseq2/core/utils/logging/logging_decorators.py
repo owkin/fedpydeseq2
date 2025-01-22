@@ -1,9 +1,8 @@
-"""
-Module containing decorators to log the input and outputs of a method.
+"""Module containing decorators to log the input and outputs of a method.
 
-All logging is controlled through a logging configuration file.
-This configuration file can be either set by the log_config_path attribute of the class,
-or by the default_config.ini file in the same directory as this module.
+All logging is controlled through a logging configuration file. This configuration file
+can be either set by the log_config_path attribute of the class, or by the
+default_config.ini file in the same directory as this module.
 """
 import logging
 import logging.config
@@ -22,8 +21,7 @@ from fedpydeseq2.core.utils.logging.utils import log_shared_state_size_flag
 
 
 def log_save_local_state(method: Callable):
-    """
-    Decorate a method to log the size of the local state saved.
+    """Decorate a method to log the size of the local state saved.
 
     This function is destined to decorate the save_local_state method of a class.
 
@@ -40,7 +38,6 @@ def log_save_local_state(method: Callable):
     -------
     Callable
         The decorated method, which logs the size of the local state saved.
-
     """
 
     @wraps(method)
@@ -64,8 +61,7 @@ def log_save_local_state(method: Callable):
 
 
 def log_organisation_method(method: Callable):
-    """
-    Decorate a method to log when it is called and when it ends.
+    """Decorate a method to log when it is called and when it ends.
 
     Parameters
     ----------
@@ -77,7 +73,6 @@ def log_organisation_method(method: Callable):
     -------
     Callable
         The decorated method, which logs when it is called and when it ends.
-
     """
 
     @wraps(method)
@@ -118,8 +113,7 @@ def end_loop():
 
 
 def start_iteration(iteration_number: int):
-    """
-    Add the <iteration> balise to the logging file.
+    """Add the <iteration> balise to the logging file.
 
     Parameters
     ----------
@@ -149,8 +143,7 @@ def end_iteration():
 
 
 def log_remote_data(method: Callable):
-    """
-    Decorate a remote_data to log the input and outputs.
+    """Decorate a remote_data to log the input and outputs.
 
     This decorator logs the shared state keys with the info level,
     and the different layers of the local_adata and refit_adata with the debug level.
@@ -194,8 +187,7 @@ def log_remote_data(method: Callable):
 
 
 def log_remote(method: Callable):
-    """
-    Decorate a remote method to log the input and outputs.
+    """Decorate a remote method to log the input and outputs.
 
     This decorator logs the shared state keys with the info level.
 
@@ -209,7 +201,6 @@ def log_remote(method: Callable):
     -------
     Callable
         The decorated method, which logs the shared state keys with the info level.
-
     """
 
     @wraps(method)
@@ -256,8 +247,7 @@ def log_remote(method: Callable):
 def log_shared_state_adatas(
     self: Any, method: Callable, shared_state: dict | None, message: str | None
 ):
-    """
-    Log the information of the local step.
+    """Log the information of the local step.
 
     Precisely, log the shared state keys (info),
     and the different layers of the local_adata and refit_adata (debug).
@@ -272,7 +262,6 @@ def log_shared_state_adatas(
         The shared state dictionary, whose keys we log with the info level.
     message : str or None
         A message to log before the shared state keys.
-
     """
     log_flag = log_shared_state_adata_flag()
     if not log_flag:
@@ -299,8 +288,7 @@ def log_shared_state_adatas(
 
 
 def write_info_before_organisation_method(method: Callable):
-    """
-    Append the information of the local step to a file.
+    """Append the information of the local step to a file.
 
     Parameters
     ----------
@@ -323,8 +311,7 @@ def write_info_before_organisation_method(method: Callable):
 
 
 def write_info_after_organisation_method():
-    """
-    Append the information of the local step to a file.
+    """Append the information of the local step to a file.
 
     Notes
     -----
@@ -340,8 +327,7 @@ def write_info_after_organisation_method():
 
 
 def write_info_before_function(method: Callable, shared_state: Any, function_type: str):
-    """
-    Append the information of the local step to a file.
+    """Append the information of the local step to a file.
 
     Parameters
     ----------
@@ -380,8 +366,7 @@ def write_info_before_function(method: Callable, shared_state: Any, function_typ
 
 
 def write_info_after_function(shared_state: Any, function_type: str):
-    """
-    Append the information of the local step to a file.
+    """Append the information of the local step to a file.
 
     Parameters
     ----------
@@ -416,8 +401,7 @@ def write_info_after_function(shared_state: Any, function_type: str):
 
 
 def get_shared_state_balises(shared_state: Any) -> str:
-    """
-    Get the shared state balises.
+    """Get the shared state balises.
 
     Parameters
     ----------
@@ -446,8 +430,7 @@ def get_shared_state_balises(shared_state: Any) -> str:
 
 
 def get_method_logger(method: Callable) -> logging.Logger:
-    """
-    Get the method logger from a configuration file.
+    """Get the method logger from a configuration file.
 
     If the class instance has a log_config_path attribute,
     the logger is configured with the file at this path.

@@ -24,8 +24,7 @@ class LocComputeSqerror:
         data_from_opener,
         shared_state=dict,
     ) -> None:
-        """
-        Compute the squared error between the normalized counts and the trimmed mean.
+        """Compute the squared error between the normalized counts and the trimmed mean.
 
         Parameters
         ----------
@@ -34,7 +33,6 @@ class LocComputeSqerror:
 
         shared_state : dict, optional
             Results to save in the local states.
-
         """
         cell_means = shared_state["trimmed_mean_normed_counts"]
         if isinstance(cell_means, pd.DataFrame):
@@ -61,8 +59,7 @@ class LocGetNormedCounts:
         data_from_opener,
         shared_state=dict,
     ) -> dict:
-        """
-        Send local normed counts means.
+        """Send local normed counts means.
 
         Parameters
         ----------
@@ -80,7 +77,6 @@ class LocGetNormedCounts:
             - mean_normed_counts: mean of the normalized counts
             - n_samples: number of samples
             - varEst: variance estimate
-
         """
         return {}
 
@@ -95,8 +91,7 @@ class AggComputeDispersionForCook:
         self,
         shared_states: list[dict],
     ) -> dict:
-        """
-        Compute the dispersion for Cook's distance calculation.
+        """Compute the dispersion for Cook's distance calculation.
 
         Parameters
         ----------
@@ -111,6 +106,5 @@ class AggComputeDispersionForCook:
         dict
             Because it is decorated, the dictionary will have the following key:
             - cooks_dispersions: dispersion values
-
         """
         return {}

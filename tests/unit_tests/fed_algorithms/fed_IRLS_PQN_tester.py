@@ -15,7 +15,6 @@ from tests.unit_tests.unit_test_helpers.unit_tester import UnitTester
 class FedIRLSPQNTester(UnitTester):
     """A mixin class to implement method for IRLS and PQN testing classes.
 
-
     Methods
     -------
     init_local_states
@@ -28,8 +27,6 @@ class FedIRLSPQNTester(UnitTester):
         A remote_data method, which sets the beta init in the local states, and passes
         on the shared state which is used as an initialization state for the
         Prox Quasi Newton algorithm.
-
-
     """
 
     @remote_data
@@ -105,7 +102,6 @@ class FedIRLSPQNTester(UnitTester):
         -------
         local_state : dict
             The same initial shared state.
-
         """
 
         self.local_adata.uns["_irls_beta_init"] = shared_state["beta"]

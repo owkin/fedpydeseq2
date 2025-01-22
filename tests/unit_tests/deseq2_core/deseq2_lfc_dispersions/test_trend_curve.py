@@ -403,7 +403,6 @@ class TrendCurveTester(
         -------
         dict
             A dictionary containing the genewise dispersions.
-
         """
 
         self.local_adata = self.local_reference_dds.copy()

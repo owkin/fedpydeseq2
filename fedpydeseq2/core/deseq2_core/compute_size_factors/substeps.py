@@ -49,7 +49,6 @@ class LocSetSizeFactorsComputeGramAndFeatures:
     -------
     local_set_size_factors_compute_gram_and_features
         The method to set the size factors and compute the Gram matrix and feature.
-
     """
 
     local_adata: ad.AnnData

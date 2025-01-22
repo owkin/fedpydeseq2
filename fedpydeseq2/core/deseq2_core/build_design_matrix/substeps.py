@@ -147,8 +147,7 @@ class LocSetLocalDesign:
         shared_state,
     ):
         # pylint: disable=unused-argument
-        """
-        Set the design matrices in centers.
+        """Set the design matrices in centers.
 
         Returns their columns in order to harmonize them.
 
@@ -188,7 +187,6 @@ class LocOderDesignComputeLogMean:
     -------
     order_design_cols_compute_local_log_mean
         Order design columns and compute the local log mean.
-
     """
 
     local_adata: ad.AnnData

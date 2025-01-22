@@ -183,7 +183,7 @@ def wald_tests_testing_pipe(
     ref_levels: dict[str, str] | None = {"stage": "Advanced"},  # noqa: B006
     reference_dds_ref_level: tuple[str, ...] | None = None,
 ):
-    """Perform a unit test for Wald tests
+    """Perform a unit test for Wald tests.
 
     Starting with the dispersions and LFC as the reference DeseqDataSet, perform Wald
     tests and compare the results with the reference.
@@ -389,7 +389,6 @@ class WaldTestTester(UnitTester, RunWaldTests, AggPassOnResults):
 
     build_compute_plan
         Build the computation graph to test Wald test computations.
-
     """
 
     def __init__(
@@ -519,7 +518,6 @@ class WaldTestTester(UnitTester, RunWaldTests, AggPassOnResults):
             AnnData returned by the opener. Not used.
         shared_state : Any
             Shared state with a "genewise_dispersions" key.
-
         """
 
         self.local_adata = self.local_reference_dds.copy()

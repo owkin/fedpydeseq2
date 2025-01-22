@@ -47,7 +47,6 @@ class LocMakeIRLSSummands:
     make_local_irls_summands_and_nlls
         A remote_data method. Makes the summands for the IRLS algorithm.
         It also passes on the necessary global quantities.
-
     """
 
     local_adata: AnnData
@@ -131,7 +130,6 @@ class LocMakeIRLSSummands:
             - round_number_irls: int
                 The current round number of the IRLS algorithm.
                 This round number is not updated here.
-
         """
         if refit_mode:
             adata = self.refit_adata
@@ -229,7 +227,6 @@ class AggMakeIRLSUpdate:
         A remote method. Aggregates the local quantities to create
         the global IRLS update. It also updates the masks indicating which genes
         have diverged or converged according to the deviance.
-
     """
 
     num_jobs: int
@@ -294,8 +291,6 @@ class AggMakeIRLSUpdate:
                 (n_non_zero_genes,).
             - round_number_irls: int
                 The current round number of the IRLS algorithm.
-
-
         """
         # Load main params from the first state
         beta = shared_states[0]["beta"]

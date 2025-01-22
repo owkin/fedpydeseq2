@@ -54,8 +54,7 @@ class ComputeTrimmedMean(
         refit: bool = False,
         min_replicates_trimmed_mean: int = 3,
     ):
-        """
-        Run the trimmed mean computation on the layer specified.
+        """Run the trimmed mean computation on the layer specified.
 
         Parameters
         ----------
@@ -107,7 +106,6 @@ class ComputeTrimmedMean(
             state in a field "trimmed_mean_<layer_used>".
 
         round_idx: int
-
         """
         if mode == "cooks":
             assert trim_ratio is None, "trim_ratio should be None in cooks mode"

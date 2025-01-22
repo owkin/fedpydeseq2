@@ -36,8 +36,7 @@ class LocInitTrimmedMean:
         refit: bool = False,
         min_replicates_trimmed_mean: int = 3,
     ) -> dict:
-        """
-        Initialise the trimmed mean algo, by providing the lower and max bounds.
+        """Initialise the trimmed mean algo, by providing the lower and max bounds.
 
         Parameters
         ----------
@@ -121,8 +120,7 @@ class LocInitTrimmedMean:
         mask,
         refit: bool = False,
     ) -> dict:
-        """
-        Initialise the trimmed mean algo, by providing the lower and max bounds.
+        """Initialise the trimmed mean algo, by providing the lower and max bounds.
 
         Parameters
         ----------
@@ -177,8 +175,7 @@ class AggInitTrimmedMean:
         self,
         shared_states: list[dict],
     ) -> dict:
-        """
-        Compute the initial global upper and lower bounds.
+        """Compute the initial global upper and lower bounds.
 
         Parameters
         ----------
@@ -216,8 +213,7 @@ class AggInitTrimmedMean:
             return result
 
     def agg_init_trimmed_mean_per_lvl(self, shared_states: list[dict]) -> dict:
-        """
-        Compute the initial global upper and lower bounds.
+        """Compute the initial global upper and lower bounds.
 
         Parameters
         ----------
@@ -274,8 +270,7 @@ class LocalIterationTrimmedMean:
         trim_ratio: float | None = None,
         refit: bool = False,
     ) -> dict:
-        """
-        Local iteration of the trimmed mean algo.
+        """Local iteration of the trimmed mean algo.
 
         Parameters
         ----------
@@ -316,7 +311,6 @@ class LocalIterationTrimmedMean:
                 - n_samples: int
                 - trim_ratio: float
             If use_lvl is true, the dictionary is nested with the levels as keys.
-
         """
         if refit:
             adata = self.refit_adata
@@ -361,8 +355,7 @@ class LocalIterationTrimmedMean:
     def local_iteration_trimmed_mean_per_lvl(
         self, data_from_opener, shared_state, layer_used, mask, refit: bool = False
     ) -> dict:
-        """
-        Local iteration of the trimmed mean algo.
+        """Local iteration of the trimmed mean algo.
 
         Parameters
         ----------
@@ -391,7 +384,6 @@ class LocalIterationTrimmedMean:
                 - upper_bounds_thresholds: np.ndarray of size (n_genes,2)
                 - lower_bounds_thresholds: np.ndarray of size (n_genes,2)
                 - n_samples: int
-
         """
         if refit:
             adata = self.refit_adata
@@ -428,8 +420,7 @@ class AggIterationTrimmedMean:
         self,
         shared_states: list[dict],
     ) -> dict:
-        """
-        Compute the initial global upper and lower bounds.
+        """Compute the initial global upper and lower bounds.
 
         Parameters
         ----------
@@ -468,8 +459,7 @@ class AggIterationTrimmedMean:
         self,
         shared_states: list[dict],
     ) -> dict:
-        """
-        Aggregate step of the iteration of the trimmed mean algo.
+        """Aggregate step of the iteration of the trimmed mean algo.
 
         Parameters
         ----------
@@ -554,8 +544,7 @@ class LocFinalTrimmedMean:
         trim_ratio: float | None = None,
         refit: bool = False,
     ) -> dict:
-        """
-        Finalise the trimmed mean algo by computing the trimmed mean.
+        """Finalise the trimmed mean algo by computing the trimmed mean.
 
         Parameters
         ----------
@@ -597,7 +586,6 @@ class LocFinalTrimmedMean:
             - upper_bounds_thresholds : np.ndarray of size (n_genes,2)
             - lower_bounds_thresholds : np.ndarray of size (n_genes,2)
             If use_lvl is true, the dictionary is nested with the levels as keys.
-
         """
         if refit:
             adata = self.refit_adata
@@ -647,8 +635,7 @@ class LocFinalTrimmedMean:
         mask,
         refit: bool = False,
     ) -> dict:
-        """
-        Finalise the trimmed mean algo by computing the trimmed mean.
+        """Finalise the trimmed mean algo by computing the trimmed mean.
 
         Parameters
         ----------
@@ -678,7 +665,6 @@ class LocFinalTrimmedMean:
             - num_strictly_above : np.ndarray(int) of size (n_genes,2)
             - upper_bounds_thresholds : np.ndarray of size (n_genes,2)
             - lower_bounds_thresholds : np.ndarray of size (n_genes,2)
-
         """
         if refit:
             adata = self.refit_adata
@@ -734,8 +720,7 @@ class AggFinalTrimmedMean:
         layer_used: str,
         mode: Literal["normal", "cooks"] = "normal",
     ) -> dict:
-        """
-        Compute the initial global upper and lower bounds.
+        """Compute the initial global upper and lower bounds.
 
         Parameters
         ----------
@@ -774,8 +759,6 @@ class AggFinalTrimmedMean:
             with the trimmed means per level, levels being columns
             else, a dictionary with the following keys:
                 - trimmed_mean_layer_used : np.ndarray(float) of size (n_genes)
-
-
         """
         use_lvl = shared_states[0]["use_lvl"]
         if mode == "cooks" and use_lvl:
@@ -803,8 +786,7 @@ class AggFinalTrimmedMean:
         shared_states: list[dict],
         layer_used: str,
     ) -> dict:
-        """
-        Aggregate step of the finalisation of the trimmed mean algo.
+        """Aggregate step of the finalisation of the trimmed mean algo.
 
         Parameters
         ----------
@@ -825,7 +807,6 @@ class AggFinalTrimmedMean:
         dict
             Dictionary with the following keys:
                 - trimmed_mean_layer_used : np.ndarray(float) of size (n_genes)
-
         """
         trim_ratio = shared_states[0]["trim_ratio"]
         n_samples = np.sum([state["n_samples"] for state in shared_states])

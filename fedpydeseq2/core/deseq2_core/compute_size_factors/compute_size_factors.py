@@ -22,7 +22,6 @@ class ComputeSizeFactors(
         pipeline. It sets the size factors in the local AnnData and computes the
         Gram matrix and feature vector in order to start the next step, i.e.,
         the computation of rough dispersions.
-
     """
 
     @log_organisation_method
@@ -72,7 +71,6 @@ class ComputeSizeFactors(
 
         round_idx: int
             The updated round index.
-
         """
         # ---- Aggregate means of log gene expressions ----#
 

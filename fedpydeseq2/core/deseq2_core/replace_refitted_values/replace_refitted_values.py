@@ -67,8 +67,7 @@ class ReplaceRefittedValues:
     @log_remote_data
     @reconstruct_adatas
     def loc_replace_refitted_values(self, data_from_opener, shared_state):
-        """
-        Replace refitted values in local_adata from refit_adata.
+        """Replace refitted values in local_adata from refit_adata.
 
         Parameters
         ----------

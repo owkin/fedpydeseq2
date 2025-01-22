@@ -1,8 +1,7 @@
 """Module to test the correct saving of the results.
 
-This module tests the fact that we recover the desired results both
-in the simulation mode and in the subprocess mode, as they have
-quite different behaviors.
+This module tests the fact that we recover the desired results both in the simulation
+mode and in the subprocess mode, as they have quite different behaviors.
 """
 
 import pickle as pkl
@@ -150,8 +149,6 @@ def save_pipeline_results_testing_pipe(
 ):
     """Test the SavePipelineResults class.
 
-
-
     Parameters
     ----------
     raw_data_path: Path
@@ -184,7 +181,6 @@ def save_pipeline_results_testing_pipe(
 
     only_two_centers: bool
         If true, restrict the data to two centers.
-
     """
     fl_results = run_tcga_testing_pipe(
         SavePipelineResultsTester(),
@@ -217,7 +213,6 @@ class SavePipelineResultsTester(ComputePlanBuilder, SavePipelineResults):
     ----------
     n_rounds : int
         Number of rounds.
-
     """
 
     def __init__(
@@ -325,7 +320,10 @@ class SavePipelineResultsTester(ComputePlanBuilder, SavePipelineResults):
     @remote
     @log_remote
     def create_all_fields_with_dummies(self, shared_states: dict):
-        """Set all fields with dummies. Used for testing only."""
+        """Set all fields with dummies.
+
+        Used for testing only.
+        """
         num_vars = shared_states[0]["num_vars"]
         varm_dummies = {}
 
@@ -367,7 +365,6 @@ class SavePipelineResultsTester(ComputePlanBuilder, SavePipelineResults):
 
         shared_state : dict
             Shared state with "varm_dummies" and "uns_dummmies" keys.
-
         """
         for varm_key, varm_dummy in shared_state["varm_dummies"].items():
             self.local_adata.varm[varm_key] = varm_dummy

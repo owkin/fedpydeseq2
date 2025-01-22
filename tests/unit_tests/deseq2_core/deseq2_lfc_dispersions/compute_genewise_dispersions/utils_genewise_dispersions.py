@@ -55,7 +55,6 @@ def perform_dispersions_and_nll_relative_check(
 
     tolerated_failed_genes: int
         The number of genes that are allowed to fail the relative nll criterion.
-
     """
     # If any of the relative errors is above 2%, check likelihoods
     pooled_dispersions = pooled_dds.varm[dispersions_param_name]

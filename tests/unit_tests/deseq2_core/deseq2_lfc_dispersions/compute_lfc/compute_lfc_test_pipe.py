@@ -122,7 +122,6 @@ def pipe_test_compute_lfc(
     nll_atol: float
         The absolute tolerance for the comparison of the nll values, when the LFC and mu
         values are too different.
-
     """
     complete_ref_levels, reference_dds_ref_level = make_reference_and_fl_ref_levels(
         design_factors=design_factors,
@@ -496,7 +495,6 @@ def get_pooled_results(
     tuple[str, str]
         The beta and mu parameter names , by which we can access them in the pooled
         dataset.
-
     """
     if lfc_mode == "lfc":
         return "LFC", "_mu_LFC"
@@ -550,7 +548,6 @@ def get_beta_init_pooled(pooled_dds: DeseqDataSet) -> np.ndarray:
     -------
     np.ndarray
         The initial beta values.
-
     """
     design_matrix = pooled_dds.obsm["design_matrix"].values
     counts = pooled_dds.X[:, pooled_dds.non_zero_idx]

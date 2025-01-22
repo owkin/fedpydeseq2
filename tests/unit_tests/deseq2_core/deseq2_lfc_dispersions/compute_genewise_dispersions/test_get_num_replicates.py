@@ -43,8 +43,7 @@ def test_get_num_replicates_on_small_genes_small_samples(
     local_processed_data_path,
     tcga_assets_directory,
 ):
-    """
-    Test the GetNumReplicates class on a small number of genes and samples.
+    """Test the GetNumReplicates class on a small number of genes and samples.
 
     Parameters
     ----------
@@ -62,7 +61,6 @@ def test_get_num_replicates_on_small_genes_small_samples(
 
     tcga_assets_directory : Path
         The path to the assets directory.
-
     """
     get_num_replicates_testing_pipe(
         raw_data_path,
@@ -99,8 +97,7 @@ def test_get_num_replicates_on_small_genes_on_self_hosted_fast(
     tmp_processed_data_path,
     tcga_assets_directory,
 ):
-    """
-    Test the GetNumReplicates class on a small number of genes.
+    """Test the GetNumReplicates class on a small number of genes.
 
     Parameters
     ----------
@@ -118,7 +115,6 @@ def test_get_num_replicates_on_small_genes_on_self_hosted_fast(
 
     tcga_assets_directory : Path
         The path to the assets directory.
-
     """
     get_num_replicates_testing_pipe(
         raw_data_path,
@@ -303,7 +299,6 @@ class GetNumReplicatesTester(UnitTester, GetNumReplicates):
             design matrix.
         - Check that the value counts are the same, that is that get_num_replicates is
             working correctly.
-
     """
 
     def __init__(
@@ -453,7 +448,6 @@ class GetNumReplicatesTester(UnitTester, GetNumReplicates):
             - cells: cells in the local data
             - design: design matrix
             - num_replicates: number of replicates
-
         """
         design = pd.concat(
             [shared_state["design"] for shared_state in shared_states], axis=0

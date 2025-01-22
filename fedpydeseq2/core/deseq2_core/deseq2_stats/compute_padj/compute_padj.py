@@ -22,7 +22,6 @@ class ComputeAdjustedPValues(IndependentFiltering, PValueAdjustment):
         A method to compute adjusted p-values.
         Runs independent filtering if self.independent_filter is True.
         Runs BH method otherwise.
-
     """
 
     independent_filter: bool = False
@@ -67,7 +66,6 @@ class ComputeAdjustedPValues(IndependentFiltering, PValueAdjustment):
 
         round_idx: int
             The updated round index.
-
         """
         if self.independent_filter:
             local_states, _, round_idx = local_step(

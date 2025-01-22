@@ -489,7 +489,8 @@ class ReplaceOutliersTester(
     ) -> dict:
         """Return the imputed counts as a DataFrame in a shared state.
 
-        Used for testing only."""
+        Used for testing only.
+        """
 
         return {
             "imputed_counts": pd.DataFrame(
@@ -505,7 +506,10 @@ class ReplaceOutliersTester(
         self,
         shared_states: dict,
     ):
-        """Merge the imputed counts. Used for testing only."""
+        """Merge the imputed counts.
+
+        Used for testing only.
+        """
 
         imputed_counts = pd.concat(
             [shared_state["imputed_counts"] for shared_state in shared_states],
@@ -553,7 +557,6 @@ class ReplaceOutliersTester(
         Returns
         -------
         dict
-
         """
         tot_num_samples = np.sum([state["num_samples"] for state in shared_states])
         return {"tot_num_samples": tot_num_samples}

@@ -48,7 +48,6 @@ def get_data(
 
     list_obs_names : list
         A list of lists of observation names.
-
     """
 
     list_counts = []
@@ -172,7 +171,6 @@ def test_reconstruct_adatas_decorator(
     n_vars : int
         The number of variables. Corresponds to the number of genes in
         DGEA.
-
     """
 
     strategy = SimpleLayersTester(

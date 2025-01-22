@@ -6,8 +6,7 @@ from loguru import logger
 
 
 def set_log_config_path(log_config_path: str | Path | None) -> None:
-    """
-    Create a log_config_path.json in the same directory as this Python file.
+    """Create a log_config_path.json in the same directory as this Python file.
 
     The JSON file contains one key: 'log_config_path' which is set to null if
     `log_config_path` is None, or the string representation of the path if a
@@ -46,8 +45,7 @@ def set_log_config_path(log_config_path: str | Path | None) -> None:
 
 
 def read_log_config_path() -> dict[str, Any] | None:
-    """
-    Read the log_config_path.json file and returns its content as a dictionary.
+    """Read the log_config_path.json file and returns its content as a dictionary.
 
     Returns
     -------
@@ -79,8 +77,7 @@ def read_log_config_path() -> dict[str, Any] | None:
 
 
 def get_logger_configuration() -> str | None:
-    """
-    Return the logger configuration ini path from the log configuration file.
+    """Return the logger configuration ini path from the log configuration file.
 
     Returns
     -------
@@ -94,8 +91,7 @@ def get_logger_configuration() -> str | None:
 
 
 def get_workflow_configuration() -> dict[str, Any] | None:
-    """
-    Return the generate workflow dictionary from the log configuration file.
+    """Return the generate workflow dictionary from the log configuration file.
 
     Returns
     -------
@@ -109,8 +105,7 @@ def get_workflow_configuration() -> dict[str, Any] | None:
 
 
 def log_shared_state_adata_flag() -> bool | None:
-    """
-    Return the log_adata_content flag from the log configuration file.
+    """Return the log_adata_content flag from the log configuration file.
 
     Returns
     -------
@@ -124,8 +119,7 @@ def log_shared_state_adata_flag() -> bool | None:
 
 
 def log_shared_state_size_flag() -> bool | None:
-    """
-    Return the log_shared_state_size flag from the log configuration file.
+    """Return the log_shared_state_size flag from the log configuration file.
 
     Returns
     -------
@@ -139,8 +133,7 @@ def log_shared_state_size_flag() -> bool | None:
 
 
 def setup_workflow_file() -> None:
-    """
-    Create the workflow file if the configuration is set to True.
+    """Create the workflow file if the configuration is set to True.
 
     Returns
     -------
@@ -173,8 +166,7 @@ def setup_workflow_file() -> None:
 
 
 def get_workflow_file() -> Path | None:
-    """
-    Return the workflow file path if the configuration is set to True.
+    """Return the workflow file path if the configuration is set to True.
 
     Returns
     -------

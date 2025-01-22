@@ -37,7 +37,6 @@ class SavePipelineResults(AggPassOnResults):
 
     get_results_from_local_states
         Get the results to share from the local states.
-
     """
 
     local_adata: ad.AnnData
@@ -91,7 +90,6 @@ class SavePipelineResults(AggPassOnResults):
 
         clean_models: bool
             Whether to clean the models after the computation.
-
         """
         local_states, shared_states, round_idx = local_step(
             local_method=self.get_results_from_local_states,
@@ -124,8 +122,7 @@ class SavePipelineResults(AggPassOnResults):
         data_from_opener,
         shared_state: dict | None,
     ) -> dict:
-        """
-        Get the results to share from the local states.
+        """Get the results to share from the local states.
 
         Parameters
         ----------
@@ -140,7 +137,6 @@ class SavePipelineResults(AggPassOnResults):
         dict
             Shared state containing the gene names, as well
             as selected fields from the varm and uns attributes.
-
         """
         shared_state = {
             "gene_names": self.local_adata.var_names,

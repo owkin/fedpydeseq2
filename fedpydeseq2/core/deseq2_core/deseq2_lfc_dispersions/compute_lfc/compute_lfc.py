@@ -40,8 +40,6 @@ class ComputeLFC(
         The main method to compute the log fold changes by
         running the IRLS algorithm and catching it with the
         FedProxQuasiNewton algorithm.
-
-
     """
 
     @log_organisation_method
@@ -90,7 +88,6 @@ class ComputeLFC(
 
         round_idx: int
             The updated round index.
-
         """
         #### ---- Initialization ---- ####
 

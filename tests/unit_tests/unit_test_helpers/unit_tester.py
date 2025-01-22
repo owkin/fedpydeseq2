@@ -74,7 +74,6 @@ class UnitTester(
 
 
         The log level to use for the substrafl logger. (default: ``logging.DEBUG``).
-
     """
 
     def __init__(

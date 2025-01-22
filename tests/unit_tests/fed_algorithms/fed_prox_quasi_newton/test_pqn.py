@@ -56,7 +56,6 @@ def test_lfc_with_pqn(
     tolerated_failed_genes: int
         The number of tolerated failed genes.
         Is set to 2 by default.
-
     """
 
     pipe_test_compute_lfc_with_pqn(
@@ -95,7 +94,6 @@ def test_lfc_with_pqn_on_self_hosted(
 ):
     """Perform a unit test for compute_lfc using the fisher scaling mode.
 
-
     Parameters
     ----------
     raw_data_path: Path
@@ -117,7 +115,6 @@ def test_lfc_with_pqn_on_self_hosted(
 
     tolerated_failed_genes: int
         The number of tolerated failed genes.
-
     """
 
     pipe_test_compute_lfc_with_pqn(
@@ -156,7 +153,6 @@ def test_lfc_with_pqn_on_local(
 ):
     """Perform a unit test for compute_lfc.
 
-
     Parameters
     ----------
     raw_data_path: Path
@@ -178,7 +174,6 @@ def test_lfc_with_pqn_on_local(
 
     tolerated_failed_genes: int
         The number of tolerated failed genes.
-
     """
 
     pipe_test_compute_lfc_with_pqn(

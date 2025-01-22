@@ -115,8 +115,6 @@ class FedProxQuasiNewtonTester(
     build_compute_plan
         A method to build the computation graph to run the Fed Prox Quasi Newton
         algorithm on the LFC computation problem in PyDESeq2.
-
-
     """
 
     def __init__(
@@ -184,7 +182,7 @@ class FedProxQuasiNewtonTester(
     @remote
     @log_remote
     def compute_start_state(self, shared_states: list[dict]) -> dict:
-        """Compute the beta initialization, and share to the centers
+        """Compute the beta initialization, and share to the centers.
 
         Parameters
         ----------
@@ -240,7 +238,6 @@ class FedProxQuasiNewtonTester(
         local_state : dict
             The local state containing the non zero genes mask and genes
             as an addition to the input shared state.
-
         """
         non_zero_genes_names = self.local_adata.var_names[
             self.local_adata.varm["non_zero"]

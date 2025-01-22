@@ -30,7 +30,6 @@ def can_get_sqerror_layer(adata: ad.AnnData, raise_error: bool = False) -> bool:
     ------
     ValueError
         If the squared error layer cannot be reconstructed and raise_error is True.
-
     """
     if "sqerror" in adata.layers.keys():
         return True
@@ -66,7 +65,6 @@ def set_sqerror_layer(local_adata: ad.AnnData):
         - layers["normed_counts"]: the normalized counts.
         - varm["cell_means"]: the trimmed mean.
         - obs["cells"]: the cells.
-
     """
     can_get_sqerror_layer(local_adata, raise_error=True)
     if "sqerror" in local_adata.layers.keys():

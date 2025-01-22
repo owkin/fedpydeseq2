@@ -269,7 +269,6 @@ class DispersionsFilteringTester(
 
     save_filtered_dispersions
         Save the filtered dispersions.
-
     """
 
     def __init__(
@@ -439,7 +438,6 @@ class DispersionsFilteringTester(
         clean_models : bool
             Whether to clean the models after the computation.
             Note that the last step is not cleaned.
-
         """
         # ---- Get the filtered dispersions ---- #
         local_states, shared_states, round_idx = local_step(

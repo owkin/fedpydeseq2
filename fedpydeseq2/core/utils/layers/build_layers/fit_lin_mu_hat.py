@@ -27,7 +27,6 @@ def can_get_fit_lin_mu_hat(local_adata: ad.AnnData, raise_error: bool = False) -
     ------
     ValueError
         If the fit_lin_mu_hat layer cannot be reconstructed and raise_error is True.
-
     """
     if "_fit_lin_mu_hat" in local_adata.layers.keys():
         return True
@@ -53,8 +52,7 @@ def can_get_fit_lin_mu_hat(local_adata: ad.AnnData, raise_error: bool = False) -
 
 
 def set_fit_lin_mu_hat(local_adata: ad.AnnData, min_mu: float = 0.5):
-    """
-    Calculate the _fit_lin_mu_hat layer using the provided local data.
+    """Calculate the _fit_lin_mu_hat layer using the provided local data.
 
     Checks are performed to ensure necessary keys are present in the data.
 
@@ -64,7 +62,6 @@ def set_fit_lin_mu_hat(local_adata: ad.AnnData, min_mu: float = 0.5):
         The local anndata object containing necessary keys for computation.
     min_mu : float, optional
         The minimum value for mu, defaults to 0.5.
-
     """
     can_get_fit_lin_mu_hat(local_adata, raise_error=True)
     if "_fit_lin_mu_hat" in local_adata.layers.keys():

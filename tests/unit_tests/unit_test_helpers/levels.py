@@ -40,7 +40,6 @@ def make_reference_and_fl_ref_levels(
     reference_dds_ref_level : Optional[tuple[str, str]]
         Reference level for the factor in the design matrix for the
         PyDESeq2 package.
-
     """
     categorical_factors = (
         design_factors

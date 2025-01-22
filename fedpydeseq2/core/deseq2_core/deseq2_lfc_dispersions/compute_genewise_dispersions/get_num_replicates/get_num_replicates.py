@@ -21,8 +21,7 @@ class GetNumReplicates(
     def get_num_replicates(
         self, train_data_nodes, aggregation_node, local_states, round_idx, clean_models
     ):
-        """
-        Compute the number of replicates for each combination of factors.
+        """Compute the number of replicates for each combination of factors.
 
         Parameters
         ----------

@@ -41,7 +41,6 @@ class LocLinMu:
         refit_mode : bool
             Whether to run the pipeline in refit mode. If True, the pipeline will be run
             on `refit_adata`s instead of `local_adata`s. (default: ``False``).
-
         """
         if refit_mode:
             adata = self.refit_adata

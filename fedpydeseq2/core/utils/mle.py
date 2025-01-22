@@ -286,7 +286,6 @@ def batch_mle_update(
     -------
     ndarray
         Updated global log dispersions (n_genes).
-
     """
     # Add prior regularization, if required
     if prior_reg:

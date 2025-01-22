@@ -24,7 +24,6 @@ class ComputeDispersionPrior(
     -------
     compute_dispersion_prior
         The method to fit the dispersion trend.
-
     """
 
     @log_organisation_method
@@ -71,7 +70,6 @@ class ComputeDispersionPrior(
 
         round_idx: int
             The updated round index.
-
         """
         # --- Return means and dispersions ---#
         # TODO : merge this step with the last steps from genewise dispersion

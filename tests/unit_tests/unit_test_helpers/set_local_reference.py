@@ -96,7 +96,6 @@ class SetLocalReference:
             The local AnnData. Used here to access the center_id.
         shared_state : Any
             Not used here.
-
         """
         if self.reference_data_path is not None:
             reference_data_path = Path(self.reference_data_path).resolve()

@@ -55,7 +55,6 @@ def test_compute_lfc_small_genes(
     tcga_assets_directory: Path
         The path to the assets directory. It must contain the
         opener.py file and the description.md file.
-
     """
 
     pipe_test_compute_lfc(
@@ -128,7 +127,6 @@ def test_compute_lfc_small_samples(
     tcga_assets_directory: Path
         The path to the assets directory. It must contain the
         opener.py file and the description.md file.
-
     """
 
     pipe_test_compute_lfc(
@@ -201,7 +199,6 @@ def test_compute_lfc_luad(
     tcga_assets_directory: Path
         The path to the assets directory. It must contain the
         opener.py file and the description.md file.
-
     """
 
     pipe_test_compute_lfc(
@@ -276,7 +273,6 @@ def test_compute_lfc_paad(
     tcga_assets_directory: Path
         The path to the assets directory. It must contain the
         opener.py file and the description.md file.
-
     """
 
     pipe_test_compute_lfc(

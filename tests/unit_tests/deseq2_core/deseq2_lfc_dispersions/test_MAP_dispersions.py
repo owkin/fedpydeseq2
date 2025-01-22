@@ -263,7 +263,6 @@ def MAP_dispersions_testing_pipe(
 
     tolerated_failed_genes: int
         The number of genes that are allowed to fail the test.
-
     """
     complete_ref_levels, reference_dds_ref_level = make_reference_and_fl_ref_levels(
         design_factors=design_factors,
@@ -435,7 +434,6 @@ class MAPDispersionsTester(
     build_compute_plan
         A method which builds the computation graph to test the computation of the MAP
         dispersions.
-
     """
 
     def __init__(
@@ -590,8 +588,6 @@ class MAPDispersionsTester(
 
         round_idx : int
             Round index.
-
-
         """
         #### Load reference dataset as local_adata and set local states ####
 
@@ -672,7 +668,6 @@ class MAPDispersionsTester(
         clean_models : bool
             Whether to clean the models after the computation.
             Note that the last step is not cleaned.
-
         """
         # ---- Get the filtered dispersions ---- #
         local_states, shared_states, round_idx = local_step(
@@ -749,7 +744,6 @@ class MAPDispersionsTester(
         Returns
         -------
         dict
-
         """
         tot_num_samples = np.sum([state["num_samples"] for state in shared_states])
         return {"tot_num_samples": tot_num_samples}

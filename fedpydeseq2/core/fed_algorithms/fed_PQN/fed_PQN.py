@@ -31,7 +31,6 @@ class FedProxQuasiNewton(
         The method to run the Prox Quasi Newton algorithm.
         It relies on the methods inherited from the LocMakeFedPQNFisherGradientNLL and
         AggChooseStepComputeAscentDirection classes.
-
     """
 
     PQN_num_iters: int
@@ -93,7 +92,6 @@ class FedProxQuasiNewton(
 
         round_idx: int
             The updated round index.
-
         """
         #### ---- Main training loop ---- #####
 

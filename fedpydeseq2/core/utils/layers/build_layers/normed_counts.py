@@ -23,7 +23,6 @@ def can_get_normed_counts(adata: ad.AnnData, raise_error: bool = False) -> bool:
     ------
     ValueError
         If the normed_counts layer cannot be reconstructed and raise_error is True.
-
     """
     if "normed_counts" in adata.layers.keys():
         return True
@@ -48,7 +47,6 @@ def set_normed_counts(adata: ad.AnnData):
     ----------
     adata : ad.AnnData
         The local AnnData object.
-
     """
     can_get_normed_counts(adata, raise_error=True)
     if "normed_counts" in adata.layers.keys():

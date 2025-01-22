@@ -65,8 +65,7 @@ def build_contrast(
 
 
 def build_contrast_vector(contrast, LFC_columns) -> tuple[np.ndarray, int | None]:
-    """
-    Build a vector corresponding to the desired contrast.
+    """Build a vector corresponding to the desired contrast.
 
     Allows to test any pair of levels without refitting LFCs.
 

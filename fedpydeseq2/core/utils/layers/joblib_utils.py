@@ -2,8 +2,7 @@ from typing import Any
 
 
 def get_joblib_parameters(x: Any) -> tuple[int, int, str, int]:
-    """
-    Get the joblib parameters from an object, and return them as a tuple.
+    """Get the joblib parameters from an object, and return them as a tuple.
 
     If the object has no joblib parameters, default values are returned.
 
@@ -22,7 +21,6 @@ def get_joblib_parameters(x: Any) -> tuple[int, int, str, int]:
         Joblib backend.
     batch_size: int
         Batch size for the IRLS algorithm.
-
     """
     n_jobs = x.num_jobs if hasattr(x, "num_jobs") else 1
 

@@ -19,8 +19,7 @@ class ComputeDispersionsGridSearch(
     AggGridUpdate,
     LocGridLoss,
 ):
-    """
-    Mixin class to implement the computation of genewise dispersions.
+    """Mixin class to implement the computation of genewise dispersions.
 
     The switch between genewise and MAP dispersions is done by setting the `fit_mode`
     argument in the `fit_dispersions` to either "MLE" or "MAP".
@@ -29,7 +28,6 @@ class ComputeDispersionsGridSearch(
     -------
     fit_dispersions
         A method to fit dispersions using grid search.
-
     """
 
     grid_batch_size: int

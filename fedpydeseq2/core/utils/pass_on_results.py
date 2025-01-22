@@ -28,7 +28,6 @@ class AggPassOnResults:
         Returns
         -------
         dict : The first shared state.
-
         """
         results = shared_states[0]
         # This is an ugly way to save the results for the simulation mode.

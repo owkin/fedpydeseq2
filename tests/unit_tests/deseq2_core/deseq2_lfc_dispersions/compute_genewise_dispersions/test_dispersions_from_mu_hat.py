@@ -1,9 +1,8 @@
 """Module to test the final step of the compute_genewise_dispersions step.
 
-This step tests the final substep which is to estimate the genewise dispersions
-by minimizing the negative binomial likelihood, with a fixed value of
-the mean parameter given by the mu_hat estimate.
-
+This step tests the final substep which is to estimate the genewise dispersions by
+minimizing the negative binomial likelihood, with a fixed value of the mean parameter
+given by the mu_hat estimate.
 """
 import pickle as pkl
 from pathlib import Path
@@ -74,7 +73,6 @@ def test_dispersions_from_mu_hat_on_small_genes_small_samples(
 
     continuous_factors: list or None
         The continuous factors to use.
-
     """
     dispersions_from_mu_hat_testing_pipe(
         raw_data_path,
@@ -146,7 +144,6 @@ def test_dispersions_from_mu_hat_on_small_samples_on_self_hosted_fast(
 
     tolerated_failed_genes: int
         The number of genes that are allowed to fail the relative nll criterion.
-
     """
     dispersions_from_mu_hat_testing_pipe(
         raw_data_path,
@@ -208,7 +205,6 @@ def test_dispersions_from_mu_hat_on_self_hosted_slow(
 
     continuous_factors: list or None
         The continuous factors to use.
-
     """
     dispersions_from_mu_hat_testing_pipe(
         raw_data_path,
@@ -268,7 +264,6 @@ def test_dispersions_from_mu_hat_paad_on_self_hosted_slow(
 
     continuous_factors: list or None
         The continuous factors to use.
-
     """
     dispersions_from_mu_hat_testing_pipe(
         raw_data_path,
@@ -530,7 +525,6 @@ class GenewiseDispersionsFromMuHatTester(UnitTester, ComputeDispersionsGridSearc
     pass_on_results
         An aggregation method.
         Set the genewise dispersions in the results.
-
     """
 
     def __init__(
@@ -722,7 +716,6 @@ class GenewiseDispersionsFromMuHatTester(UnitTester, ComputeDispersionsGridSearc
 
         clean_models: bool
             Whether to clean the models after the computation.
-
         """
         # ---- Get local estimates ---- #
 
@@ -798,7 +791,6 @@ class GenewiseDispersionsFromMuHatTester(UnitTester, ComputeDispersionsGridSearc
         -------
         dict
             The total number of samples in the "tot_num_samples" field.
-
         """
         tot_num_samples = np.sum([state["num_samples"] for state in shared_states])
         return {"tot_num_samples": tot_num_samples}
@@ -854,7 +846,6 @@ class GenewiseDispersionsFromMuHatTester(UnitTester, ComputeDispersionsGridSearc
         ----------
         shared_states : list
             List of shared states. The first element contains the genewise dispersions.
-
         """
         self.results = {
             "genewise_dispersions": shared_states[0]["genewise_dispersions"],

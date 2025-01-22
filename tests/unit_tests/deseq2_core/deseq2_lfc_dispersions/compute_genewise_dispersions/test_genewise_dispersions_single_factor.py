@@ -206,7 +206,6 @@ def genewise_dispersions_testing_pipe(
 
     tolerated_failed_genes: int
         The number of genes that are allowed to fail the relative nll criterion.
-
     """
 
     # Setup the ground truth path.
@@ -424,7 +423,6 @@ class GenewiseDispersionsTester(
 
     concatenate_mu_estimates
         Concatenate initial mu_hat estimates and pass on dispersions.
-
     """
 
     def __init__(
@@ -615,7 +613,6 @@ class GenewiseDispersionsTester(
 
         clean_models: bool
             Whether to clean the models after the computation.
-
         """
         # ---- Get MoM dispersions and mu_hat estimates ---- #
 
@@ -734,7 +731,6 @@ class GenewiseDispersionsTester(
             dispersions, and a "genewise_dispersions" key containing the genewise
             dispersions. The MoM dispersions and gene-wise dispersions are passed on
             and are supposed to be the same across all states.
-
         """
         mu_hat = np.vstack([state["local_mu_hat"] for state in shared_states])
         sample_ids = np.concatenate([state["sample_ids"] for state in shared_states])

@@ -29,7 +29,6 @@ class LocFindCooksOutliers:
     -------
     find_local_cooks_outliers
         Find the local cooks outliers.
-
     """
 
     local_adata: AnnData
@@ -68,7 +67,6 @@ class LocFindCooksOutliers:
                 It is a boolean array indicating whether a gene is a cooks outlier.
             - cooks_cutoff: float
                 The cutoff used to define the fact that a gene is a cooks outlier.
-
         """
         # Save these in the local adata
         self.local_adata.varm["p_values"] = shared_state["p_values"]
@@ -115,15 +113,13 @@ class AggregateCooksOutliers:
     -------
     agg_cooks_outliers
         Aggregate the local cooks outliers.
-
     """
 
     @remote
     @log_remote
     @prepare_cooks_agg
     def agg_cooks_outliers(self, shared_states: list[dict]) -> dict:
-        """
-        Aggregate the local cooks outliers.
+        """Aggregate the local cooks outliers.
 
         Parameters
         ----------
@@ -163,7 +159,6 @@ class LocGetMaxCooks:
     -------
     get_max_local_cooks
         Get the maximum cooks distance for the outliers.
-
     """
 
     local_adata: AnnData
@@ -198,7 +193,6 @@ class LocGetMaxCooks:
                 The maximum cooks distance for the outliers in the local dataset.
             - cooks_outliers: np.ndarray of shape (n_genes,)
                 It is a boolean array indicating whether a gene is a cooks outlier.
-
         """
         cooks_outliers = shared_state["cooks_outliers"]
         cooks_cutoff = shared_state["cooks_cutoff"]
@@ -236,14 +230,12 @@ class AggMaxCooks:
     -------
     agg_max_cooks
         Aggregate the local max cooks distances.
-
     """
 
     @remote
     @log_remote
     def agg_max_cooks(self, shared_states: list[dict]) -> dict:
-        """
-        Aggregate the local max cooks.
+        """Aggregate the local max cooks.
 
         Parameters
         ----------
@@ -284,7 +276,6 @@ class LocGetMaxCooksCounts:
     -------
     get_max_local_cooks_gene_counts
         Get the maximum cooks counts for the outliers.
-
     """
 
     local_adata: AnnData
@@ -323,7 +314,6 @@ class LocGetMaxCooksCounts:
                 aggregated dataset, and nan otherwise.
             - cooks_outliers: np.ndarray of shape (n_genes,)
                 It is a boolean array indicating whether a gene is a cooks outlier.
-
         """
         max_cooks = shared_state["max_cooks"]
         cooks_outliers = shared_state["cooks_outliers"]
@@ -358,14 +348,12 @@ class AggMaxCooksCounts:
         Aggregate the local max cooks gene counts. The goal is to have the gene
         counts corresponding to the maximum cooks distance for each gene across
         all datasets.
-
     """
 
     @remote
     @log_remote
     def agg_max_cooks_gene_counts(self, shared_states: list[dict]) -> dict:
-        """
-        Aggregate the local max cooks gene counts.
+        """Aggregate the local max cooks gene counts.
 
         Parameters
         ----------
@@ -385,7 +373,6 @@ class AggMaxCooksCounts:
                 maximum cooks distance for that gene across all datasets.
             - cooks_outliers: np.ndarray of shape (n_genes,)
                 It is a boolean array indicating whether a gene is a cooks outlier.
-
         """
         return {
             "max_cooks_gene_counts": np.ma.stack(
@@ -407,7 +394,6 @@ class LocCountNumberSamplesAbove:
     -------
     count_local_number_samples_above
         Count the number of samples above the max cooks gene counts.
-
     """
 
     local_adata: AnnData
@@ -451,7 +437,6 @@ class LocCountNumberSamplesAbove:
                 The Wald statistics from the Wald test.
             - wald_se: np.ndarray of shape (n_genes,)
                 The Wald standard errors from the Wald test.
-
         """
         cooks_outliers = shared_state["cooks_outliers"]
         max_cooks_gene_counts = shared_state["max_cooks_gene_counts"]
@@ -476,14 +461,12 @@ class AggCooksFiltering:
     -------
     agg_cooks_filtering
         Aggregate the local number of samples above.
-
     """
 
     @remote
     @log_remote
     def agg_cooks_filtering(self, shared_states: list[dict]) -> dict:
-        """
-        Aggregate the local number of samples above to get cooks filtered genes.
+        """Aggregate the local number of samples above to get cooks filtered genes.
 
         Parameters
         ----------
@@ -510,7 +493,6 @@ class AggCooksFiltering:
                 The Wald statistics.
             - wald_se: np.ndarray of shape (n_genes,)
                 The Wald standard errors.
-
         """
         # Find the number of samples with counts above the max cooks
         cooks_outliers = shared_states[0]["cooks_outliers"]

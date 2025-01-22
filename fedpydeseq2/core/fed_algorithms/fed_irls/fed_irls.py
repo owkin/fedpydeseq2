@@ -85,7 +85,6 @@ class FedIRLS(
     -------
     run_fed_irls
         Run the IRLS algorithm.
-
     """
 
     @log_organisation_method
@@ -162,7 +161,6 @@ class FedIRLS(
 
         round_idx: int
             The updated round index.
-
         """
         #### ---- Main training loop ---- #####
 

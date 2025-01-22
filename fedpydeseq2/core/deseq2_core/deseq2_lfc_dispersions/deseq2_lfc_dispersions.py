@@ -47,8 +47,7 @@ class DESeq2LFCDispersions(
         clean_models,
         refit_mode=False,
     ):
-        """
-        Run the DESeq2 pipeline to compute the log fold change and the dispersions.
+        """Run the DESeq2 pipeline to compute the log fold change and the dispersions.
 
         Parameters
         ----------
@@ -86,7 +85,6 @@ class DESeq2LFCDispersions(
 
         round_idx: int
             The updated round index.
-
         """
         #### Fit genewise dispersions ####
 

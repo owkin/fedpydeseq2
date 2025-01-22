@@ -9,7 +9,6 @@ Note that mu hat can be computed in two ways in the compute_genewise_dispersions
 
 In this file, we only test THE SECOND CASE, as the algorithm we use is not
 the same as the one used in the pooled setting.
-
 """
 
 import pytest
@@ -64,7 +63,6 @@ def test_mu_hat_small_genes(
     tcga_assets_directory: Path
         The path to the assets directory. It must contain the
         opener.py file and the description.md file.
-
     """
 
     pipe_test_compute_lfc(
@@ -138,7 +136,6 @@ def test_mu_hat_small_samples(
     tcga_assets_directory: Path
         The path to the assets directory. It must contain the
         opener.py file and the description.md file.
-
     """
 
     pipe_test_compute_lfc(
@@ -210,7 +207,6 @@ def test_mu_hat_luad(
     tcga_assets_directory: Path
         The path to the assets directory. It must contain the
         opener.py file and the description.md file.
-
     """
 
     pipe_test_compute_lfc(
@@ -284,7 +280,6 @@ def test_mu_hat_paad(
     tcga_assets_directory: Path
         The path to the assets directory. It must contain the
         opener.py file and the description.md file.
-
     """
 
     pipe_test_compute_lfc(

@@ -167,9 +167,10 @@ def compute_padj_testin_pipe(
     ref_levels: dict[str, str] | None = {"stage": "Advanced"},  # noqa: B006
     reference_dds_ref_level: tuple[str, ...] | None = None,
 ):
-    """Perform a unit test for Wald tests
-    Starting with the dispersions and LFC as the reference DeseqDataSet, perform Wald
-    tests and compare the results with the reference.
+    """Perform a unit test for Wald tests Starting with the dispersions and LFC as the
+    reference DeseqDataSet, perform Wald tests and compare the results with the
+    reference.
+
     Parameters
     ----------
     raw_data_path: Path
@@ -396,6 +397,7 @@ class ComputeAdjustedPValuesTester(
         clean_models=True,
     ):
         """Build the computation graph to run a DESeq2 pipe.
+
         Parameters
         ----------
         train_data_nodes : list[TrainDataNode]
@@ -486,6 +488,7 @@ class ComputeAdjustedPValuesTester(
     @log_remote
     def agg_run_wald_test_on_ground_truth(self, shared_states: dict) -> dict:
         """Run Wald tests on the reference data.
+
         Parameters
         ----------
         shared_states : dict
@@ -526,8 +529,7 @@ class ComputeAdjustedPValuesTester(
         data_from_opener,
         shared_state: dict | None,
     ) -> dict:
-        """
-        Get the results to share from the local states.
+        """Get the results to share from the local states.
 
         Parameters
         ----------
@@ -542,7 +544,6 @@ class ComputeAdjustedPValuesTester(
         dict
             Shared state containing the adjusted p-values, the p-values, the Wald
             standard errors, and the Wald statistics.
-
         """
 
         shared_state = {

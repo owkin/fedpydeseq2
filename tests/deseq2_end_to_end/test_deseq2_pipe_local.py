@@ -46,7 +46,6 @@ def test_end_to_end_on_subprocess_mode_local_small_genes(
         If true, use the independent filtering step. If not, use standard
     cooks_filter: bool
         If true, the Cook's filtering is applied at the end of the pipeline.
-
     """
     pipeline_to_test(
         raw_data_path=raw_data_path,
@@ -97,7 +96,6 @@ def test_end_to_end_on_simu_mode_local(
     tcga_assets_directory : Path
         The path to the assets directory. It must contain the
         opener.py file and the description.md file.
-
     """
     pipeline_to_test(
         raw_data_path=raw_data_path,
@@ -136,7 +134,6 @@ def test_end_to_end_on_subprocess_mode_local(
     tcga_assets_directory : Path
         The path to the assets directory. It must contain the
         opener.py file and the description.md file.
-
     """
     pipeline_to_test(
         raw_data_path=raw_data_path,
@@ -176,7 +173,6 @@ def test_end_to_end_on_subprocess_mode_local_on_self_hosted_keep_models(
     tcga_assets_directory : Path
         The path to the assets directory. It must contain the
         opener.py file and the description.md file.
-
     """
     pipeline_to_test(
         raw_data_path=raw_data_path,
@@ -233,7 +229,6 @@ def test_end_to_end_multifactor_on_subprocess_mode_local_on_self_hosted_keep_mod
         The continuous factors to use.
     contrast: list[str] or None
         The contrast to use.
-
     """
     pipeline_to_test(
         raw_data_path=raw_data_path,
@@ -285,7 +280,6 @@ def test_end_to_end_on_simulation_mode_local_small_genes(
     tcga_assets_directory : Path
         The path to the assets directory. It must contain the
         opener.py file and the description.md file.
-
     """
     pipeline_to_test(
         raw_data_path,
@@ -337,7 +331,6 @@ def test_end_to_end_on_simulation_mode_local_small_samples(
     tcga_assets_directory : Path
         The path to the assets directory. It must contain the
         opener.py file and the description.md file.
-
     """
     pipeline_to_test(
         raw_data_path,

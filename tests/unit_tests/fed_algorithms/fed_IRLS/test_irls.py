@@ -45,7 +45,6 @@ def test_lfc_with_irls(
     tcga_assets_directory: Path
         The path to the assets directory. It must contain the
         opener.py file and the description.md file.
-
     """
 
     pipe_test_compute_lfc_with_irls(
@@ -82,7 +81,6 @@ def test_lfc_with_irls_on_self_hosted(
 ):
     """Perform a unit test for compute_lfc using the fisher scaling mode.
 
-
     Parameters
     ----------
     raw_data_path: Path
@@ -98,7 +96,6 @@ def test_lfc_with_irls_on_self_hosted(
 
     dataset_name: TCGADatasetNames
         The name of the dataset, for example "TCGA-LUAD".
-
     """
 
     pipe_test_compute_lfc_with_irls(
@@ -135,7 +132,6 @@ def test_lfc_with_irls_on_local(
 ):
     """Perform a unit test for compute_lfc.
 
-
     Parameters
     ----------
     raw_data_path: Path
@@ -151,8 +147,6 @@ def test_lfc_with_irls_on_local(
 
     dataset_name: TCGADatasetNames
         The name of the dataset, for example "TCGA-LUAD".
-
-
     """
 
     pipe_test_compute_lfc_with_irls(

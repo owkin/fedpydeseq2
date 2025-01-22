@@ -25,7 +25,6 @@ class ComputeCookDistances(
     -------
     compute_cook_distance
         The method to compute Cook's distances.
-
     """
 
     trimmed_mean_num_iter: int
@@ -39,8 +38,7 @@ class ComputeCookDistances(
         round_idx,
         clean_models,
     ):
-        """
-        Compute Cook's distances.
+        """Compute Cook's distances.
 
         Parameters
         ----------
@@ -70,7 +68,6 @@ class ComputeCookDistances(
 
         round_idx: int
             The updated round index.
-
         """
         local_states, agg_shared_state, round_idx = self.compute_trim_mean(
             train_data_nodes,

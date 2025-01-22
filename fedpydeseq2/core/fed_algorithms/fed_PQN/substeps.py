@@ -51,7 +51,6 @@ class LocMakeFedPQNFisherGradientNLL:
     make_local_fisher_gradient_nll
         A remote_data method.
         Make the local nll, gradient and fisher matrix.
-
     """
 
     local_adata: AnnData
@@ -447,7 +446,6 @@ class AggChooseStepComputeAscentDirection:
             - irls_diverged_mask: ndarray
                 A boolean mask indicating if the gene has diverged in the IRLS
                 algorithm.
-
         """
         # Wwe use the following naming convention: when we say "on mask", we mean
         # that we restrict the quantity to the genes that are active in the proximal

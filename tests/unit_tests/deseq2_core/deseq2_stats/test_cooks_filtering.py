@@ -147,9 +147,10 @@ def cooks_filtering_testing_pipe(  # TODO we will have to add a case when cooks
     ref_levels: dict[str, str] | None = {"stage": "Advanced"},  # noqa: B006
     reference_dds_ref_level: tuple[str, ...] | None = None,
 ):
-    """Perform a unit test for Wald tests
-    Starting with the dispersions and LFC as the reference DeseqDataSet, perform Wald
-    tests and compare the results with the reference.
+    """Perform a unit test for Wald tests Starting with the dispersions and LFC as the
+    reference DeseqDataSet, perform Wald tests and compare the results with the
+    reference.
+
     Parameters
     ----------
     raw_data_path: Path
@@ -267,6 +268,7 @@ def cooks_filtering_testing_pipe(  # TODO we will have to add a case when cooks
 
 class CooksFilteringTester(UnitTester, CooksFiltering, AggPassOnResults):
     """A class to implement a unit test for Wald tests.
+
     Parameters
     ----------
     design_factors : str or list
@@ -380,6 +382,7 @@ class CooksFilteringTester(UnitTester, CooksFiltering, AggPassOnResults):
         clean_models=True,
     ):
         """Build the computation graph to run a DESeq2 pipe.
+
         Parameters
         ----------
         train_data_nodes : list[TrainDataNode]
@@ -516,7 +519,6 @@ class CooksFilteringTester(UnitTester, CooksFiltering, AggPassOnResults):
         shared_states : dict
             Shared states. The new shared state contains the Wald test results on the
             pooled reference.
-
         """
         pooled_dds_file_name = get_ground_truth_dds_name(
             self.reference_dds_ref_level, refit_cooks=self.refit_cooks

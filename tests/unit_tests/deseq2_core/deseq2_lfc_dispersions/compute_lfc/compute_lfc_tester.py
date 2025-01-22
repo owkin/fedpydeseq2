@@ -124,8 +124,6 @@ class ComputeLFCTester(
 
     save_irls_results
         The method to save the IRLS results.
-
-
     """
 
     def __init__(
@@ -272,7 +270,6 @@ class ComputeLFCTester(
 
         shared_state : Any
             Shared state containing the global gram matrix.
-
         """
         self.local_adata.uns["_global_gram_matrix"] = shared_state["global_gram_matrix"]
 
@@ -379,7 +376,6 @@ class ComputeLFCTester(
     ):
         """Save the IRLS results.
 
-
         Parameters
         ----------
         train_data_nodes: list
@@ -396,7 +392,6 @@ class ComputeLFCTester(
 
         clean_models: bool
             If True, the models are cleaned.
-
         """
         (
             local_states,

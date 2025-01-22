@@ -55,7 +55,6 @@ def test_end_to_end_on_simulation_mode_small_samples(
     tcga_assets_directory : Path
         The path to the assets directory. It must contain the
         opener.py file and the description.md file.
-
     """
     pipeline_to_test(
         raw_data_path,
@@ -298,7 +297,6 @@ def test_end_to_end_on_subprocess_mode_on_self_hosted_small_genes_small_samples(
     tcga_assets_directory : Path
         The path to the assets directory. It must contain the
         opener.py file and the description.md file.
-
     """
     # Get the ground truth.
     pipeline_to_test(

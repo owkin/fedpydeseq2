@@ -125,8 +125,6 @@ def run_fedpydeseq2_experiment(
     dict
         Result of the strategy, which are assumed to be contained in the
         results attribute of the last round of the aggregation node.
-
-
     """
     if backend != "subprocess" and logging_configuration_file_path is not None:
         logger.warning(

@@ -12,8 +12,7 @@ class ComputeMAPDispersions(
     LocFilterMAPDispersions,
     ComputeDispersionsGridSearch,
 ):
-    """
-    Mixin class to implement the computation of MAP dispersions.
+    """Mixin class to implement the computation of MAP dispersions.
 
     Methods
     -------
@@ -21,7 +20,6 @@ class ComputeMAPDispersions(
         A method to fit the MAP dispersions and filter them.
         The filtering is done by removing the dispersions that are too far from the
         trend curve.
-
     """
 
     @log_organisation_method

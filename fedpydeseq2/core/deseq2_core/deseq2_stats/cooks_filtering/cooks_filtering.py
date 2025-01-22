@@ -97,7 +97,6 @@ class CooksFiltering(
 
         round_idx: int
             The updated round index.
-
         """
         local_states, shared_states, round_idx = local_step(
             local_method=self.find_local_cooks_outliers,

@@ -26,7 +26,6 @@ class ComputeRoughDispersions(
     compute_rough_dispersions
         The method to compute the rough dispersions, that must be used in the main
         pipeline.
-
     """
 
     @log_organisation_method
@@ -78,7 +77,6 @@ class ComputeRoughDispersions(
 
         round_idx: int
             The updated round number.
-
         """
         # TODO: in refit mode, we need to gather the gram matrix and the features some
         #  way

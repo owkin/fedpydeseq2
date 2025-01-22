@@ -1,8 +1,8 @@
 """Module to implement a testing pipeline for PQN method.
 
-It consists in computing the log fold changes using the PQN method
-directly, and checking that the nll obtained using this method
-is lower or better than the one obtained using the standard pipe.
+It consists in computing the log fold changes using the PQN method directly, and
+checking that the nll obtained using this method is lower or better than the one
+obtained using the standard pipe.
 """
 
 import pickle as pkl
@@ -103,7 +103,6 @@ def pipe_test_compute_lfc_with_pqn(
 
     tolerated_failed_genes: int
         The number of tolerated failed genes.
-
     """
 
     # Setup the ground truth path.
@@ -247,7 +246,6 @@ def beta_nll_relative_error_testing(
 
     tolerated_failed_genes: int
         The number of tolerated failed genes.
-
     """
     accepted_error = np.abs(pooled_LFC) * rtol + atol
     absolute_error = np.abs(fl_LFC - pooled_LFC)

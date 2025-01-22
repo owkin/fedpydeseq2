@@ -19,7 +19,6 @@ class DESeq2Stats(RunWaldTests, CooksFiltering, ComputeAdjustedPValues):
     run_deseq2_stats
         Run the DESeq2 statistics pipeline.
         Performs Wald tests, Cook's filtering and computes adjusted p-values.
-
     """
 
     cooks_filter: bool
@@ -33,8 +32,7 @@ class DESeq2Stats(RunWaldTests, CooksFiltering, ComputeAdjustedPValues):
         round_idx,
         clean_models,
     ):
-        """
-        Run the DESeq2 statistics pipeline.
+        """Run the DESeq2 statistics pipeline.
 
         Parameters
         ----------
@@ -61,7 +59,6 @@ class DESeq2Stats(RunWaldTests, CooksFiltering, ComputeAdjustedPValues):
 
         round_idx: int
             The updated round index.
-
         """
         #### Perform Wald tests ####
         logger.info("Running Wald tests.")

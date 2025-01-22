@@ -25,8 +25,7 @@ class ComputeGenewiseDispersions(
     ComputeLFC,
     LocSetMuHat,
 ):
-    """
-    Mixin class to implement the computation of both genewise and MAP dispersions.
+    """Mixin class to implement the computation of both genewise and MAP dispersions.
 
     The switch between genewise and MAP dispersions is done by setting the `fit_mode`
     argument in the `fit_dispersions` to either "MLE" or "MAP".
@@ -43,8 +42,6 @@ class ComputeGenewiseDispersions(
         in downstream steps (cooks distance, etc).
         3. Compute an estimate of the mean from these dispersions.
         4. Fit the dispersions using a grid search.
-
-
     """
 
     @log_organisation_method

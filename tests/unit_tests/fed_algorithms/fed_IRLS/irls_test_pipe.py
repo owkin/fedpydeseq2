@@ -1,8 +1,8 @@
 """Module to implement a testing pipeline for PQN method.
 
-It consists in computing the log fold changes using the PQN method
-directly, and checking that the nll obtained using this method
-is lower or better than the one obtained using the standard pipe.
+It consists in computing the log fold changes using the PQN method directly, and
+checking that the nll obtained using this method is lower or better than the one
+obtained using the standard pipe.
 """
 
 import pickle as pkl
@@ -87,7 +87,6 @@ def pipe_test_compute_lfc_with_irls(
 
     atol: float
         The absolute tolerance to use for the comparison.
-
     """
 
     # Setup the ground truth path.

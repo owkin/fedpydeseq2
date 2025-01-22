@@ -69,7 +69,6 @@ class BuildDesignMatrix(
 
         round_idx: int
             The updated round
-
         """
         # ---- For each design factor, get the list of each center's levels ---- #
         if len(local_states) == 0:

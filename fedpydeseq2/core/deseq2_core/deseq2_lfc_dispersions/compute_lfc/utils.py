@@ -1,8 +1,7 @@
 """Module to implement the utilities of the IRLS algorithm.
 
-Most of these functions have the _batch suffix, which means that they are
-vectorized to work over batches of genes in the parralel_backend file in
-the same module.
+Most of these functions have the _batch suffix, which means that they are vectorized to
+work over batches of genes in the parralel_backend file in the same module.
 """
 
 
@@ -19,8 +18,7 @@ def make_irls_nll_batch(
     counts: np.ndarray,
     min_mu: float = 0.5,
 ) -> np.ndarray:
-    """
-    Compute the negative binomial log likelihood from LFC estimates.
+    """Compute the negative binomial log likelihood from LFC estimates.
 
     Used in ComputeLFC to compute the deviance score. This function is vectorized to
     work over batches of genes.
