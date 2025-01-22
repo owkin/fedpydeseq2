@@ -11,7 +11,7 @@ from fedpydeseq2_datasets.utils import get_experiment_id
 from substra.sdk.schemas import BackendType
 from substrafl import ComputePlanBuilder
 
-from fedpydeseq2.fedpydeseq2.core.utils.logging import set_log_config_path
+from fedpydeseq2.core.utils.logging import set_log_config_path
 from fedpydeseq2.substra_utils.federated_experiment import run_federated_experiment
 
 from .conftest import DEFAULT_LOGGING_CONFIGURATION_PATH

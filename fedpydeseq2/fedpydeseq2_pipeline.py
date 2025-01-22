@@ -5,7 +5,7 @@ from loguru import logger
 from substra.sdk.schemas import BackendType
 
 from fedpydeseq2.core.deseq2_strategy import DESeq2Strategy
-from fedpydeseq2.fedpydeseq2.core.utils.logging.utils import set_log_config_path
+from fedpydeseq2.core.utils.logging.utils import set_log_config_path
 from fedpydeseq2.substra_utils.federated_experiment import run_federated_experiment
 
 
