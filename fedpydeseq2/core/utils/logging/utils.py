@@ -190,3 +190,4 @@ def get_workflow_file() -> Path | None:
             workflow_file_path = Path(workflow_file)
             assert workflow_file_path.exists(), "Workflow file does not exist."
             return workflow_file_path
+    return None

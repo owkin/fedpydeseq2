@@ -78,7 +78,6 @@ class ComputeRoughDispersions(
         round_idx: int
             The updated round number.
         """
-
         # ---- Solve global linear system ---- #
 
         rough_dispersion_system_shared_state, round_idx = aggregation_step(
