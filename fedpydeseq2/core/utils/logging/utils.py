@@ -59,10 +59,6 @@ def set_log_config_path(log_config_path: str | Path | None) -> None:
     log_config_path : str or Path or None
         The path to be set in the JSON configuration file. If None, the value
         will be null.
-
-    Raises
-    ------
-    None
     """
     # Determine the directory of the current file
     current_dir = Path(__file__).parent
@@ -89,7 +85,7 @@ def set_log_config_path(log_config_path: str | Path | None) -> None:
 
 
 def read_log_config_path() -> dict[str, Any] | None:
-    """Read the log_config_path.json file and returns its content as a dictionary.
+    """Read the log_config_path.json file and return its content as a dictionary.
 
     Returns
     -------
@@ -136,7 +132,7 @@ def get_logger_configuration() -> str | None:
 
 
 def get_workflow_configuration() -> dict[str, Any] | None:
-    """Return the generate workflow dictionary from the log configuration file.
+    """Return the workflow dictionary generated from the log configuration file.
 
     Returns
     -------
@@ -194,4 +190,3 @@ def get_workflow_file() -> Path | None:
             workflow_file_path = Path(workflow_file)
             assert workflow_file_path.exists(), "Workflow file does not exist."
             return workflow_file_path
-    return None

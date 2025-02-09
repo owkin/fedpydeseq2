@@ -78,8 +78,6 @@ class ComputeRoughDispersions(
         round_idx: int
             The updated round number.
         """
-        # TODO: in refit mode, we need to gather the gram matrix and the features some
-        #  way
 
         # ---- Solve global linear system ---- #
 

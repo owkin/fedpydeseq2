@@ -447,7 +447,7 @@ class AggChooseStepComputeAscentDirection:
                 A boolean mask indicating if the gene has diverged in the IRLS
                 algorithm.
         """
-        # Wwe use the following naming convention: when we say "on mask", we mean
+        # We use the following naming convention: when we say "on mask", we mean
         # that we restrict the quantity to the genes that are active in the proximal
         # newton
         # algorithm. We therefore need to ensure that these quantities are readjusted

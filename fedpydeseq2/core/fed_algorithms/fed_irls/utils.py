@@ -1,7 +1,7 @@
 """Module to implement the utilities of the IRLS algorithm.
 
 Most of these functions have the _batch suffix, which means that they are vectorized to
-work over batches of genes in the parralel_backend file in the same module.
+work over batches of genes in the parallel_backend file in the same module.
 """
 
 import numpy as np
