@@ -2,7 +2,7 @@
 
 ## Overview
 
-This small text provides instructions on how to configure logging using JSON and INI files. The logging configuration is divided into two parts:
+Instructions on how to configure logging using JSON and INI files. The logging configuration is divided into two parts:
 1. A JSON file that specifies the path to the INI file and additional logging options.
 2. An INI file that defines the logger, handler, and formatter configurations.
 
