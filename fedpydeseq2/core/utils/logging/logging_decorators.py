@@ -21,7 +21,7 @@ from fedpydeseq2.core.utils.logging.utils import log_shared_state_size_flag
 
 
 def log_save_local_state(method: Callable):
-    """Decorate a method to log the size of the local state saved.
+    """Decorate a method to log the size of the saved local state.
 
     This function is destined to decorate the save_local_state method of a class.
 
