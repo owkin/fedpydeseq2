@@ -72,7 +72,6 @@ class ComputeDispersionPrior(
             The updated round index.
         """
         # --- Return means and dispersions ---#
-        # TODO : merge this step with the last steps from genewise dispersion
         local_states, shared_states, round_idx = local_step(
             local_method=self.get_local_mean_and_dispersion,
             train_data_nodes=train_data_nodes,
