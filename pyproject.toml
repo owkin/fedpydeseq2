@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "fedpydeseq2"
-version = "0.1.0"
+version = "0.1.1"
 description = "This package is a SubstraFL implementation FL of PyDESeq2."
 authors = ["Boris MUZELLEC <boris.muzellec@owkin.com>", "Ulysse MARTEAU <ulysse.marteau@owkin.com>", "Tanguy MARCHAND <tanguy.marchand@owkin.com>"]
 readme = "README.md"
