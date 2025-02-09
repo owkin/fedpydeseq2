@@ -288,7 +288,7 @@ def log_shared_state_adatas(
 
 
 def write_info_before_organisation_method(method: Callable):
-    """Append the information of the local step to a file.
+    """Add the organisation moethod name to the logging file.
 
     Parameters
     ----------
@@ -311,7 +311,7 @@ def write_info_before_organisation_method(method: Callable):
 
 
 def write_info_after_organisation_method():
-    """Append the information of the local step to a file.
+    """Mark the end of the organisation method in the logging file.
 
     Notes
     -----

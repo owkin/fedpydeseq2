@@ -1,5 +1,8 @@
 # Logging
 
+This section is useful for people who wish do get an **in depth** understanding of what each `remote` and `remote_data` functions have as inputs and outputs. This supposes a good understanding both of the code structure, of the `Substra` way of doing things, as well as that of the algorithm. The goal of the logging module is to precisely track the behaviour of functions in the `subprocess` mode (i.e., not in a real federated setting but in simulation).
+
+
 ## Overview
 
 Instructions on how to configure logging using JSON and INI files. The logging configuration is divided into two parts:
