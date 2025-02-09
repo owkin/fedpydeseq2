@@ -50,7 +50,7 @@ def log_save_local_state(method: Callable):
         if log_shared_state_size_flag():
             logger = get_method_logger(method)
             logger.info(
-                f"Size of local state saved : "
+                f"Size of saved local state: "
                 f"{os.path.getsize(path) / 1024 / 1024}"
                 " MB"
             )
