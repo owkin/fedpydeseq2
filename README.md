@@ -72,9 +72,12 @@ fedpydeseq2-download-data --raw_data_output_path MY_RAW_PATH
 
 And create a file in the `tests` directory named `paths.json` containing
 - A `raw_data` field with the path to the raw data `MY_RAW_PATH`
-- An optional `assets_tcga` field with the path to the directory containing the `opener.py` file and its description (by default present in the fedpydeseq2_datasets module, so no need to specify this unless you need to modify the opener);
-- An optional `processed_data` field with the path to the directory where you want to save processed data. Note that this is used
-only if you want to run tests locally without reprocessing the data during each test session (test marked with the `local` marker).
+- An optional `assets_tcga` field with the path to the directory containing the `opener.py` file and its description (by default present in the fedpydeseq2_datasets module, so no need to specify this unless you need to modify the opener).
+- An optional `processed_data` field with the path to the directory where you want to save processed data. This is used
+if you want to run tests locally without reprocessing the data during each test session. Otherwise, the processed data will be saved in a temporary file during each test session.
+- An optional `default_logging_config` field with the path to the logging configuration used by default in tests. For more details on how logging works, please refer to the [README](logging/README.md) in the logging folder.
+- An optional `workflow_logging_config` field with the path to the logging configuration used in the logging tests.
+
 
 
 

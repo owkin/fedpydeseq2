@@ -5,6 +5,7 @@ from fedpydeseq2.core.deseq2_core.deseq2_stats.compute_padj.substeps import (
     PValueAdjustment,
 )
 from fedpydeseq2.core.utils import local_step
+from fedpydeseq2.core.utils.logging.logging_decorators import log_organisation_method
 
 
 class ComputeAdjustedPValues(IndependentFiltering, PValueAdjustment):
@@ -21,11 +22,11 @@ class ComputeAdjustedPValues(IndependentFiltering, PValueAdjustment):
         A method to compute adjusted p-values.
         Runs independent filtering if self.independent_filter is True.
         Runs BH method otherwise.
-
     """
 
     independent_filter: bool = False
 
+    @log_organisation_method
     def compute_adjusted_p_values(
         self,
         train_data_nodes,
@@ -65,7 +66,6 @@ class ComputeAdjustedPValues(IndependentFiltering, PValueAdjustment):
 
         round_idx: int
             The updated round index.
-
         """
         if self.independent_filter:
             local_states, _, round_idx = local_step(

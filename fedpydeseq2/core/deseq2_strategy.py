@@ -151,7 +151,6 @@ class DESeq2Strategy(ComputePlanBuilder, DESeq2FullPipe):
         The number of iterations to use when computing the trimmed mean
         in a federated way, i.e. the number of dichotomy steps. The default is
         40.
-
     """
 
     def __init__(

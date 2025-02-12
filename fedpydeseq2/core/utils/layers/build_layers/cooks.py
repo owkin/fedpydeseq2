@@ -39,7 +39,6 @@ def can_set_cooks_layer(
     ------
     ValueError:
         If the Cook's distance cannot be set and raise_error is True.
-
     """
     if "cooks" in adata.layers.keys():
         return True
@@ -107,7 +106,6 @@ def set_cooks_layer(
 
     shared_state : dict
         The shared state containing the Cook's dispersion values.
-
     """
     can_set_cooks_layer(adata, shared_state, raise_error=True)
     if "cooks" in adata.layers.keys():

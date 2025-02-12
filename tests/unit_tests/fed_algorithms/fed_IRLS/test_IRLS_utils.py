@@ -13,8 +13,8 @@ from fedpydeseq2.core.fed_algorithms.fed_irls.utils import (
 def test_make_irls_update_summands_and_nll_batch():
     """Test the function make_irls_update_summands_and_nll_batch.
 
-    This test checks that the function returns the correct output shapes.
-    given input shapes of size (3, 2), (3,), (5, 2), (5,), (3, 5), and a scalar.
+    This test checks that the function returns the correct output shapes. given input
+    shapes of size (3, 2), (3,), (5, 2), (5,), (3, 5), and a scalar.
     """
     # Create fake data
     design_matrix = np.array([[1.0, 2.0], [3.0, 4.0], [5.0, 6.0]])
@@ -46,8 +46,8 @@ def test_make_irls_update_summands_and_nll_batch():
 def test_make_irls_update_summands_and_nll_batch_no_warnings():
     """Test the function make_irls_update_summands_and_nll_batch.
 
-    This test checks that the function returns the correct output shapes.
-    given input shapes of size (3, 2), (3,), (5, 2), (5,), (3, 5), and a scalar.
+    This test checks that the function returns the correct output shapes. given input
+    shapes of size (3, 2), (3,), (5, 2), (5,), (3, 5), and a scalar.
     """
     # Create fake data
     design_matrix = np.array([[1.0, 2.0], [3.0, 4.0], [5.0, 6.0]])
@@ -107,8 +107,8 @@ def test_make_irls_update_summands_and_nll_batch_single_design():
 def test_make_irls_nll_batch_specific_sizes():
     """Test the function make_irls_nll_batch.
 
-    This test checks that the function returns the correct output shapes
-    given input shapes of size (5, 2), (3, 2), (3,), (5,), and a scalar.
+    This test checks that the function returns the correct output shapes given input
+    shapes of size (5, 2), (3, 2), (3,), (5,), and a scalar.
     """
     # Create fake data
     beta = np.array([[1.0, 2.0], [3.0, 4.0], [5.0, 6.0], [7.0, 8.0], [9.0, 10.0]])

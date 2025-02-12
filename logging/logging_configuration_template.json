@@ -1,0 +1,11 @@
+{
+    "logger_configuration_ini_path" : "",
+    "generate_workflow":{
+        "create_workflow": false,
+        "workflow_file_path": "",
+        "clean_workflow_file": true
+
+    },
+    "log_shared_state_adata_content": false,
+    "log_shared_state_size": false
+}

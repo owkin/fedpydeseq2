@@ -11,9 +11,7 @@ from fedpydeseq2.core.utils.mle import global_grid_cr_loss
     product([50, 100, 500], [5, 20, 50], [2, 3, 5], [0.1, 0.2, 0.9, 1.0]),
 )
 def test_global_grid_cr_loss_with_nans(n_genes, grid_length, n_params, percentage_nan):
-    """
-    Test the global_grid_cr_loss function with NaNs in the input arrays.
-    """
+    """Test the global_grid_cr_loss function with NaNs in the input arrays."""
     np.random.seed(seed=42)
     n_genes, grid_length, n_params = 10, 15, 2
     percentage_nan = 0.1

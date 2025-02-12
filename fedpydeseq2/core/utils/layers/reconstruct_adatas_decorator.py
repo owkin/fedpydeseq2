@@ -1,9 +1,7 @@
 """Module containing a decorator to handle simple layers.
 
-This wrapper is used to load and save simple layers from the adata object.
-These simple layers are defined in SIMPLE_LAYERS.
-
-
+This wrapper is used to load and save simple layers from the adata object. These simple
+layers are defined in SIMPLE_LAYERS.
 """
 
 from collections.abc import Callable
@@ -69,7 +67,6 @@ def reconstruct_adatas(method: Callable):
     Callable
         The decorated method, which loads the simple layers before calling the method
         and removes the simple layers after the method is called.
-
     """
 
     @wraps(method)
@@ -184,7 +181,6 @@ def reconstruct_refit_adata_without_layers(self: Any):
     ----------
     self : Any
         The object containing the adata.
-
     """
     if self.refit_adata is None:
         return
@@ -219,7 +215,6 @@ def check_and_load_layers(
         The shared state.
     only_from_disk : bool
         Whether to load only the layers from disk.
-
     """
     adata = getattr(self, adata_name)
     layers_to_load_adata = layers_to_load[adata_name]

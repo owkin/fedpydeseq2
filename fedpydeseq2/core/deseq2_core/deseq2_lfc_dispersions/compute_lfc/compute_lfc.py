@@ -16,6 +16,7 @@ from fedpydeseq2.core.fed_algorithms import FedIRLS
 from fedpydeseq2.core.fed_algorithms import FedProxQuasiNewton
 from fedpydeseq2.core.utils import aggregation_step
 from fedpydeseq2.core.utils import local_step
+from fedpydeseq2.core.utils.logging.logging_decorators import log_organisation_method
 
 
 class ComputeLFC(
@@ -39,10 +40,9 @@ class ComputeLFC(
         The main method to compute the log fold changes by
         running the IRLS algorithm and catching it with the
         FedProxQuasiNewton algorithm.
-
-
     """
 
+    @log_organisation_method
     def compute_lfc(
         self,
         train_data_nodes: list,
@@ -88,7 +88,6 @@ class ComputeLFC(
 
         round_idx: int
             The updated round index.
-
         """
         #### ---- Initialization ---- ####
 

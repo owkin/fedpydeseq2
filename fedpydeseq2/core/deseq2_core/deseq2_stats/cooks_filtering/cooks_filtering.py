@@ -26,6 +26,7 @@ from fedpydeseq2.core.deseq2_core.deseq2_stats.cooks_filtering.substeps import (
 )
 from fedpydeseq2.core.utils import aggregation_step
 from fedpydeseq2.core.utils import local_step
+from fedpydeseq2.core.utils.logging.logging_decorators import log_organisation_method
 
 
 class CooksFiltering(
@@ -46,6 +47,7 @@ class CooksFiltering(
         The method to find Cooks outliers.
     """
 
+    @log_organisation_method
     def cooks_filtering(
         self,
         train_data_nodes,
@@ -95,7 +97,6 @@ class CooksFiltering(
 
         round_idx: int
             The updated round index.
-
         """
         local_states, shared_states, round_idx = local_step(
             local_method=self.find_local_cooks_outliers,

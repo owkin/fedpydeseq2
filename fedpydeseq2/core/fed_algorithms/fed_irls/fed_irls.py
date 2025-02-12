@@ -6,6 +6,11 @@ from fedpydeseq2.core.fed_algorithms.fed_irls.substeps import AggMakeIRLSUpdate
 from fedpydeseq2.core.fed_algorithms.fed_irls.substeps import LocMakeIRLSSummands
 from fedpydeseq2.core.utils import aggregation_step
 from fedpydeseq2.core.utils import local_step
+from fedpydeseq2.core.utils.logging.logging_decorators import end_iteration
+from fedpydeseq2.core.utils.logging.logging_decorators import end_loop
+from fedpydeseq2.core.utils.logging.logging_decorators import log_organisation_method
+from fedpydeseq2.core.utils.logging.logging_decorators import start_iteration
+from fedpydeseq2.core.utils.logging.logging_decorators import start_loop
 
 
 class FedIRLS(
@@ -80,9 +85,9 @@ class FedIRLS(
     -------
     run_fed_irls
         Run the IRLS algorithm.
-
     """
 
+    @log_organisation_method
     def run_fed_irls(
         self,
         train_data_nodes: list,
@@ -156,13 +161,14 @@ class FedIRLS(
 
         round_idx: int
             The updated round index.
-
         """
         #### ---- Main training loop ---- #####
 
         global_irls_summands_nlls_shared_state = input_shared_state
 
-        for _ in range(self.irls_num_iter + 1):
+        start_loop()
+        for iteration in range(self.irls_num_iter + 1):
+            start_iteration(iteration)
             # ---- Compute local IRLS summands and nlls ---- #
 
             (
@@ -193,5 +199,7 @@ class FedIRLS(
                 description="Update the log fold changes and nlls in IRLS.",
                 clean_models=clean_models,
             )
+            end_iteration()
+        end_loop()
 
         return local_states, global_irls_summands_nlls_shared_state, round_idx

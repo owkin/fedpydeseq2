@@ -14,11 +14,11 @@ COOKS_FILTER = [True, False]
     list(product([True], [True], [True])),
 )
 @pytest.mark.usefixtures(
-    "raw_data_path", "local_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 def test_end_to_end_on_subprocess_mode_local_small_genes(
     raw_data_path,
-    local_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
     only_two_centers,
     independent_filter,
@@ -34,7 +34,7 @@ def test_end_to_end_on_subprocess_mode_local_small_genes(
     ----------
     raw_data_path : Path
         The path to the root data.
-    local_processed_data_path : Path
+    processed_data_path : Path
         The path to the processed data. The subdirectories will
         be created if needed.
     tcga_assets_directory : Path
@@ -46,11 +46,10 @@ def test_end_to_end_on_subprocess_mode_local_small_genes(
         If true, use the independent filtering step. If not, use standard
     cooks_filter: bool
         If true, the Cook's filtering is applied at the end of the pipeline.
-
     """
     pipeline_to_test(
         raw_data_path=raw_data_path,
-        processed_data_path=local_processed_data_path,
+        processed_data_path=processed_data_path,
         assets_directory=tcga_assets_directory,
         dataset_name="TCGA-LUAD",
         simulate=False,
@@ -67,13 +66,13 @@ def test_end_to_end_on_subprocess_mode_local_small_genes(
     product([True, False], [True, False]),
 )
 @pytest.mark.usefixtures(
-    "raw_data_path", "local_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 def test_end_to_end_on_simu_mode_local(
     independent_filter: bool,
     cooks_filter: bool,
     raw_data_path,
-    local_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
 ):
     """Compare FL and pooled deseq2 pipelines.
@@ -91,17 +90,16 @@ def test_end_to_end_on_simu_mode_local(
         If true, the Cook's filtering is applied at the end of the pipeline.
     raw_data_path : Path
         The path to the root data.
-    local_processed_data_path : Path
+    processed_data_path : Path
         The path to the processed data. The subdirectories will
         be created if needed.
     tcga_assets_directory : Path
         The path to the assets directory. It must contain the
         opener.py file and the description.md file.
-
     """
     pipeline_to_test(
         raw_data_path=raw_data_path,
-        processed_data_path=local_processed_data_path,
+        processed_data_path=processed_data_path,
         assets_directory=tcga_assets_directory,
         dataset_name="TCGA-LUAD",
         simulate=True,
@@ -113,11 +111,11 @@ def test_end_to_end_on_simu_mode_local(
 
 @pytest.mark.local
 @pytest.mark.usefixtures(
-    "raw_data_path", "local_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 def test_end_to_end_on_subprocess_mode_local(
     raw_data_path,
-    local_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
 ):
     """Compare FL and pooled deseq2 pipelines.
@@ -130,17 +128,16 @@ def test_end_to_end_on_subprocess_mode_local(
     ----------
     raw_data_path : Path
         The path to the root data.
-    local_processed_data_path : Path
+    processed_data_path : Path
         The path to the processed data. The subdirectories will
         be created if needed.
     tcga_assets_directory : Path
         The path to the assets directory. It must contain the
         opener.py file and the description.md file.
-
     """
     pipeline_to_test(
         raw_data_path=raw_data_path,
-        processed_data_path=local_processed_data_path,
+        processed_data_path=processed_data_path,
         assets_directory=tcga_assets_directory,
         dataset_name="TCGA-LUAD",
         simulate=False,
@@ -153,11 +150,11 @@ def test_end_to_end_on_subprocess_mode_local(
 
 @pytest.mark.local
 @pytest.mark.usefixtures(
-    "raw_data_path", "tmp_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 def test_end_to_end_on_subprocess_mode_local_on_self_hosted_keep_models(
     raw_data_path,
-    tmp_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
 ):
     """Compare FL and pooled deseq2 pipelines.
@@ -170,17 +167,16 @@ def test_end_to_end_on_subprocess_mode_local_on_self_hosted_keep_models(
     ----------
     raw_data_path : Path
         The path to the root data.
-    tmp_processed_data_path : Path
+    processed_data_path : Path
         The path to the processed data. The subdirectories will
         be created if needed.
     tcga_assets_directory : Path
         The path to the assets directory. It must contain the
         opener.py file and the description.md file.
-
     """
     pipeline_to_test(
         raw_data_path=raw_data_path,
-        processed_data_path=tmp_processed_data_path,
+        processed_data_path=processed_data_path,
         assets_directory=tcga_assets_directory,
         dataset_name="TCGA-LUAD",
         simulate=False,
@@ -200,11 +196,11 @@ def test_end_to_end_on_subprocess_mode_local_on_self_hosted_keep_models(
     ],
 )
 @pytest.mark.usefixtures(
-    "raw_data_path", "tmp_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 def test_end_to_end_multifactor_on_subprocess_mode_local_on_self_hosted_keep_models(
     raw_data_path,
-    tmp_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
     design_factors,
     continuous_factors,
@@ -221,7 +217,7 @@ def test_end_to_end_multifactor_on_subprocess_mode_local_on_self_hosted_keep_mod
     ----------
     raw_data_path : Path
         The path to the root data.
-    tmp_processed_data_path : Path
+    processed_data_path : Path
         The path to the processed data. The subdirectories will
         be created if needed.
     tcga_assets_directory : Path
@@ -233,11 +229,10 @@ def test_end_to_end_multifactor_on_subprocess_mode_local_on_self_hosted_keep_mod
         The continuous factors to use.
     contrast: list[str] or None
         The contrast to use.
-
     """
     pipeline_to_test(
         raw_data_path=raw_data_path,
-        processed_data_path=tmp_processed_data_path,
+        processed_data_path=processed_data_path,
         assets_directory=tcga_assets_directory,
         dataset_name="TCGA-LUAD",
         simulate=False,
@@ -257,13 +252,13 @@ def test_end_to_end_multifactor_on_subprocess_mode_local_on_self_hosted_keep_mod
     product([True, False], COOKS_FILTER),
 )
 @pytest.mark.usefixtures(
-    "raw_data_path", "local_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 def test_end_to_end_on_simulation_mode_local_small_genes(
     independent_filter: bool,
     cooks_filter: bool,
     raw_data_path,
-    tmp_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
 ):
     """Compare FL and pooled deseq2 pipelines.
@@ -279,17 +274,16 @@ def test_end_to_end_on_simulation_mode_local_small_genes(
         If true, the Cook's filtering is applied at the end of the pipeline.
     raw_data_path : Path
         The path to the root data.
-    tmp_processed_data_path : Path
+    processed_data_path : Path
         The path to the processed data. The subdirectories will
         be created if needed.
     tcga_assets_directory : Path
         The path to the assets directory. It must contain the
         opener.py file and the description.md file.
-
     """
     pipeline_to_test(
         raw_data_path,
-        tmp_processed_data_path,
+        processed_data_path,
         tcga_assets_directory,
         small_genes=True,
         small_samples=False,
@@ -309,13 +303,13 @@ def test_end_to_end_on_simulation_mode_local_small_genes(
     ),
 )
 @pytest.mark.usefixtures(
-    "raw_data_path", "local_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 def test_end_to_end_on_simulation_mode_local_small_samples(
     independent_filter: bool,
     cooks_filter: bool,
     raw_data_path,
-    tmp_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
 ):
     """Compare FL and pooled deseq2 pipelines.
@@ -331,17 +325,16 @@ def test_end_to_end_on_simulation_mode_local_small_samples(
         If true, the Cook's filtering is applied at the end of the pipeline.
     raw_data_path : Path
         The path to the root data.
-    tmp_processed_data_path : Path
+    processed_data_path : Path
         The path to the processed data. The subdirectories will
         be created if needed.
     tcga_assets_directory : Path
         The path to the assets directory. It must contain the
         opener.py file and the description.md file.
-
     """
     pipeline_to_test(
         raw_data_path,
-        tmp_processed_data_path,
+        processed_data_path,
         tcga_assets_directory,
         small_genes=False,
         small_samples=True,

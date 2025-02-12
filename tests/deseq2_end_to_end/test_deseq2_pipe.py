@@ -24,14 +24,14 @@ DESIGN_FACTORS = ["stage", ["gender", "stage"]]
     ],
 )
 @pytest.mark.usefixtures(
-    "raw_data_path", "tmp_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 def test_end_to_end_on_simulation_mode_small_samples(
     independent_filter: bool,
     cooks_filter: bool,
     design_factors,
     raw_data_path,
-    tmp_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
 ):
     """Compare FL and pooled deseq2 pipelines.
@@ -49,17 +49,16 @@ def test_end_to_end_on_simulation_mode_small_samples(
         The design factors to use.
     raw_data_path : Path
         The path to the root data.
-    tmp_processed_data_path : Path
+    processed_data_path : Path
         The path to the processed data. The subdirectories will
         be created if needed.
     tcga_assets_directory : Path
         The path to the assets directory. It must contain the
         opener.py file and the description.md file.
-
     """
     pipeline_to_test(
         raw_data_path,
-        tmp_processed_data_path,
+        processed_data_path,
         tcga_assets_directory,
         small_samples=True,
         simulate=True,
@@ -93,11 +92,11 @@ def test_end_to_end_on_simulation_mode_small_samples(
     ],
 )
 @pytest.mark.usefixtures(
-    "raw_data_path", "tmp_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 def test_end_to_end_on_simulation_mode_small_genes(
     raw_data_path,
-    tmp_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
     only_two_centers,
     independent_filter,
@@ -112,7 +111,7 @@ def test_end_to_end_on_simulation_mode_small_genes(
     ----------
     raw_data_path : Path
         The path to the root data.
-    tmp_processed_data_path : Path
+    processed_data_path : Path
         The path to the processed data. The subdirectories will
         be created if needed.
     tcga_assets_directory : Path
@@ -130,7 +129,7 @@ def test_end_to_end_on_simulation_mode_small_genes(
     """
     pipeline_to_test(
         raw_data_path,
-        tmp_processed_data_path,
+        processed_data_path,
         tcga_assets_directory,
         small_genes=True,
         simulate=True,
@@ -151,11 +150,11 @@ def test_end_to_end_on_simulation_mode_small_genes(
     ],
 )
 @pytest.mark.usefixtures(
-    "raw_data_path", "local_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 def test_end_to_end_multifactor_on_simulation_mode_small_genes(
     raw_data_path,
-    tmp_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
     design_factors,
     continuous_factors,
@@ -169,7 +168,7 @@ def test_end_to_end_multifactor_on_simulation_mode_small_genes(
     ----------
     raw_data_path : Path
         The path to the root data.
-    tmp_processed_data_path : Path
+    processed_data_path : Path
         The path to the processed data. The subdirectories will
         be created if needed.
     tcga_assets_directory : Path
@@ -184,7 +183,7 @@ def test_end_to_end_multifactor_on_simulation_mode_small_genes(
     """
     pipeline_to_test(
         raw_data_path,
-        tmp_processed_data_path,
+        processed_data_path,
         tcga_assets_directory,
         small_genes=True,
         simulate=True,
@@ -202,11 +201,11 @@ def test_end_to_end_multifactor_on_simulation_mode_small_genes(
     "cooks_filter, design_factors", list(product(COOKS_FILTER, DESIGN_FACTORS))
 )
 @pytest.mark.usefixtures(
-    "raw_data_path", "tmp_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 def test_end_to_end_on_simulation_mode_small_genes_refit_cooks_false(
     raw_data_path,
-    tmp_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
     cooks_filter,
     design_factors,
@@ -219,7 +218,7 @@ def test_end_to_end_on_simulation_mode_small_genes_refit_cooks_false(
     ----------
     raw_data_path : Path
         The path to the root data.
-    tmp_processed_data_path : Path
+    processed_data_path : Path
         The path to the processed data. The subdirectories will
         be created if needed.
     tcga_assets_directory : Path
@@ -232,7 +231,7 @@ def test_end_to_end_on_simulation_mode_small_genes_refit_cooks_false(
     """
     pipeline_to_test(
         raw_data_path,
-        tmp_processed_data_path,
+        processed_data_path,
         tcga_assets_directory,
         small_genes=True,
         simulate=True,
@@ -247,18 +246,18 @@ def test_end_to_end_on_simulation_mode_small_genes_refit_cooks_false(
 @pytest.mark.docker
 @pytest.mark.self_hosted_slow
 @pytest.mark.usefixtures(
-    "raw_data_path", "tmp_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 def test_end_to_end_on_docker_mode_on_self_hosted_small_genes(
     raw_data_path,
-    tmp_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
 ):
     # This is a workaround to avoid the docker daemon issue.
     os.environ["DOCKER_HOST"] = "unix:///run/user/1000/docker.sock"
     pipeline_to_test(
         raw_data_path=raw_data_path,
-        processed_data_path=tmp_processed_data_path,
+        processed_data_path=processed_data_path,
         assets_directory=tcga_assets_directory,
         dataset_name="TCGA-LUAD",
         simulate=False,
@@ -274,12 +273,12 @@ def test_end_to_end_on_docker_mode_on_self_hosted_small_genes(
     ["TCGA-LUAD", "TCGA-PAAD"],
 )
 @pytest.mark.usefixtures(
-    "raw_data_path", "tmp_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 def test_end_to_end_on_subprocess_mode_on_self_hosted_small_genes_small_samples(
     dataset_name: TCGADatasetNames,
     raw_data_path,
-    tmp_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
 ):
     """Compare FL and pooled deseq2 pipelines.
@@ -292,18 +291,17 @@ def test_end_to_end_on_subprocess_mode_on_self_hosted_small_genes_small_samples(
         The name of the dataset, for example "TCGA-LUAD".
     raw_data_path : Path
         The path to the root data.
-    tmp_processed_data_path : Path
+    processed_data_path : Path
         The path to the processed data. The subdirectories will
         be created if needed.
     tcga_assets_directory : Path
         The path to the assets directory. It must contain the
         opener.py file and the description.md file.
-
     """
     # Get the ground truth.
     pipeline_to_test(
         raw_data_path=raw_data_path,
-        processed_data_path=tmp_processed_data_path,
+        processed_data_path=processed_data_path,
         assets_directory=tcga_assets_directory,
         dataset_name=dataset_name,
         simulate=False,

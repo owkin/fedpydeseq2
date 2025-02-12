@@ -1,9 +1,8 @@
-"""
-Module containing decorators to log the input and outputs of a method.
+"""Module containing decorators to log the input and outputs of a method.
 
-All logging is controlled through a logging configuration file.
-This configuration file can be either set by the log_config_path attribute of the class,
-or by the default_config.ini file in the same directory as this module.
+All logging is controlled through a logging configuration file. This configuration file
+can be either set by the log_config_path attribute of the class, or by the
+default_config.ini file in the same directory as this module.
 """
 import logging
 import logging.config
@@ -15,10 +14,14 @@ from typing import Any
 
 import anndata as ad
 
+from fedpydeseq2.core.utils.logging.utils import get_logger_configuration
+from fedpydeseq2.core.utils.logging.utils import get_workflow_file
+from fedpydeseq2.core.utils.logging.utils import log_shared_state_adata_flag
+from fedpydeseq2.core.utils.logging.utils import log_shared_state_size_flag
+
 
 def log_save_local_state(method: Callable):
-    """
-    Decorate a method to log the size of the local state saved.
+    """Decorate a method to log the size of the saved local state.
 
     This function is destined to decorate the save_local_state method of a class.
 
@@ -35,7 +38,6 @@ def log_save_local_state(method: Callable):
     -------
     Callable
         The decorated method, which logs the size of the local state saved.
-
     """
 
     @wraps(method)
@@ -43,24 +45,105 @@ def log_save_local_state(method: Callable):
         self,
         path: pathlib.Path,
     ):
-        logger = get_method_logger(self, method)
-
         output = method(self, path)
 
-        logger.info(
-            f"Size of local state saved : "
-            f"{os.path.getsize(path) / 1024 / 1024}"
-            " MB"
-        )
+        if log_shared_state_size_flag():
+            logger = get_method_logger(method)
+            logger.info(
+                f"Size of saved local state: "
+                f"{os.path.getsize(path) / 1024 / 1024}"
+                " MB"
+            )
 
         return output
 
     return remote_method_inner
 
 
-def log_remote_data(method: Callable):
+def log_organisation_method(method: Callable):
+    """Decorate a method to log when it is called and when it ends.
+
+    Parameters
+    ----------
+    method : Callable
+        The method to decorate. This method is expected to have the following signature:
+        method(self, *args, **kwargs).
+
+    Returns
+    -------
+    Callable
+        The decorated method, which logs when it is called and when it ends.
     """
-    Decorate a remote_data to log the input and outputs.
+
+    @wraps(method)
+    def method_inner(
+        self,
+        *args,
+        **kwargs,
+    ):
+        write_info_before_organisation_method(method)
+        output = method(self, *args, **kwargs)
+        write_info_after_organisation_method()
+
+        return output
+
+    return method_inner
+
+
+def start_loop():
+    """Add the <iterations> balise to the logging file."""
+    # Add <iterations> balise
+    text_to_add = "<iterations>\n"
+    # Append the text to the file
+    file_path = get_workflow_file()
+    if file_path is not None and file_path.exists():
+        with open(file_path, "a") as file:
+            file.write(text_to_add)
+
+
+def end_loop():
+    """Add the </iterations> balise to the logging file."""
+    # Add </iterations> balise
+    text_to_add = "</iterations>\n"
+    # Append the text to the file
+    file_path = get_workflow_file()
+    if file_path is not None and file_path.exists():
+        with open(file_path, "a") as file:
+            file.write(text_to_add)
+
+
+def start_iteration(iteration_number: int):
+    """Add the <iteration> balise to the logging file.
+
+    Parameters
+    ----------
+    iteration_number : int
+        The number of the iteration.
+    """
+    # Add <iteration> balise
+    text_to_add = "<iteration>\n"
+    # Add iteration number balise
+    text_to_add += f"<number>{iteration_number}</number>\n"
+    # Append the text to the file
+    file_path = get_workflow_file()
+    if file_path is not None and file_path.exists():
+        with open(file_path, "a") as file:
+            file.write(text_to_add)
+
+
+def end_iteration():
+    """Add the </iteration> balise to the logging file."""
+    # Add </iteration> balise
+    text_to_add = "</iteration>\n"
+    # Append the text to the file
+    file_path = get_workflow_file()
+    if file_path is not None and file_path.exists():
+        with open(file_path, "a") as file:
+            file.write(text_to_add)
+
+
+def log_remote_data(method: Callable):
+    """Decorate a remote_data to log the input and outputs.
 
     This decorator logs the shared state keys with the info level,
     and the different layers of the local_adata and refit_adata with the debug level.
@@ -89,22 +172,22 @@ def log_remote_data(method: Callable):
         shared_state: Any = None,
         **method_parameters,
     ):
-        logger = get_method_logger(self, method)
-        logger.info("---- Before running the method ----")
-        log_shared_state_adatas(self, method, shared_state)
+        log_shared_state_adatas(
+            self, method, shared_state, "---- Before running the method ----"
+        )
+        write_info_before_function(method, shared_state, "remote_data")
 
         shared_state = method(self, data_from_opener, shared_state, **method_parameters)
 
-        logger.info("---- After method ----")
-        log_shared_state_adatas(self, method, shared_state)
+        write_info_after_function(shared_state, "remote_data")
+        log_shared_state_adatas(self, method, shared_state, "---- After method ----")
         return shared_state
 
     return remote_method_inner
 
 
 def log_remote(method: Callable):
-    """
-    Decorate a remote method to log the input and outputs.
+    """Decorate a remote method to log the input and outputs.
 
     This decorator logs the shared state keys with the info level.
 
@@ -118,7 +201,6 @@ def log_remote(method: Callable):
     -------
     Callable
         The decorated method, which logs the shared state keys with the info level.
-
     """
 
     @wraps(method)
@@ -127,33 +209,45 @@ def log_remote(method: Callable):
         shared_states: list | None,
         **method_parameters,
     ):
-        logger = get_method_logger(self, method)
-        if shared_states is not None:
-            shared_state = shared_states[0]
-            if shared_state is not None:
-                logger.info(
-                    f"First input shared state keys : {list(shared_state.keys())}"
-                )
+        log_flag = log_shared_state_adata_flag()
+
+        if log_flag:
+            logger = get_method_logger(method)
+            if shared_states is not None:
+                shared_state = shared_states[0]
+                if shared_state is not None:
+                    logger.info(
+                        f"First input shared state keys : {list(shared_state.keys())}"
+                    )
+                else:
+                    logger.info("First input shared state is None.")
             else:
-                logger.info("First input shared state is None.")
-        else:
-            logger.info("No input shared states.")
+                logger.info("No input shared states.")
+        write_info_before_function(
+            method,
+            shared_states[0] if isinstance(shared_states, list) else None,  # type: ignore
+            "remote",
+        )
 
         shared_state = method(self, shared_states, **method_parameters)
 
-        if shared_state is not None:
-            logger.info(f"Output shared state keys : {list(shared_state.keys())}")
-        else:
-            logger.info("No output shared state.")
+        write_info_after_function(shared_state, "remote")
+
+        if log_flag:
+            if shared_state is not None:
+                logger.info(f"Output shared state keys : {list(shared_state.keys())}")
+            else:
+                logger.info("No output shared state.")
 
         return shared_state
 
     return remote_method_inner
 
 
-def log_shared_state_adatas(self: Any, method: Callable, shared_state: dict | None):
-    """
-    Log the information of the local step.
+def log_shared_state_adatas(
+    self: Any, method: Callable, shared_state: dict | None, message: str | None
+):
+    """Log the information of the local step.
 
     Precisely, log the shared state keys (info),
     and the different layers of the local_adata and refit_adata (debug).
@@ -166,9 +260,15 @@ def log_shared_state_adatas(self: Any, method: Callable, shared_state: dict | No
         The class method.
     shared_state : Optional[dict]
         The shared state dictionary, whose keys we log with the info level.
-
+    message : str or None
+        A message to log before the shared state keys.
     """
-    logger = get_method_logger(self, method)
+    log_flag = log_shared_state_adata_flag()
+    if not log_flag:
+        return
+    logger = get_method_logger(method)
+    if message is not None:
+        logger.info(message)
 
     if shared_state is not None:
         logger.info(f"Shared state keys : {list(shared_state.keys())}")
@@ -187,9 +287,150 @@ def log_shared_state_adatas(self: Any, method: Callable, shared_state: dict | No
             logger.debug(f"{adata_name} obsm keys : {list(adata.obsm.keys())}")
 
 
-def get_method_logger(self: Any, method: Callable) -> logging.Logger:
+def write_info_before_organisation_method(method: Callable):
+    """Add the organisation moethod name to the logging file.
+
+    Parameters
+    ----------
+    method : Callable
+        The method whose name will be logged.
+
+    Notes
+    -----
+    This function appends the following information to the specified file:
+    - The name of the method enclosed in `<name>` tags.
     """
-    Get the method logger from a configuration file.
+    text_to_add = "<bloc>\n"
+    # Add name balise
+    text_to_add += f"<name>{method.__name__}</name>\n"
+    # Append the text to the file
+    file_path = get_workflow_file()
+    if file_path is not None and file_path.exists():
+        with open(file_path, "a") as file:
+            file.write(text_to_add)
+
+
+def write_info_after_organisation_method():
+    """Mark the end of the organisation method in the logging file.
+
+    Notes
+    -----
+    This function appends the following information to the specified file:
+    - The name of the method enclosed in `<name>` tags.
+    """
+    text_to_add = "</bloc>\n"
+    # Append the text to the file
+    file_path = get_workflow_file()
+    if file_path is not None and file_path.exists():
+        with open(file_path, "a") as file:
+            file.write(text_to_add)
+
+
+def write_info_before_function(method: Callable, shared_state: Any, function_type: str):
+    """Append the information of the local step to a file.
+
+    Parameters
+    ----------
+    method : Callable
+        The method whose name will be logged.
+    shared_state : Any
+        The shared state containing the inputs to be logged.
+        Expected to be a dictionary.
+    function_type : str
+        The type of the function (local, remote or remote_data).
+
+    Notes
+    -----
+    This function appends the following information to the specified file:
+    - The name of the method enclosed in `<name>` tags.
+    - The inputs from the shared state enclosed in `<inputs>` tags. Each input includes:
+        - `<key>`: The key of the input.
+        - `<type>`: The type of the input.
+        - `<shape>`: The shape of the input, if applicable.
+    """
+    text_to_add = f"<{function_type}>\n"
+    # Add name balise
+    text_to_add += f"<name>{method.__name__}</name>\n"
+    # Add inputs opening balise
+    text_to_add += "<input>\n"
+    # For each key in the shared state, add a input basise withe three sub
+    # balises : key, type and shape if relevant
+    text_to_add += get_shared_state_balises(shared_state)
+
+    text_to_add += "</input>\n"
+    # Append the text to the file
+    file_path = get_workflow_file()
+    if file_path is not None and file_path.exists():
+        with open(file_path, "a") as file:
+            file.write(text_to_add)
+
+
+def write_info_after_function(shared_state: Any, function_type: str):
+    """Append the information of the local step to a file.
+
+    Parameters
+    ----------
+    shared_state : Any
+        The shared state containing the inputs to be logged.
+        Expected to be a dictionary.
+    function_type : str
+        The type of the function (local, remote or remote_data).
+
+    Notes
+    -----
+    This function appends the following information to the specified file:
+    - The name of the method enclosed in `<name>` tags.
+    - The outputs from the shared state enclosed in `<outputs>` tags.
+      Each output includes:
+        - `<key>`: The key of the output.
+        - `<type>`: The type of the output.
+        - `<shape>`: The shape of the output, if applicable.
+    """
+    # Add outputs opening balise
+    text_to_add = "<output>\n"
+    # For each key in the shared state, add a output balise withe three sub
+    # balises : key, type and shape if relevant
+    text_to_add += get_shared_state_balises(shared_state)
+    text_to_add += "</output>\n"
+    text_to_add += f"</{function_type}>\n"
+    # Append the text to the file
+    file_path = get_workflow_file()
+    if file_path is not None and file_path.exists():
+        with open(file_path, "a") as file:
+            file.write(text_to_add)
+
+
+def get_shared_state_balises(shared_state: Any) -> str:
+    """Get the shared state balises.
+
+    Parameters
+    ----------
+    shared_state : Any
+        The shared state containing the inputs to be logged.
+        Expected to be a dictionary.
+
+    Returns
+    -------
+    str
+        The shared state balises.
+    """
+    text_to_add = ""
+    # For each key in the shared state, add a input basise withe three sub
+    # balises : key, type and shape if relevant
+    if isinstance(shared_state, dict):
+        for key, value in shared_state.items():
+            text_to_add += "<item>\n"
+            text_to_add += f"<key>{key}</key>\n"
+            text_to_add += f"<type>{type(value)}</type>\n"
+            if hasattr(value, "shape"):
+                text_to_add += f"<shape>{value.shape}</shape>\n"
+            text_to_add += "</item>\n"
+        return text_to_add
+    return ""
+
+
+def get_method_logger(method: Callable) -> logging.Logger:
+    """Get the method logger from a configuration file.
 
     If the class instance has a log_config_path attribute,
     the logger is configured with the file at this path.
@@ -206,10 +447,20 @@ def get_method_logger(self: Any, method: Callable) -> logging.Logger:
     logging.Logger
         The logger instance.
     """
-    if hasattr(self, "log_config_path"):
-        log_config_path = pathlib.Path(self.log_config_path)
-    else:
-        log_config_path = pathlib.Path(__file__).parent / "default_config.ini"
-    logging.config.fileConfig(log_config_path, disable_existing_loggers=False)
-    logger = logging.getLogger(method.__name__)
+    logger_config_path = get_logger_configuration()
+    if logger_config_path is None:
+        # Take basic configuration
+        logging.basicConfig()
+        logger = logging.getLogger(method.__name__)
+        return logger
+    try:
+        logging.config.fileConfig(logger_config_path, disable_existing_loggers=False)
+        logger = logging.getLogger(method.__name__)
+    except Exception as e:  # noqa: BLE001
+        logging.basicConfig()
+        logger = logging.getLogger(method.__name__)
+        logger.warning(
+            f"Error while trying to configure the logger with the file at "
+            f"{logger_config_path}. Using basic configuration. Error : {e}"
+        )
     return logger

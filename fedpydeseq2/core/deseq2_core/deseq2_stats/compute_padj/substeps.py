@@ -47,7 +47,6 @@ class IndependentFiltering:
             - "p_values" : p-values
             - "wald_statistics" : Wald statistics
             - "wald_se" : Wald standard errors
-
         """
         p_values = shared_state["p_values"]
         wald_statistics = shared_state["wald_statistics"]
@@ -109,7 +108,6 @@ class PValueAdjustment:
     run_p_value_adjustment
         Run p-value adjustment on the p-values trend using the Benjamini-Hochberg
         method.
-
     """
 
     local_adata: AnnData
@@ -130,7 +128,6 @@ class PValueAdjustment:
             - "p_values" : p-values, as a numpy array
             - "wald_statistics" : Wald statistics
             - "wald_se" : Wald standard errors
-
         """
         p_values = shared_state["p_values"]
         wald_statistics = shared_state["wald_statistics"]

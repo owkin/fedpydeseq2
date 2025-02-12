@@ -10,6 +10,7 @@ from fedpydeseq2.core.deseq2_core.deseq2_lfc_dispersions.compute_dispersion_prio
 )
 from fedpydeseq2.core.utils import aggregation_step
 from fedpydeseq2.core.utils import local_step
+from fedpydeseq2.core.utils.logging.logging_decorators import log_organisation_method
 
 
 class ComputeDispersionPrior(
@@ -23,9 +24,9 @@ class ComputeDispersionPrior(
     -------
     compute_dispersion_prior
         The method to fit the dispersion trend.
-
     """
 
+    @log_organisation_method
     def compute_dispersion_prior(
         self,
         train_data_nodes,
@@ -69,10 +70,8 @@ class ComputeDispersionPrior(
 
         round_idx: int
             The updated round index.
-
         """
         # --- Return means and dispersions ---#
-        # TODO : merge this step with the last steps from genewise dispersion
         local_states, shared_states, round_idx = local_step(
             local_method=self.get_local_mean_and_dispersion,
             train_data_nodes=train_data_nodes,

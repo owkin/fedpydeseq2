@@ -27,7 +27,7 @@ class SimpleOpener(tools.Opener):
         pass
 
     def get_data(self, folders):
-        """get the data
+        """Get the data.
 
         Parameters
         ----------

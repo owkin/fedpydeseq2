@@ -14,6 +14,7 @@ from fedpydeseq2.core.deseq2_core.deseq2_lfc_dispersions.compute_genewise_disper
 from fedpydeseq2.core.deseq2_core.deseq2_lfc_dispersions.compute_lfc import ComputeLFC
 from fedpydeseq2.core.fed_algorithms import ComputeDispersionsGridSearch
 from fedpydeseq2.core.utils import local_step
+from fedpydeseq2.core.utils.logging.logging_decorators import log_organisation_method
 
 
 class ComputeGenewiseDispersions(
@@ -24,8 +25,7 @@ class ComputeGenewiseDispersions(
     ComputeLFC,
     LocSetMuHat,
 ):
-    """
-    Mixin class to implement the computation of both genewise and MAP dispersions.
+    """Mixin class to implement the computation of both genewise and MAP dispersions.
 
     The switch between genewise and MAP dispersions is done by setting the `fit_mode`
     argument in the `fit_dispersions` to either "MLE" or "MAP".
@@ -42,10 +42,9 @@ class ComputeGenewiseDispersions(
         in downstream steps (cooks distance, etc).
         3. Compute an estimate of the mean from these dispersions.
         4. Fit the dispersions using a grid search.
-
-
     """
 
+    @log_organisation_method
     def fit_genewise_dispersions(
         self,
         train_data_nodes,

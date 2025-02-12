@@ -205,7 +205,6 @@ def compute_ascent_direction_decrement(
     newton_decrement : np.ndarray
         The newton decrement associated to these ascent directions
         of shape (n_genes, )
-
     """
     # ---- Step 1: compute first index set ---- #
     # See https://www.cs.utexas.edu/~inderjit/public_papers/pqnj_sisc10.pdf

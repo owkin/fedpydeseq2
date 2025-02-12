@@ -11,6 +11,7 @@ from fedpydeseq2.core.deseq2_core.deseq2_stats.deseq2_stats import DESeq2Stats
 from fedpydeseq2.core.deseq2_core.replace_outliers import ReplaceCooksOutliers
 from fedpydeseq2.core.deseq2_core.replace_refitted_values import ReplaceRefittedValues
 from fedpydeseq2.core.deseq2_core.save_pipeline_results import SavePipelineResults
+from fedpydeseq2.core.utils.logging.logging_decorators import log_organisation_method
 
 
 class DESeq2FullPipe(
@@ -31,6 +32,7 @@ class DESeq2FullPipe(
         The method to run the full DESeq2 pipeline.
     """
 
+    @log_organisation_method
     def run_deseq_pipe(
         self,
         train_data_nodes: list[TrainDataNode],

@@ -185,7 +185,14 @@ tmp_substrafl*
 tests/datasets_parent_dir.txt
 
 data/raw/*
-
+fedpydeseq2/core/utils/logging/logging_paths.json
+logs/*
+logging/*
+!logging/logger_configuration_template.ini
+!logging/logging_configuration_template.json
+!logging/README.md
+tests/paths.json
+fedpydeseq2/core/utils/logging/log_config_path.json
 # MKDocs
 /docs/build.out
 docs/generated/gallery/

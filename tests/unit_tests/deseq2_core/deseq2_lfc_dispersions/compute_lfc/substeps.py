@@ -1,4 +1,4 @@
-"""Substeps for the ComputeLFC testing class, to aggregate information"""
+"""Substeps for the ComputeLFC testing class, to aggregate information."""
 
 
 import numpy as np
@@ -63,7 +63,6 @@ class LocGetLocalComputeLFCResults:
                 The name of the mu parameter in the adata.
             - beta_param_name: str
                 The name of the beta parameter in the adata.
-
         """
         mu_param_name = self.local_adata.uns["_irls_mu_param_name"]
         beta_param_name = self.local_adata.uns["_irls_beta_param_name"]

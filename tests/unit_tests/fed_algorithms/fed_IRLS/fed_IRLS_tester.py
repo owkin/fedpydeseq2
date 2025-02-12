@@ -98,8 +98,6 @@ class FedIRLSTester(
 
     save_irls_results
         The method to save the IRLS results.
-
-
     """
 
     def __init__(
@@ -162,7 +160,7 @@ class FedIRLSTester(
     @remote
     @log_remote
     def compute_start_state(self, shared_states: list[dict]) -> dict:
-        """Compute the beta initialization, and share to the centers
+        """Compute the beta initialization, and share to the centers.
 
         Parameters
         ----------
@@ -187,7 +185,6 @@ class FedIRLSTester(
                 (n_non_zero_genes,). It is initialized to 1000.0.
             - round_number_irls: int
                 The current round number of the IRLS algorithm. It is initialized to 0.
-
         """
 
         beta_init = compute_initial_beta(shared_states)
@@ -355,7 +352,6 @@ class FedIRLSTester(
         local_state : dict
             The local state containing the non zero genes mask and genes
             as an addition to the input shared state.
-
         """
         non_zero_genes_names = self.local_adata.var_names[
             self.local_adata.varm["non_zero"]

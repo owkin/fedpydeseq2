@@ -6,6 +6,7 @@ from fedpydeseq2.core.deseq2_core.compute_size_factors.substeps import (
 )
 from fedpydeseq2.core.utils import aggregation_step
 from fedpydeseq2.core.utils import local_step
+from fedpydeseq2.core.utils.logging.logging_decorators import log_organisation_method
 
 
 class ComputeSizeFactors(
@@ -21,9 +22,9 @@ class ComputeSizeFactors(
         pipeline. It sets the size factors in the local AnnData and computes the
         Gram matrix and feature vector in order to start the next step, i.e.,
         the computation of rough dispersions.
-
     """
 
+    @log_organisation_method
     def compute_size_factors(
         self,
         train_data_nodes,
@@ -70,7 +71,6 @@ class ComputeSizeFactors(
 
         round_idx: int
             The updated round index.
-
         """
         # ---- Aggregate means of log gene expressions ----#
 

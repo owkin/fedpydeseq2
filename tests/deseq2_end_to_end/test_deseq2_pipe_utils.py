@@ -4,6 +4,7 @@ from pathlib import Path
 from typing import Literal
 
 from fedpydeseq2 import DESeq2Strategy
+from tests.conftest import DEFAULT_LOGGING_CONFIGURATION_PATH
 from tests.tcga_testing_pipe import run_tcga_testing_pipe
 
 
@@ -28,6 +29,7 @@ def pipeline_to_test(
     lfc_null: float = 0.0,
     reference_dds_ref_level: tuple[str, ...] | None = ("stage", "Advanced"),
     clean_models: bool = True,
+    logging_config_file_path: str | Path | None = DEFAULT_LOGGING_CONFIGURATION_PATH,
 ):
     """Compare FL and pooled deseq2 pipelines.
 
@@ -78,6 +80,11 @@ def pipeline_to_test(
         The reference level of the design factors.
     clean_models: bool
         Whether to clean the models after the computation.
+    logging_config_file_path: str or Path or None
+        The path to the logging configuration file.
+        Default is the default logging configuration file, which
+        logs the content of the shared state and the adatas, but
+        not the size.
     """
     # Run the tcga experiment to check convergence
     run_tcga_testing_pipe(
@@ -106,4 +113,5 @@ def pipeline_to_test(
         continuous_factors=continuous_factors,
         reference_dds_ref_level=reference_dds_ref_level,
         clean_models=clean_models,
+        logging_config_file_path=logging_config_file_path,
     )

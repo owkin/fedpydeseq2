@@ -31,7 +31,7 @@ from tests.unit_tests.unit_test_helpers.unit_tester import UnitTester
 
 
 @pytest.mark.usefixtures(
-    "raw_data_path", "local_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 @pytest.mark.parametrize(
     "design_factors",
@@ -41,13 +41,13 @@ from tests.unit_tests.unit_test_helpers.unit_tester import UnitTester
 )
 def test_genewise_dispersions_on_small_genes_small_samples(
     raw_data_path,
-    local_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
     design_factors,
 ):
     genewise_dispersions_testing_pipe(
         raw_data_path,
-        local_processed_data_path,
+        processed_data_path,
         tcga_assets_directory,
         design_factors=design_factors,
         dataset_name="TCGA-LUAD",
@@ -63,7 +63,7 @@ def test_genewise_dispersions_on_small_genes_small_samples(
 
 @pytest.mark.self_hosted_fast
 @pytest.mark.usefixtures(
-    "raw_data_path", "tmp_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 @pytest.mark.parametrize(
     "design_factors",
@@ -73,13 +73,13 @@ def test_genewise_dispersions_on_small_genes_small_samples(
 )
 def test_genewise_dispersions_on_small_samples_on_self_hosted_fast(
     raw_data_path,
-    tmp_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
     design_factors,
 ):
     genewise_dispersions_testing_pipe(
         raw_data_path,
-        tmp_processed_data_path,
+        processed_data_path,
         tcga_assets_directory,
         dataset_name="TCGA-LUAD",
         small_samples=True,
@@ -95,18 +95,18 @@ def test_genewise_dispersions_on_small_samples_on_self_hosted_fast(
 
 @pytest.mark.self_hosted_slow
 @pytest.mark.usefixtures(
-    "raw_data_path", "tmp_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 @pytest.mark.parametrize("design_factors", ["stage"])
 def test_genewise_dispersions_on_self_hosted_slow(
     raw_data_path,
-    tmp_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
     design_factors,
 ):
     genewise_dispersions_testing_pipe(
         raw_data_path,
-        tmp_processed_data_path,
+        processed_data_path,
         tcga_assets_directory,
         dataset_name="TCGA-LUAD",
         small_samples=False,
@@ -122,7 +122,7 @@ def test_genewise_dispersions_on_self_hosted_slow(
 
 def genewise_dispersions_testing_pipe(
     raw_data_path,
-    local_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
     design_factors,
     dataset_name="TCGA-LUAD",
@@ -155,7 +155,7 @@ def genewise_dispersions_testing_pipe(
     raw_data_path: Path
         The path to the root data.
 
-    local_processed_data_path: Path
+    processed_data_path: Path
         The path to the processed data. The subdirectories will
         be created if needed
 
@@ -206,7 +206,6 @@ def genewise_dispersions_testing_pipe(
 
     tolerated_failed_genes: int
         The number of genes that are allowed to fail the relative nll criterion.
-
     """
 
     # Setup the ground truth path.
@@ -219,9 +218,7 @@ def genewise_dispersions_testing_pipe(
         continuous_factors=None,
     )
 
-    reference_data_path = (
-        local_processed_data_path / "centers_data" / "tcga" / experiment_id
-    )
+    reference_data_path = processed_data_path / "centers_data" / "tcga" / experiment_id
     # Get FL results.
     fl_results = run_tcga_testing_pipe(
         GenewiseDispersionsTester(
@@ -231,7 +228,7 @@ def genewise_dispersions_testing_pipe(
             reference_dds_ref_level=reference_dds_ref_level,
         ),
         raw_data_path=raw_data_path,
-        processed_data_path=local_processed_data_path,
+        processed_data_path=processed_data_path,
         assets_directory=tcga_assets_directory,
         simulate=simulate,
         dataset_name=dataset_name,
@@ -248,7 +245,7 @@ def genewise_dispersions_testing_pipe(
     pooled_dds_file_name = get_ground_truth_dds_name(reference_dds_ref_level)
 
     pooled_dds_file_path = (
-        local_processed_data_path
+        processed_data_path
         / "pooled_data"
         / "tcga"
         / experiment_id
@@ -424,7 +421,6 @@ class GenewiseDispersionsTester(
 
     concatenate_mu_estimates
         Concatenate initial mu_hat estimates and pass on dispersions.
-
     """
 
     def __init__(
@@ -615,7 +611,6 @@ class GenewiseDispersionsTester(
 
         clean_models: bool
             Whether to clean the models after the computation.
-
         """
         # ---- Get MoM dispersions and mu_hat estimates ---- #
 
@@ -734,7 +729,6 @@ class GenewiseDispersionsTester(
             dispersions, and a "genewise_dispersions" key containing the genewise
             dispersions. The MoM dispersions and gene-wise dispersions are passed on
             and are supposed to be the same across all states.
-
         """
         mu_hat = np.vstack([state["local_mu_hat"] for state in shared_states])
         sample_ids = np.concatenate([state["sample_ids"] for state in shared_states])

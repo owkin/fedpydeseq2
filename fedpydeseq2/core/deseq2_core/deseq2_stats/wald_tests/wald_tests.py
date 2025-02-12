@@ -6,6 +6,7 @@ from fedpydeseq2.core.deseq2_core.deseq2_stats.wald_tests.substeps import (
 )
 from fedpydeseq2.core.utils import aggregation_step
 from fedpydeseq2.core.utils import local_step
+from fedpydeseq2.core.utils.logging.logging_decorators import log_organisation_method
 
 
 class RunWaldTests(LocBuildContrastVectorHMatrix, AggRunWaldTests):
@@ -17,6 +18,7 @@ class RunWaldTests(LocBuildContrastVectorHMatrix, AggRunWaldTests):
         The method to compute the Wald tests.
     """
 
+    @log_organisation_method
     def run_wald_tests(
         self,
         train_data_nodes,

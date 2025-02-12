@@ -26,6 +26,5 @@ class AggPassOnFirstSharedState:
         -------
         shared_state : dict
             The shared state to be passed on.
-
         """
         return shared_states[0]

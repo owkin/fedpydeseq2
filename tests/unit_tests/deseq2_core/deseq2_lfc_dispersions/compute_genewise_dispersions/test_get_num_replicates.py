@@ -34,17 +34,16 @@ from tests.unit_tests.unit_test_helpers.unit_tester import UnitTester
     ],
 )
 @pytest.mark.usefixtures(
-    "raw_data_path", "local_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 def test_get_num_replicates_on_small_genes_small_samples(
     design_factors,
     continuous_factors,
     raw_data_path,
-    local_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
 ):
-    """
-    Test the GetNumReplicates class on a small number of genes and samples.
+    """Test the GetNumReplicates class on a small number of genes and samples.
 
     Parameters
     ----------
@@ -57,16 +56,15 @@ def test_get_num_replicates_on_small_genes_small_samples(
     raw_data_path : Path
         The path to the raw data.
 
-    local_processed_data_path : Path
+    processed_data_path : Path
         The path to the processed data.
 
     tcga_assets_directory : Path
         The path to the assets directory.
-
     """
     get_num_replicates_testing_pipe(
         raw_data_path,
-        local_processed_data_path,
+        processed_data_path,
         tcga_assets_directory,
         dataset_name="TCGA-LUAD",
         small_samples=True,
@@ -90,17 +88,16 @@ def test_get_num_replicates_on_small_genes_small_samples(
 )
 @pytest.mark.self_hosted_fast
 @pytest.mark.usefixtures(
-    "raw_data_path", "tmp_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 def test_get_num_replicates_on_small_genes_on_self_hosted_fast(
     design_factors,
     continuous_factors,
     raw_data_path,
-    tmp_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
 ):
-    """
-    Test the GetNumReplicates class on a small number of genes.
+    """Test the GetNumReplicates class on a small number of genes.
 
     Parameters
     ----------
@@ -113,16 +110,15 @@ def test_get_num_replicates_on_small_genes_on_self_hosted_fast(
     raw_data_path : Path
         The path to the raw data.
 
-    tmp_processed_data_path : Path
+    processed_data_path : Path
         The path to the processed data.
 
     tcga_assets_directory : Path
         The path to the assets directory.
-
     """
     get_num_replicates_testing_pipe(
         raw_data_path,
-        tmp_processed_data_path,
+        processed_data_path,
         tcga_assets_directory,
         dataset_name="TCGA-LUAD",
         small_samples=False,
@@ -139,7 +135,7 @@ def test_get_num_replicates_on_small_genes_on_self_hosted_fast(
 
 def get_num_replicates_testing_pipe(
     raw_data_path,
-    local_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
     dataset_name="TCGA-LUAD",
     small_samples=True,
@@ -162,7 +158,7 @@ def get_num_replicates_testing_pipe(
     raw_data_path: Path
         The path to the root data.
 
-    local_processed_data_path: Path
+    processed_data_path: Path
         The path to the processed data. The subdirectories will
         be created if needed
 
@@ -219,9 +215,7 @@ def get_num_replicates_testing_pipe(
         continuous_factors=continuous_factors,
     )
 
-    reference_data_path = (
-        local_processed_data_path / "centers_data" / "tcga" / experiment_id
-    )
+    reference_data_path = processed_data_path / "centers_data" / "tcga" / experiment_id
     # The test happens inside the last aggregation
     run_tcga_testing_pipe(
         GetNumReplicatesTester(
@@ -232,7 +226,7 @@ def get_num_replicates_testing_pipe(
             reference_dds_ref_level=reference_dds_ref_level,
         ),
         raw_data_path=raw_data_path,
-        processed_data_path=local_processed_data_path,
+        processed_data_path=processed_data_path,
         assets_directory=tcga_assets_directory,
         simulate=simulate,
         dataset_name=dataset_name,
@@ -303,7 +297,6 @@ class GetNumReplicatesTester(UnitTester, GetNumReplicates):
             design matrix.
         - Check that the value counts are the same, that is that get_num_replicates is
             working correctly.
-
     """
 
     def __init__(
@@ -453,7 +446,6 @@ class GetNumReplicatesTester(UnitTester, GetNumReplicates):
             - cells: cells in the local data
             - design: design matrix
             - num_replicates: number of replicates
-
         """
         design = pd.concat(
             [shared_state["design"] for shared_state in shared_states], axis=0

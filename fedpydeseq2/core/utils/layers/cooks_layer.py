@@ -41,7 +41,6 @@ def prepare_cooks_local(method: Callable):
     -------
     Callable:
         The decorated method.
-
     """
 
     @wraps(method)
@@ -150,7 +149,6 @@ def prepare_cooks_agg(method: Callable):
     -------
     Callable:
         The decorated method.
-
     """
 
     @wraps(method)
@@ -264,7 +262,6 @@ def can_skip_local_cooks_preparation(self: Any) -> bool:
     -------
     bool:
         Whether the Cook's distance is in the layers to save.
-
     """
     only_from_disk = (
         not hasattr(self, "save_layers_to_disk") or self.save_layers_to_disk

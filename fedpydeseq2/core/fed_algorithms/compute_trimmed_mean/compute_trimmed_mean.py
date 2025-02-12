@@ -22,6 +22,11 @@ from fedpydeseq2.core.fed_algorithms.compute_trimmed_mean.substeps import (
 )
 from fedpydeseq2.core.utils import aggregation_step
 from fedpydeseq2.core.utils import local_step
+from fedpydeseq2.core.utils.logging.logging_decorators import end_iteration
+from fedpydeseq2.core.utils.logging.logging_decorators import end_loop
+from fedpydeseq2.core.utils.logging.logging_decorators import log_organisation_method
+from fedpydeseq2.core.utils.logging.logging_decorators import start_iteration
+from fedpydeseq2.core.utils.logging.logging_decorators import start_loop
 
 
 class ComputeTrimmedMean(
@@ -34,6 +39,7 @@ class ComputeTrimmedMean(
 ):
     """Strategy to compute the trimmed mean."""
 
+    @log_organisation_method
     def compute_trim_mean(
         self,
         train_data_nodes,
@@ -48,8 +54,7 @@ class ComputeTrimmedMean(
         refit: bool = False,
         min_replicates_trimmed_mean: int = 3,
     ):
-        """
-        Run the trimmed mean computation on the layer specified.
+        """Run the trimmed mean computation on the layer specified.
 
         Parameters
         ----------
@@ -101,7 +106,6 @@ class ComputeTrimmedMean(
             state in a field "trimmed_mean_<layer_used>".
 
         round_idx: int
-
         """
         if mode == "cooks":
             assert trim_ratio is None, "trim_ratio should be None in cooks mode"
@@ -134,7 +138,9 @@ class ComputeTrimmedMean(
             clean_models=clean_models,
         )
 
-        for _ in range(n_iter):
+        start_loop()
+        for iteration in range(n_iter):
+            start_iteration(iteration)
             local_states, shared_states, round_idx = local_step(
                 local_method=self.local_iteration_trimmed_mean,
                 train_data_nodes=train_data_nodes,
@@ -162,6 +168,8 @@ class ComputeTrimmedMean(
                 round_idx=round_idx,
                 clean_models=clean_models,
             )
+            end_iteration()
+        end_loop()
 
         local_states, shared_states, round_idx = local_step(
             local_method=self.final_local_trimmed_mean,

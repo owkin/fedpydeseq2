@@ -102,7 +102,6 @@ class SimpleLayersTester(
 
     test_layers_to_load : bool, optional
         Whether to test the layers to load. Defaults to False.
-
     """
 
     def __init__(
@@ -275,8 +274,7 @@ class SimpleLayersTester(
     def init_local_states(
         self, data_from_opener: ad.AnnData, shared_state: Any
     ) -> None:
-        """
-        Initialize the local states of the strategy.
+        """Initialize the local states of the strategy.
 
         This method creates a dummy AnnData object with the necessary layers, varm, obsm
         obs to be able to reconstruct all simple layers. We load the
@@ -289,7 +287,6 @@ class SimpleLayersTester(
 
         shared_state : Any
             Shared state. Not used.
-
         """
         dummy_adata = create_dummy_adata_with_layers(
             data_from_opener=data_from_opener,
@@ -328,8 +325,7 @@ class SimpleLayersTester(
     def perform_check_without_decorator(
         self, data_from_opener: ad.AnnData, shared_state: Any
     ):
-        """
-        Check the state of the local adata before the decorator is applied.
+        """Check the state of the local adata before the decorator is applied.
 
         Parameters
         ----------
@@ -338,7 +334,6 @@ class SimpleLayersTester(
 
         shared_state : Any
             Shared state. Not used.
-
         """
 
         all_layers_saved = check_if_all_layers_saved(self)
@@ -397,8 +392,7 @@ class SimpleLayersTester(
     def perform_check_with_decorator(
         self, data_from_opener: ad.AnnData, shared_state: Any
     ):
-        """
-        Check the state of the local adata after the decorator is applied.
+        """Check the state of the local adata after the decorator is applied.
 
         Parameters
         ----------
@@ -406,7 +400,6 @@ class SimpleLayersTester(
             AnnData returned by the opener. Not used. (but used by the decorator)
         shared_state : Any
             Shared state. Not used.
-
         """
 
         all_layers_saved = check_if_all_layers_saved(self)

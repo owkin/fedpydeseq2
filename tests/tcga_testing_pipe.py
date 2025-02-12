@@ -11,7 +11,10 @@ from fedpydeseq2_datasets.utils import get_experiment_id
 from substra.sdk.schemas import BackendType
 from substrafl import ComputePlanBuilder
 
+from fedpydeseq2.core.utils.logging import set_log_config_path
 from fedpydeseq2.substra_utils.federated_experiment import run_federated_experiment
+
+from .conftest import DEFAULT_LOGGING_CONFIGURATION_PATH
 
 
 def run_tcga_testing_pipe(
@@ -32,6 +35,7 @@ def run_tcga_testing_pipe(
     refit_cooks: bool = False,
     remote_timeout: int = 86400,  # 24 hours
     clean_models: bool = True,
+    logging_config_file_path: str | Path | None = DEFAULT_LOGGING_CONFIGURATION_PATH,
 ) -> dict:
     """Runa tcga experiment using the given substrafl strategy.
 
@@ -112,6 +116,11 @@ def run_tcga_testing_pipe(
         The default is 86400 s (24h).
     clean_models : bool
         If True, clean the models after the experiment. (Default=True).
+    logging_config_file_path : str or Path or None
+        The path to the logging configuration file. If None, no logging is done.
+        By default, the default logging configuration is used, see the
+        DEFAULT_LOGGING_CONFIGURATION_PATH constant.
+
 
 
     Returns
@@ -159,6 +168,9 @@ def run_tcga_testing_pipe(
         processed_data_path / "pooled_data" / "tcga" / experiment_id / "metadata.csv"
     )
     n_centers = len(metadata.center_id.unique())
+
+    # Set the logging configuration file
+    set_log_config_path(logging_config_file_path)
 
     fl_results = run_federated_experiment(
         strategy=strategy,

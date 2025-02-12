@@ -34,7 +34,6 @@ class LocGetGramMatrixAndLogFeatures:
         If the gram matrix is full rank, it shares the features vector
         and the gram matrix. If the gram matrix is not full rank, it shares
         the normed log means and the number of observations.
-
     """
 
     local_adata: AnnData
@@ -106,7 +105,6 @@ class LocGetGramMatrixAndLogFeatures:
                     The normed log means.
                 - n_obs: int
                     The number of observations.
-
         """
         global_gram_matrix = self.local_adata.uns["_global_gram_matrix"]
 
@@ -236,8 +234,6 @@ class AggCreateBetaInit:
                 (n_non_zero_genes,).
             - round_number_irls: int
                 The current round number of the IRLS algorithm.
-
-
         """
         # Get the global quantities
         gram_full_rank = shared_states[0]["gram_full_rank"]
@@ -310,7 +306,6 @@ class LocSaveLFC:
         is expected to be applied after catching the IRLS method
         with the fed prox quasi newton method, and takes as an input a
         shared state from the last iteration of that method.
-
     """
 
     local_adata: AnnData
@@ -358,7 +353,6 @@ class LocSaveLFC:
         refit_mode : bool
             Whether to run the pipeline on `refit_adata` instead of `local_adata`.
             (default: False).
-
         """
         beta = shared_state["beta"]
 

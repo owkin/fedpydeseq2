@@ -16,11 +16,11 @@ TESTING_PARAMTERS_LIST = [
 
 
 @pytest.mark.usefixtures(
-    "raw_data_path", "tmp_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 def test_lfc_with_pqn(
     raw_data_path,
-    tmp_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
     PQN_min_mu=0.0,
     tolerated_failed_genes=2,
@@ -42,7 +42,7 @@ def test_lfc_with_pqn(
     raw_data_path: Path
         The path to the root data.
 
-    tmp_processed_data_path: Path
+    processed_data_path: Path
         The path to the processed data. The subdirectories will
         be created if needed
 
@@ -56,12 +56,11 @@ def test_lfc_with_pqn(
     tolerated_failed_genes: int
         The number of tolerated failed genes.
         Is set to 2 by default.
-
     """
 
     pipe_test_compute_lfc_with_pqn(
         data_path=raw_data_path,
-        processed_data_path=tmp_processed_data_path,
+        processed_data_path=processed_data_path,
         tcga_assets_directory=tcga_assets_directory,
         dataset_name="TCGA-LUAD",
         small_samples=False,
@@ -79,7 +78,7 @@ def test_lfc_with_pqn(
 
 @pytest.mark.self_hosted_slow
 @pytest.mark.usefixtures(
-    "raw_data_path", "tmp_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 @pytest.mark.parametrize(
     "dataset_name, PQN_min_mu, tolerated_failed_genes",
@@ -87,7 +86,7 @@ def test_lfc_with_pqn(
 )
 def test_lfc_with_pqn_on_self_hosted(
     raw_data_path,
-    tmp_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
     dataset_name: TCGADatasetNames,
     PQN_min_mu: bool,
@@ -95,13 +94,12 @@ def test_lfc_with_pqn_on_self_hosted(
 ):
     """Perform a unit test for compute_lfc using the fisher scaling mode.
 
-
     Parameters
     ----------
     raw_data_path: Path
         The path to the root data.
 
-    tmp_processed_data_path: Path
+    processed_data_path: Path
         The path to the processed data. The subdirectories will
         be created if needed
 
@@ -117,12 +115,11 @@ def test_lfc_with_pqn_on_self_hosted(
 
     tolerated_failed_genes: int
         The number of tolerated failed genes.
-
     """
 
     pipe_test_compute_lfc_with_pqn(
         data_path=raw_data_path,
-        processed_data_path=tmp_processed_data_path,
+        processed_data_path=processed_data_path,
         tcga_assets_directory=tcga_assets_directory,
         dataset_name=dataset_name,
         small_samples=False,
@@ -140,7 +137,7 @@ def test_lfc_with_pqn_on_self_hosted(
 
 @pytest.mark.local
 @pytest.mark.usefixtures(
-    "raw_data_path", "local_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 @pytest.mark.parametrize(
     "dataset_name, PQN_min_mu, tolerated_failed_genes",
@@ -148,7 +145,7 @@ def test_lfc_with_pqn_on_self_hosted(
 )
 def test_lfc_with_pqn_on_local(
     raw_data_path,
-    local_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
     dataset_name: TCGADatasetNames,
     PQN_min_mu: float,
@@ -156,13 +153,12 @@ def test_lfc_with_pqn_on_local(
 ):
     """Perform a unit test for compute_lfc.
 
-
     Parameters
     ----------
     raw_data_path: Path
         The path to the root data.
 
-    local_processed_data_path: Path
+    processed_data_path: Path
         The path to the processed data. The subdirectories will
         be created if needed
 
@@ -178,12 +174,11 @@ def test_lfc_with_pqn_on_local(
 
     tolerated_failed_genes: int
         The number of tolerated failed genes.
-
     """
 
     pipe_test_compute_lfc_with_pqn(
         data_path=raw_data_path,
-        processed_data_path=local_processed_data_path,
+        processed_data_path=processed_data_path,
         tcga_assets_directory=tcga_assets_directory,
         dataset_name=dataset_name,
         small_samples=False,

@@ -1,9 +1,8 @@
 """Module to test the final step of the compute_genewise_dispersions step.
 
-This step tests the final substep which is to estimate the genewise dispersions
-by minimizing the negative binomial likelihood, with a fixed value of
-the mean parameter given by the mu_hat estimate.
-
+This step tests the final substep which is to estimate the genewise dispersions by
+minimizing the negative binomial likelihood, with a fixed value of the mean parameter
+given by the mu_hat estimate.
 """
 import pickle as pkl
 from pathlib import Path
@@ -34,7 +33,7 @@ from tests.unit_tests.unit_test_helpers.unit_tester import UnitTester
 
 
 @pytest.mark.usefixtures(
-    "raw_data_path", "local_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 @pytest.mark.parametrize(
     "design_factors, continuous_factors",
@@ -46,7 +45,7 @@ from tests.unit_tests.unit_test_helpers.unit_tester import UnitTester
 )
 def test_dispersions_from_mu_hat_on_small_genes_small_samples(
     raw_data_path,
-    local_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
     design_factors,
     continuous_factors,
@@ -63,7 +62,7 @@ def test_dispersions_from_mu_hat_on_small_genes_small_samples(
     raw_data_path: Path
         The path to the root data.
 
-    local_processed_data_path: Path
+    processed_data_path: Path
         The path to the processed data. The subdirectories will
 
     tcga_assets_directory: Path
@@ -74,11 +73,10 @@ def test_dispersions_from_mu_hat_on_small_genes_small_samples(
 
     continuous_factors: list or None
         The continuous factors to use.
-
     """
     dispersions_from_mu_hat_testing_pipe(
         raw_data_path,
-        local_processed_data_path,
+        processed_data_path,
         tcga_assets_directory,
         design_factors=design_factors,
         continuous_factors=continuous_factors,
@@ -95,7 +93,7 @@ def test_dispersions_from_mu_hat_on_small_genes_small_samples(
 
 @pytest.mark.self_hosted_fast
 @pytest.mark.usefixtures(
-    "raw_data_path", "tmp_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 @pytest.mark.parametrize(
     "design_factors, continuous_factors, tolerated_failed_genes",
@@ -107,7 +105,7 @@ def test_dispersions_from_mu_hat_on_small_genes_small_samples(
 )
 def test_dispersions_from_mu_hat_on_small_samples_on_self_hosted_fast(
     raw_data_path,
-    tmp_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
     design_factors,
     continuous_factors,
@@ -132,7 +130,7 @@ def test_dispersions_from_mu_hat_on_small_samples_on_self_hosted_fast(
     raw_data_path: Path
         The path to the root data.
 
-    tmp_processed_data_path: Path
+    processed_data_path: Path
         The path to the processed data. The subdirectories will
 
     tcga_assets_directory: Path
@@ -146,11 +144,10 @@ def test_dispersions_from_mu_hat_on_small_samples_on_self_hosted_fast(
 
     tolerated_failed_genes: int
         The number of genes that are allowed to fail the relative nll criterion.
-
     """
     dispersions_from_mu_hat_testing_pipe(
         raw_data_path,
-        tmp_processed_data_path,
+        processed_data_path,
         tcga_assets_directory,
         dataset_name="TCGA-LUAD",
         small_samples=True,
@@ -168,7 +165,7 @@ def test_dispersions_from_mu_hat_on_small_samples_on_self_hosted_fast(
 
 @pytest.mark.self_hosted_slow
 @pytest.mark.usefixtures(
-    "raw_data_path", "tmp_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 @pytest.mark.parametrize(
     "design_factors, continuous_factors",
@@ -180,7 +177,7 @@ def test_dispersions_from_mu_hat_on_small_samples_on_self_hosted_fast(
 )
 def test_dispersions_from_mu_hat_on_self_hosted_slow(
     raw_data_path,
-    tmp_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
     design_factors,
     continuous_factors,
@@ -197,7 +194,7 @@ def test_dispersions_from_mu_hat_on_self_hosted_slow(
     raw_data_path: Path
         The path to the root data.
 
-    tmp_processed_data_path: Path
+    processed_data_path: Path
         The path to the processed data. The subdirectories will
 
     tcga_assets_directory: Path
@@ -208,11 +205,10 @@ def test_dispersions_from_mu_hat_on_self_hosted_slow(
 
     continuous_factors: list or None
         The continuous factors to use.
-
     """
     dispersions_from_mu_hat_testing_pipe(
         raw_data_path,
-        tmp_processed_data_path,
+        processed_data_path,
         tcga_assets_directory,
         dataset_name="TCGA-LUAD",
         small_samples=False,
@@ -229,7 +225,7 @@ def test_dispersions_from_mu_hat_on_self_hosted_slow(
 
 @pytest.mark.self_hosted_slow
 @pytest.mark.usefixtures(
-    "raw_data_path", "tmp_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 @pytest.mark.parametrize(
     "design_factors, continuous_factors",
@@ -240,7 +236,7 @@ def test_dispersions_from_mu_hat_on_self_hosted_slow(
 )
 def test_dispersions_from_mu_hat_paad_on_self_hosted_slow(
     raw_data_path,
-    tmp_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
     design_factors,
     continuous_factors,
@@ -257,7 +253,7 @@ def test_dispersions_from_mu_hat_paad_on_self_hosted_slow(
     raw_data_path: Path
         The path to the root data.
 
-    tmp_processed_data_path: Path
+    processed_data_path: Path
         The path to the processed data. The subdirectories will
 
     tcga_assets_directory: Path
@@ -268,11 +264,10 @@ def test_dispersions_from_mu_hat_paad_on_self_hosted_slow(
 
     continuous_factors: list or None
         The continuous factors to use.
-
     """
     dispersions_from_mu_hat_testing_pipe(
         raw_data_path,
-        tmp_processed_data_path,
+        processed_data_path,
         tcga_assets_directory,
         dataset_name="TCGA-PAAD",
         small_samples=False,
@@ -289,7 +284,7 @@ def test_dispersions_from_mu_hat_paad_on_self_hosted_slow(
 
 def dispersions_from_mu_hat_testing_pipe(
     raw_data_path,
-    local_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
     design_factors,
     continuous_factors,
@@ -324,7 +319,7 @@ def dispersions_from_mu_hat_testing_pipe(
     raw_data_path: Path
         The path to the root data.
 
-    local_processed_data_path: Path
+    processed_data_path: Path
         The path to the processed data. The subdirectories will
         be created if needed
 
@@ -392,9 +387,7 @@ def dispersions_from_mu_hat_testing_pipe(
         continuous_factors=continuous_factors,
     )
 
-    reference_data_path = (
-        local_processed_data_path / "centers_data" / "tcga" / experiment_id
-    )
+    reference_data_path = processed_data_path / "centers_data" / "tcga" / experiment_id
     # Get FL results.
     fl_results = run_tcga_testing_pipe(
         GenewiseDispersionsFromMuHatTester(
@@ -405,7 +398,7 @@ def dispersions_from_mu_hat_testing_pipe(
             continuous_factors=continuous_factors,
         ),
         raw_data_path=raw_data_path,
-        processed_data_path=local_processed_data_path,
+        processed_data_path=processed_data_path,
         assets_directory=tcga_assets_directory,
         simulate=simulate,
         dataset_name=dataset_name,
@@ -423,7 +416,7 @@ def dispersions_from_mu_hat_testing_pipe(
     pooled_dds_file_name = get_ground_truth_dds_name(reference_dds_ref_level)
 
     pooled_dds_file_path = (
-        local_processed_data_path
+        processed_data_path
         / "pooled_data"
         / "tcga"
         / experiment_id
@@ -530,7 +523,6 @@ class GenewiseDispersionsFromMuHatTester(UnitTester, ComputeDispersionsGridSearc
     pass_on_results
         An aggregation method.
         Set the genewise dispersions in the results.
-
     """
 
     def __init__(
@@ -722,7 +714,6 @@ class GenewiseDispersionsFromMuHatTester(UnitTester, ComputeDispersionsGridSearc
 
         clean_models: bool
             Whether to clean the models after the computation.
-
         """
         # ---- Get local estimates ---- #
 
@@ -798,7 +789,6 @@ class GenewiseDispersionsFromMuHatTester(UnitTester, ComputeDispersionsGridSearc
         -------
         dict
             The total number of samples in the "tot_num_samples" field.
-
         """
         tot_num_samples = np.sum([state["num_samples"] for state in shared_states])
         return {"tot_num_samples": tot_num_samples}
@@ -854,7 +844,6 @@ class GenewiseDispersionsFromMuHatTester(UnitTester, ComputeDispersionsGridSearc
         ----------
         shared_states : list
             List of shared states. The first element contains the genewise dispersions.
-
         """
         self.results = {
             "genewise_dispersions": shared_states[0]["genewise_dispersions"],

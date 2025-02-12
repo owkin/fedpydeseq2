@@ -30,8 +30,7 @@ class LocFindCooksOutliers:
         data_from_opener,
         shared_state: dict,
     ) -> dict:
-        """
-        Find local Cooks outliers by comparing the cooks distance to a threshold.
+        """Find local Cooks outliers by comparing the cooks distance to a threshold.
 
         Parameters
         ----------
@@ -48,7 +47,6 @@ class LocFindCooksOutliers:
             - "local_genes_to_replace": genes with Cook's distance above the threshold,
             - "replaceable_samples": a boolean indicating whether there is at least one
                sample with enough replicates to replace it.
-
         """
         # Find replaceable samples
         n_or_more = self.local_adata.uns["num_replicates"] >= self.min_replicates
@@ -87,8 +85,7 @@ class AggMergeOutlierGenes:
         self,
         shared_states: list[dict],
     ) -> dict:
-        """
-        Merge the lists of genes to replace.
+        """Merge the lists of genes to replace.
 
         Parameters
         ----------
@@ -135,8 +132,7 @@ class LocSetRefitAdata:
         data_from_opener,
         shared_state: dict,
     ) -> None:
-        """
-        Set a refit adata containing the counts of the genes to replace.
+        """Set a refit adata containing the counts of the genes to replace.
 
         Parameters
         ----------
@@ -170,8 +166,7 @@ class LocReplaceCooksOutliers:
         data_from_opener,
         shared_state: dict,
     ) -> dict:
-        """
-        Replace outlier counts with imputed values.
+        """Replace outlier counts with imputed values.
 
         Parameters
         ----------
@@ -245,7 +240,6 @@ class LocSetNewAllZerosAndGetFeatures:
     -------
     local_set_new_all_zeros_get_features
         The method to set the new all zeros genes and compute the local features.
-
     """
 
     local_adata: ad.AnnData
@@ -259,8 +253,7 @@ class LocSetNewAllZerosAndGetFeatures:
         data_from_opener,
         shared_state,
     ) -> dict:
-        """
-        Set the new_all_zeros field and get the features.
+        """Set the new_all_zeros field and get the features.
 
         This method is used to set the new_all_zeros field in the local_adata uns
         field. This is the set of genes that are all zero after outlier replacement.

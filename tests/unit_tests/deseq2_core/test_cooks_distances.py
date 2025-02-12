@@ -34,24 +34,23 @@ from tests.unit_tests.unit_test_helpers.unit_tester import UnitTester
     ],
 )
 @pytest.mark.usefixtures(
-    "raw_data_path", "local_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 def test_cooks_distances_on_small_genes(
     design_factors,
     continuous_factors,
     raw_data_path,
-    local_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
 ):
-    """
-    Test Cook's distances on a small number of genes.
+    """Test Cook's distances on a small number of genes.
 
     Note that the first subcase is particularly important, as it tests the case where
     the number of replicates for all levels of the design is greater than 3.
     """
     cooks_distances_testing_pipe(
         raw_data_path,
-        processed_data_path=local_processed_data_path,
+        processed_data_path=processed_data_path,
         tcga_assets_directory=tcga_assets_directory,
         dataset_name="TCGA-LUAD",
         small_samples=False,
@@ -76,25 +75,25 @@ def test_cooks_distances_on_small_genes(
 )
 @pytest.mark.self_hosted_fast
 @pytest.mark.usefixtures(
-    "raw_data_path", "tmp_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 def test_cooks_distances_on_small_samples_on_self_hosted_fast(
     design_factors,
     continuous_factors,
     raw_data_path,
-    tmp_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
 ):
     """Test Cook's distances on a small number of samples on a self hosted runner.
 
-    This test is quite important for the (["stage", "gender", "CPE"], ["CPE"])
-    subset, as it tests the case where the number of replicates is less than 3
-    for all levels of the design, and we enter in this specific case of the computation
-    of the trimmed variance.
+    This test is quite important for the (["stage", "gender", "CPE"], ["CPE"]) subset,
+    as it tests the case where the number of replicates is less than 3 for all levels
+    of the design, and we enter in this specific case of the computation of the trimmed
+    variance.
     """
     cooks_distances_testing_pipe(
         raw_data_path,
-        processed_data_path=tmp_processed_data_path,
+        processed_data_path=processed_data_path,
         tcga_assets_directory=tcga_assets_directory,
         dataset_name="TCGA-LUAD",
         small_samples=True,
@@ -119,27 +118,25 @@ def test_cooks_distances_on_small_samples_on_self_hosted_fast(
 )
 @pytest.mark.self_hosted_slow
 @pytest.mark.usefixtures(
-    "raw_data_path", "tmp_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 def test_cooks_distances_on_self_hosted_slow(
     design_factors,
     continuous_factors,
     raw_data_path,
-    tmp_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
 ):
-    """
-    Test Cook's distances on a self hosted runner.
+    """Test Cook's distances on a self hosted runner.
 
     This test is particularly important for the (["stage", "gender", "CPE"], ["CPE"])
-    subcase, as it tests the case where some levels of the design have less than
-    3 replicates while other have more. This means that only part of the levels are
-    taken into account into the computation of the trimmed variance.
-
+    subcase, as it tests the case where some levels of the design have less than 3
+    replicates while other have more. This means that only part of the levels are taken
+    into account into the computation of the trimmed variance.
     """
     cooks_distances_testing_pipe(
         raw_data_path,
-        processed_data_path=tmp_processed_data_path,
+        processed_data_path=processed_data_path,
         tcga_assets_directory=tcga_assets_directory,
         dataset_name="TCGA-LUAD",
         small_samples=False,
@@ -443,8 +440,7 @@ class CooksDistanceTester(
         round_idx,
         clean_models,
     ):
-        """
-        Save Cook's distances. It must be used in the main pipeline while testing.
+        """Save Cook's distances. It must be used in the main pipeline while testing.
 
         Parameters
         ----------
@@ -470,7 +466,6 @@ class CooksDistanceTester(
             Shared states. Required to propagate intermediate results.
         round_idx : int
             The updated round index.
-
         """
         local_states, shared_states, round_idx = local_step(
             local_method=self.get_loc_cook_distance,
@@ -498,8 +493,7 @@ class CooksDistanceTester(
     @log_remote_data
     @reconstruct_adatas
     def get_loc_cook_distance(self, data_from_opener, shared_state: dict) -> dict:
-        """
-        Save Cook's distances.
+        """Save Cook's distances.
 
         Parameters
         ----------
@@ -514,22 +508,19 @@ class CooksDistanceTester(
         dict
             Dictionary with the following key:
             - cooks_distance_df: Cook's distances in a df
-
         """
         return {"cooks_distance_df": self.local_adata.to_df("cooks")}
 
     @remote
     @log_remote
     def agg_cook_distance(self, shared_states: list[dict]):
-        """
-        Aggregate Cook's distances.
+        """Aggregate Cook's distances.
 
         Parameters
         ----------
         shared_states : list[dict]
             List of shared states with the following key:
             - cooks_distance_df: Cook's distances in a df
-
         """
         cooks_distance_df = pd.concat(
             [shared_state["cooks_distance_df"] for shared_state in shared_states],

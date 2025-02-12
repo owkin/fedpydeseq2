@@ -32,18 +32,18 @@ from tests.unit_tests.unit_test_helpers.unit_tester import UnitTester
     ],
 )
 @pytest.mark.usefixtures(
-    "raw_data_path", "local_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 def test_build_design_on_small_genes(
     design_factors,
     continuous_factors,
     raw_data_path,
-    local_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
 ):
     build_design_matrix_testing_pipe(
         raw_data_path,
-        processed_data_path=local_processed_data_path,
+        processed_data_path=processed_data_path,
         tcga_assets_directory=tcga_assets_directory,
         dataset_name="TCGA-LUAD",
         small_samples=False,
@@ -67,18 +67,18 @@ def test_build_design_on_small_genes(
 )
 @pytest.mark.self_hosted_fast
 @pytest.mark.usefixtures(
-    "raw_data_path", "tmp_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 def test_build_design_on_small_samples_on_self_hosted_fast(
     design_factors,
     continuous_factors,
     raw_data_path,
-    tmp_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
 ):
     build_design_matrix_testing_pipe(
         raw_data_path,
-        processed_data_path=tmp_processed_data_path,
+        processed_data_path=processed_data_path,
         tcga_assets_directory=tcga_assets_directory,
         dataset_name="TCGA-LUAD",
         small_samples=True,
@@ -102,18 +102,18 @@ def test_build_design_on_small_samples_on_self_hosted_fast(
 )
 @pytest.mark.self_hosted_slow
 @pytest.mark.usefixtures(
-    "raw_data_path", "tmp_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 def test_build_design_on_self_hosted_slow(
     design_factors,
     continuous_factors,
     raw_data_path,
-    tmp_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
 ):
     build_design_matrix_testing_pipe(
         raw_data_path,
-        processed_data_path=tmp_processed_data_path,
+        processed_data_path=processed_data_path,
         tcga_assets_directory=tcga_assets_directory,
         dataset_name="TCGA-LUAD",
         small_samples=False,
@@ -138,18 +138,18 @@ def test_build_design_on_self_hosted_slow(
 )
 @pytest.mark.local
 @pytest.mark.usefixtures(
-    "raw_data_path", "local_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 def test_build_design_on_local(
     design_factors,
     continuous_factors,
     raw_data_path,
-    local_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
 ):
     build_design_matrix_testing_pipe(
         raw_data_path,
-        processed_data_path=local_processed_data_path,
+        processed_data_path=processed_data_path,
         tcga_assets_directory=tcga_assets_directory,
         dataset_name="TCGA-LUAD",
         small_samples=False,
@@ -179,9 +179,10 @@ def build_design_matrix_testing_pipe(
     ref_levels: dict[str, str] | None = {"stage": "Advanced"},  # noqa: B006
     reference_dds_ref_level: tuple[str, ...] | None = ("stage", "Advanced"),
 ):
-    """Perform a unit test for Wald tests
-    Starting with the dispersions and LFC as the reference DeseqDataSet, perform Wald
-    tests and compare the results with the reference.
+    """Perform a unit test for Wald tests Starting with the dispersions and LFC as the
+    reference DeseqDataSet, perform Wald tests and compare the results with the
+    reference.
+
     Parameters
     ----------
     raw_data_path: Path
@@ -328,7 +329,6 @@ class DesignMatrixTester(
 
     concatenate_design_matrices
         Concatenate design matrices together for registration.
-
     """
 
     def __init__(
@@ -372,7 +372,6 @@ class DesignMatrixTester(
             Number of rounds. Not used.
         clean_models : bool
             Whether to clean the models after the computation. (default: ``False``).
-
         """
         round_idx = 0
         local_states: dict[str, LocalStateRef] = {}
@@ -443,7 +442,6 @@ class DesignMatrixTester(
 
         round_idx: int
             The updated round.
-
         """
         # ---- Concatenate local design matrices ----#
 
@@ -477,8 +475,7 @@ class DesignMatrixTester(
         data_from_opener,
         shared_state,
     ) -> dict:
-        """
-        Get the local design matrix from the obsm of the AnnData.
+        """Get the local design matrix from the obsm of the AnnData.
 
         Parameters
         ----------
@@ -506,7 +503,6 @@ class DesignMatrixTester(
         ----------
         shared_states : list
             List of design matrices from training nodes.
-
         """
         tot_design = pd.concat(
             [state["local_design_matrix"] for state in shared_states]

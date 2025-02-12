@@ -37,18 +37,18 @@ from tests.unit_tests.unit_test_helpers.unit_tester import UnitTester
     ],
 )
 @pytest.mark.usefixtures(
-    "raw_data_path", "local_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 def test_refit_cooks_on_small_genes(
     design_factors,
     continuous_factors,
     raw_data_path,
-    local_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
 ):
     refit_cooks_testing_pipe(
         raw_data_path,
-        processed_data_path=local_processed_data_path,
+        processed_data_path=processed_data_path,
         tcga_assets_directory=tcga_assets_directory,
         dataset_name="TCGA-LUAD",
         small_samples=False,
@@ -71,18 +71,18 @@ def test_refit_cooks_on_small_genes(
 )
 @pytest.mark.self_hosted_fast
 @pytest.mark.usefixtures(
-    "raw_data_path", "tmp_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 def test_refit_cooks_on_small_samples_on_self_hosted_fast(
     design_factors,
     continuous_factors,
     raw_data_path,
-    tmp_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
 ):
     refit_cooks_testing_pipe(
         raw_data_path,
-        processed_data_path=tmp_processed_data_path,
+        processed_data_path=processed_data_path,
         tcga_assets_directory=tcga_assets_directory,
         dataset_name="TCGA-LUAD",
         small_samples=True,
@@ -105,18 +105,18 @@ def test_refit_cooks_on_small_samples_on_self_hosted_fast(
 )
 @pytest.mark.self_hosted_slow
 @pytest.mark.usefixtures(
-    "raw_data_path", "tmp_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 def test_refit_cooks_on_self_hosted_slow(
     design_factors,
     continuous_factors,
     raw_data_path,
-    tmp_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
 ):
     refit_cooks_testing_pipe(
         raw_data_path,
-        processed_data_path=tmp_processed_data_path,
+        processed_data_path=processed_data_path,
         tcga_assets_directory=tcga_assets_directory,
         dataset_name="TCGA-LUAD",
         small_samples=False,
@@ -683,7 +683,6 @@ class RefitOutliersTester(
         Returns
         -------
         dict
-
         """
         tot_num_samples = np.sum([state["num_samples"] for state in shared_states])
         # Sum the local gram matrices
@@ -728,7 +727,8 @@ class RefitOutliersTester(
     ) -> dict:
         """Return adatas.
 
-        Used for testing only."""
+        Used for testing only.
+        """
 
         return {
             "local_adata": self.local_adata,
@@ -743,7 +743,10 @@ class RefitOutliersTester(
         self,
         shared_states: list,
     ):
-        """Return the adatas as lists. Used for testing only."""
+        """Return the adatas as lists.
+
+        Used for testing only.
+        """
 
         local_adatas = [shared_state["local_adata"] for shared_state in shared_states]
 

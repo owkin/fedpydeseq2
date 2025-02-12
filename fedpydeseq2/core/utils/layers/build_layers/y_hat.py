@@ -23,7 +23,6 @@ def can_get_y_hat(local_adata: ad.AnnData, raise_error: bool = False) -> bool:
     ------
     ValueError
         If the y_hat layer cannot be reconstructed and raise_error is True.
-
     """
     if "_y_hat" in local_adata.layers.keys():
         return True
@@ -48,7 +47,6 @@ def set_y_hat(local_adata: ad.AnnData):
     ----------
     local_adata : ad.AnnData
         The local AnnData object.
-
     """
     can_get_y_hat(local_adata, raise_error=True)
     if "_y_hat" in local_adata.layers.keys():

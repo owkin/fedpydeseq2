@@ -8,9 +8,8 @@ from fedpydeseq2.core.utils.layers.cooks_layer import make_hat_matrix_summands_b
 def test_make_hat_matrix_summands_batch():
     """Test the function make_hat_matrix_summands_batch.
 
-    This test checks that the function returns the correct output shape given
-    input shapes
-    of size (3, 2), (3,), (5, 2), (5,), and a scalar.
+    This test checks that the function returns the correct output shape given input
+    shapes of size (3, 2), (3,), (5, 2), (5,), and a scalar.
     """
     # Create fake data
     design_matrix = np.array([[1, 2], [3, 4], [5, 6]])
@@ -52,8 +51,8 @@ def test_make_hat_matrix_summands_batch_single_dim():
 def test_make_mu_batch():
     """Test the function make_mu_batch.
 
-    This test checks that the function returns the correct output shapes
-    given input shapes of size (5, 2), (3, 2), and (3,).
+    This test checks that the function returns the correct output shapes given input
+    shapes of size (5, 2), (3, 2), and (3,).
     """
     beta = np.array([[1, 2], [3, 4], [5, 6], [7, 8], [9, 10]])
     design_matrix = np.array([[1, 2], [3, 4], [5, 6]])
@@ -90,8 +89,8 @@ def test_make_mu_batch_single_dim():
 def test_make_hat_diag_batch():
     """Test the function make_hat_diag_batch.
 
-    This test checks that the function returns the correct output shapes
-    given input shapes of size (3, 2), (3,), (5, 2), (5,), and a scalar.
+    This test checks that the function returns the correct output shapes given input
+    shapes of size (3, 2), (3,), (5, 2), (5,), and a scalar.
     """
     beta = np.array([[1, 2], [3, 4], [5, 6], [7, 8], [9, 10]])
     global_hat_matrix_inv = np.array(

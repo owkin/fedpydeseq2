@@ -1,5 +1,4 @@
-"""
-Aggregation functions.
+"""Aggregation functions.
 
 Copy-pasted from the CancerLINQ repo.
 """

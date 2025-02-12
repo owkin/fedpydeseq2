@@ -16,13 +16,13 @@ from tests.unit_tests.deseq2_core.deseq2_lfc_dispersions.compute_lfc.compute_lfc
     ],
 )
 @pytest.mark.usefixtures(
-    "raw_data_path", "tmp_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 def test_compute_lfc_small_genes(
     design_factors,
     continuous_factors,
     raw_data_path,
-    tmp_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
 ):
     """Perform a unit test to see if compute_lfc is working as expected.
@@ -48,20 +48,19 @@ def test_compute_lfc_small_genes(
     raw_data_path: Path
         The path to the root data.
 
-    tmp_processed_data_path: Path
+    processed_data_path: Path
         The path to the processed data. The subdirectories will
         be created if needed
 
     tcga_assets_directory: Path
         The path to the assets directory. It must contain the
         opener.py file and the description.md file.
-
     """
 
     pipe_test_compute_lfc(
         data_path=raw_data_path,
         lfc_mode="lfc",
-        processed_data_path=tmp_processed_data_path,
+        processed_data_path=processed_data_path,
         tcga_assets_directory=tcga_assets_directory,
         dataset_name="TCGA-LUAD",
         small_samples=False,
@@ -87,13 +86,13 @@ def test_compute_lfc_small_genes(
     ],
 )
 @pytest.mark.usefixtures(
-    "raw_data_path", "tmp_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 def test_compute_lfc_small_samples(
     design_factors,
     continuous_factors,
     raw_data_path,
-    tmp_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
 ):
     """Perform a unit test to see if compute_lfc is working as expected..
@@ -121,20 +120,19 @@ def test_compute_lfc_small_samples(
     raw_data_path: Path
         The path to the root data.
 
-    tmp_processed_data_path: Path
+    processed_data_path: Path
         The path to the processed data. The subdirectories will
         be created if needed
 
     tcga_assets_directory: Path
         The path to the assets directory. It must contain the
         opener.py file and the description.md file.
-
     """
 
     pipe_test_compute_lfc(
         lfc_mode="lfc",
         data_path=raw_data_path,
-        processed_data_path=tmp_processed_data_path,
+        processed_data_path=processed_data_path,
         tcga_assets_directory=tcga_assets_directory,
         dataset_name="TCGA-LUAD",
         small_samples=True,
@@ -165,13 +163,13 @@ def test_compute_lfc_small_samples(
     ],
 )
 @pytest.mark.usefixtures(
-    "raw_data_path", "tmp_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 def test_compute_lfc_luad(
     design_factors,
     continuous_factors,
     raw_data_path,
-    tmp_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
 ):
     """Perform a unit test to see if computing lfc is working as expected.
@@ -194,20 +192,19 @@ def test_compute_lfc_luad(
     raw_data_path: Path
         The path to the root data.
 
-    tmp_processed_data_path: Path
+    processed_data_path: Path
         The path to the processed data. The subdirectories will
         be created if needed
 
     tcga_assets_directory: Path
         The path to the assets directory. It must contain the
         opener.py file and the description.md file.
-
     """
 
     pipe_test_compute_lfc(
         lfc_mode="lfc",
         data_path=raw_data_path,
-        processed_data_path=tmp_processed_data_path,
+        processed_data_path=processed_data_path,
         tcga_assets_directory=tcga_assets_directory,
         dataset_name="TCGA-LUAD",
         small_samples=False,
@@ -237,13 +234,13 @@ def test_compute_lfc_luad(
     ],
 )
 @pytest.mark.usefixtures(
-    "raw_data_path", "tmp_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 def test_compute_lfc_paad(
     design_factors,
     continuous_factors,
     raw_data_path,
-    tmp_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
 ):
     """Perform a unit test to see if computing lfc is working as expected.
@@ -269,20 +266,19 @@ def test_compute_lfc_paad(
     raw_data_path: Path
         The path to the root data.
 
-    tmp_processed_data_path: Path
+    processed_data_path: Path
         The path to the processed data. The subdirectories will
         be created if needed
 
     tcga_assets_directory: Path
         The path to the assets directory. It must contain the
         opener.py file and the description.md file.
-
     """
 
     pipe_test_compute_lfc(
         lfc_mode="lfc",
         data_path=raw_data_path,
-        processed_data_path=tmp_processed_data_path,
+        processed_data_path=processed_data_path,
         tcga_assets_directory=tcga_assets_directory,
         dataset_name="TCGA-PAAD",
         small_samples=False,

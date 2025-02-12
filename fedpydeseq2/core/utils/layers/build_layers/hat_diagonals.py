@@ -32,7 +32,6 @@ def can_set_hat_diagonals_layer(
     ------
     ValueError
         If the hat diagonals layer cannot be reconstructed and raise_error is True.
-
     """
     if "_hat_diagonals" in adata.layers.keys():
         return True
@@ -85,8 +84,7 @@ def set_hat_diagonals_layer(
     batch_size: int = 100,
     min_mu: float = 0.5,
 ):
-    """
-    Compute the hat diagonals layer from the adata and the shared state.
+    """Compute the hat diagonals layer from the adata and the shared state.
 
     Parameters
     ----------
@@ -116,7 +114,6 @@ def set_hat_diagonals_layer(
     -------
     np.ndarray
         The hat diagonals layer, of shape (n_obs, n_params).
-
     """
     can_set_hat_diagonals_layer(adata, shared_state, raise_error=True)
     if "_hat_diagonals" in adata.layers.keys():
@@ -165,8 +162,7 @@ def make_hat_diag_batch(
     dispersions: np.ndarray,
     min_mu: float = 0.5,
 ) -> np.ndarray:
-    """
-    Compute the H matrix for a batch of LFC estimates.
+    """Compute the H matrix for a batch of LFC estimates.
 
     Parameters
     ----------
@@ -188,7 +184,6 @@ def make_hat_diag_batch(
     -------
     np.ndarray
         The H matrix, of shape (batch_size, n_obs).
-
     """
     mu = size_factors[:, None] * np.exp(design_matrix @ beta.T)
     mu_clipped = np.maximum(

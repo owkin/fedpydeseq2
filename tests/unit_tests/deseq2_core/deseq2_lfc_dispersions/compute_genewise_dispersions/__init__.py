@@ -11,5 +11,4 @@ of the number of design factors.
 - The second step is to compute the mu_hat estimate.
 - The third step is to compute the number of replicates.
 - The fourth step is to compute the dispersion from mu_hat and the number of replicates.
-
 """

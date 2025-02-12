@@ -18,8 +18,7 @@ class LocGetDesignMatrixLevels:
     @log_remote_data
     @reconstruct_adatas
     def loc_get_design_matrix_levels(self, data_from_opener, shared_state=dict) -> dict:
-        """
-        Get the values of the local design matrix.
+        """Get the values of the local design matrix.
 
         Parameters
         ----------
@@ -33,7 +32,6 @@ class LocGetDesignMatrixLevels:
         dict
             Dictionary with the following key:
             - unique_counts: unique values and counts of the local design matrix
-
         """
         unique_counts = self.local_adata.obsm["design_matrix"].value_counts()
 
@@ -46,8 +44,7 @@ class AggGetCountsLvlForCells:
     @remote
     @log_remote
     def agg_get_counts_lvl_for_cells(self, shared_states: list[dict]) -> dict:
-        """
-        Aggregate the counts of the design matrix values.
+        """Aggregate the counts of the design matrix values.
 
         Parameters
         ----------
@@ -79,8 +76,7 @@ class LocFinalizeCellCounts:
     @log_remote_data
     @reconstruct_adatas
     def loc_finalize_cell_counts(self, data_from_opener, shared_state=dict) -> None:
-        """
-        Finalize the cell counts.
+        """Finalize the cell counts.
 
         Parameters
         ----------
@@ -91,7 +87,6 @@ class LocFinalizeCellCounts:
             Dictionary with keys labeling the different values taken by the
             overall design matrix. Each values of the dictionary contains the
             sum of the counts of the corresponding design matrix value and the level.
-
         """
         counts_by_lvl = shared_state["counts_by_lvl"]
 

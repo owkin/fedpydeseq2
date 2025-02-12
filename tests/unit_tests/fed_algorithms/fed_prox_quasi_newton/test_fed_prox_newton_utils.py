@@ -15,8 +15,8 @@ from fedpydeseq2.core.fed_algorithms.fed_PQN.utils import (
 def test_make_fisher_gradient_nll_step_sizes_batch():
     """Test the function make_fisher_gradient_nll_step_sizes_batch.
 
-    This function runs on matrices with n_obs = 3, n_params=2, n_steps = 4,
-    n_genes = 5.
+    This function runs on matrices with n_obs = 3, n_params=2, n_steps = 4, n_genes =
+    5.
     """
     # Create fake data
     design_matrix = np.array([[1, 2], [3, 4], [5, 6]])
@@ -57,8 +57,8 @@ def test_make_fisher_gradient_nll_step_sizes_batch():
 def test_make_fisher_gradient_nll_step_sizes_batch_none():
     """Test the function make_fisher_gradient_nll_step_sizes_batch.
 
-    This function runs on matrices with n_obs = 3, n_params=2, n_steps = 4,
-    n_genes = 5.
+    This function runs on matrices with n_obs = 3, n_params=2, n_steps = 4, n_genes =
+    5.
     """
     # Create fake data
     design_matrix = np.array([[1, 2], [3, 4], [5, 6]])
@@ -100,7 +100,6 @@ def test_make_fisher_gradient_nll_step_sizes_batch_single():
     """Test the function make_fisher_gradient_nll_step_sizes_batch.
 
     This test runs on matrices with only one element.
-
     """
     # Create fake data
     design_matrix = np.array([[1]])

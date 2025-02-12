@@ -12,8 +12,7 @@ def get_client(
     org_name: str | None = None,
     credentials_path: str | Path | None = None,
 ) -> Client:
-    """
-    Return a substra client for a given organization.
+    """Return a substra client for a given organization.
 
     Parameters
     ----------
@@ -24,7 +23,6 @@ def get_client(
     credentials_path : str or Path
         Path to the credentials file. By default, will be set to
         Path(__file__).parent / "credentials/credentials.yaml"
-
     """
     if backend_type not in ("subprocess", "docker", "remote"):
         raise ValueError(
@@ -58,8 +56,7 @@ def get_client(
 
 
 def cancel_compute_plan(cp_id_path: str | Path):
-    """
-    Cancel a compute plan.
+    """Cancel a compute plan.
 
     We assume that we are in the remote setting.
 
@@ -95,8 +92,7 @@ def cancel_compute_plan(cp_id_path: str | Path):
 
 
 def get_n_centers_from_datasamples_file(datasamples_file: str | Path) -> int:
-    """
-    Return the number of centers from a datasamples file.
+    """Return the number of centers from a datasamples file.
 
     Parameters
     ----------
@@ -107,7 +103,6 @@ def get_n_centers_from_datasamples_file(datasamples_file: str | Path) -> int:
     -------
     int
         Number of centers in the datasamples file.
-
     """
     with open(datasamples_file) as file:
         dataset_datasamples_keys = yaml.load(file, Loader=yaml.FullLoader)
@@ -118,8 +113,7 @@ def get_dependencies(
     backend_type: BackendType,
     fedpydeseq2_wheel_path: str | Path | None = None,
 ) -> Dependency:
-    """
-    Return a substra Dependency in regard to the backend_type.
+    """Return a substra Dependency in regard to the backend_type.
 
     Parameters
     ----------
@@ -151,8 +145,7 @@ def get_dependencies(
 
 
 def check_datasample_folder(datasample_folder: Path) -> None:
-    """
-    Sanity check for the datasample folder.
+    """Sanity check for the datasample folder.
 
     Check if the datasample folder contains only two csv files: counts_data.csv
     and metadata.csv and nothing else.
@@ -167,7 +160,6 @@ def check_datasample_folder(datasample_folder: Path) -> None:
     ValueError
         If the datasample folder does not contain exactly two files named
         'counts_data.csv' and 'metadata.csv'.
-
     """
     if not datasample_folder.is_dir():
         raise ValueError(f"{datasample_folder} is not a directory.")

@@ -62,7 +62,6 @@ class LocGetMeanDispersionAndMean:
                 The genewise dispersions.
             - num_vars: int
                 The number of variables.
-
         """
         # Save gene-wise dispersions from the previous step.
         # Dispersions of all-zero genes should already be NaN.
@@ -89,8 +88,7 @@ class AggFitDispersionTrendAndPrior:
     @remote
     @log_remote
     def agg_fit_dispersion_trend_and_prior_dispersion(self, shared_states):
-        """
-        Fit the dispersion trend, and compute the dispersion prior.
+        """Fit the dispersion trend, and compute the dispersion prior.
 
         Parameters
         ----------
@@ -118,7 +116,6 @@ class AggFitDispersionTrendAndPrior:
                 The type of dispersion function (parametric or mean).
             - mean_disp: float, optional
                 The mean dispersion (if "mean" fit type).
-
         """
         genewise_dispersions = shared_states[0]["genewise_dispersions"]
         n_params = shared_states[0]["n_params"]
@@ -240,8 +237,7 @@ class LocUpdateFittedDispersions:
         data_from_opener,
         shared_state: dict,
     ) -> None:
-        """
-        Update the fitted dispersions after replacing outliers.
+        """Update the fitted dispersions after replacing outliers.
 
         Parameters
         ----------

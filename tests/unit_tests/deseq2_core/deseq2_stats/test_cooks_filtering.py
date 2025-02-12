@@ -29,7 +29,7 @@ from tests.unit_tests.unit_test_helpers.unit_tester import UnitTester
 
 
 @pytest.mark.usefixtures(
-    "raw_data_path", "local_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 @pytest.mark.parametrize(
     "cooks_filter, refit_cooks, design_factors, continuous_factors",
@@ -47,7 +47,7 @@ from tests.unit_tests.unit_test_helpers.unit_tester import UnitTester
 )
 def test_cooks_filtering_small_genes(
     raw_data_path,
-    local_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
     cooks_filter: bool,
     refit_cooks: bool,
@@ -56,7 +56,7 @@ def test_cooks_filtering_small_genes(
 ):
     cooks_filtering_testing_pipe(
         raw_data_path,
-        processed_data_path=local_processed_data_path,
+        processed_data_path=processed_data_path,
         tcga_assets_directory=tcga_assets_directory,
         dataset_name="TCGA-LUAD",
         cooks_filter=cooks_filter,
@@ -75,18 +75,18 @@ def test_cooks_filtering_small_genes(
 
 @pytest.mark.self_hosted_slow
 @pytest.mark.usefixtures(
-    "raw_data_path", "tmp_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 @pytest.mark.parametrize("cooks_filter", [True, False])
 def test_cooks_filtering_on_self_hosted(
     raw_data_path,
-    tmp_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
     cooks_filter: bool,
 ):
     cooks_filtering_testing_pipe(
         raw_data_path,
-        processed_data_path=tmp_processed_data_path,
+        processed_data_path=processed_data_path,
         tcga_assets_directory=tcga_assets_directory,
         dataset_name="TCGA-LUAD",
         cooks_filter=cooks_filter,
@@ -103,18 +103,18 @@ def test_cooks_filtering_on_self_hosted(
 
 @pytest.mark.local
 @pytest.mark.usefixtures(
-    "raw_data_path", "local_processed_data_path", "tcga_assets_directory"
+    "raw_data_path", "processed_data_path", "tcga_assets_directory"
 )
 @pytest.mark.parametrize("cooks_filter", [True, False])
 def test_cooks_filtering_on_local(
     raw_data_path,
-    local_processed_data_path,
+    processed_data_path,
     tcga_assets_directory,
     cooks_filter: bool,
 ):
     cooks_filtering_testing_pipe(
         raw_data_path,
-        processed_data_path=local_processed_data_path,
+        processed_data_path=processed_data_path,
         tcga_assets_directory=tcga_assets_directory,
         dataset_name="TCGA-LUAD",
         cooks_filter=cooks_filter,
@@ -147,9 +147,10 @@ def cooks_filtering_testing_pipe(  # TODO we will have to add a case when cooks
     ref_levels: dict[str, str] | None = {"stage": "Advanced"},  # noqa: B006
     reference_dds_ref_level: tuple[str, ...] | None = None,
 ):
-    """Perform a unit test for Wald tests
-    Starting with the dispersions and LFC as the reference DeseqDataSet, perform Wald
-    tests and compare the results with the reference.
+    """Perform a unit test for Wald tests Starting with the dispersions and LFC as the
+    reference DeseqDataSet, perform Wald tests and compare the results with the
+    reference.
+
     Parameters
     ----------
     raw_data_path: Path
@@ -267,6 +268,7 @@ def cooks_filtering_testing_pipe(  # TODO we will have to add a case when cooks
 
 class CooksFilteringTester(UnitTester, CooksFiltering, AggPassOnResults):
     """A class to implement a unit test for Wald tests.
+
     Parameters
     ----------
     design_factors : str or list
@@ -380,6 +382,7 @@ class CooksFilteringTester(UnitTester, CooksFiltering, AggPassOnResults):
         clean_models=True,
     ):
         """Build the computation graph to run a DESeq2 pipe.
+
         Parameters
         ----------
         train_data_nodes : list[TrainDataNode]
@@ -516,7 +519,6 @@ class CooksFilteringTester(UnitTester, CooksFiltering, AggPassOnResults):
         shared_states : dict
             Shared states. The new shared state contains the Wald test results on the
             pooled reference.
-
         """
         pooled_dds_file_name = get_ground_truth_dds_name(
             self.reference_dds_ref_level, refit_cooks=self.refit_cooks

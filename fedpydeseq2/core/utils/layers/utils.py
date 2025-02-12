@@ -57,7 +57,6 @@ def get_available_layers(
     -------
     list[str]
         List of available layers.
-
     """
     if adata is None:
         return []
@@ -133,7 +132,6 @@ def load_layers(
 
     batch_size : int
         The batch size for parallel processing.
-
     """
     # Assert that all layers are either complex or simple
     assert np.all(
@@ -201,7 +199,6 @@ def remove_layers(
 
     layers_to_save_on_disk : list[str]
         The list of layers to save. If None, no layers are saved.
-
     """
     adata.X = None
     if refit:

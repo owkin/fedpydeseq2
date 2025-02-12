@@ -30,7 +30,6 @@ def can_get_mu_hat(local_adata: ad.AnnData, raise_error: bool = False) -> bool:
     ------
     ValueError
         If the mu_hat layer cannot be reconstructed and raise_error is True.
-
     """
     if "_mu_hat" in local_adata.layers.keys():
         return True
@@ -76,14 +75,12 @@ def can_get_mu_hat(local_adata: ad.AnnData, raise_error: bool = False) -> bool:
 
 
 def set_mu_hat_layer(local_adata: ad.AnnData):
-    """
-    Reconstruct the mu_hat layer.
+    """Reconstruct the mu_hat layer.
 
     Parameters
     ----------
     local_adata: ad.AnnData
         The local AnnData object.
-
     """
     can_get_mu_hat(local_adata, raise_error=True)
     if "_mu_hat" in local_adata.layers.keys():

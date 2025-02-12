@@ -7,6 +7,7 @@ from fedpydeseq2.core.utils import aggregation_step
 from fedpydeseq2.core.utils import local_step
 from fedpydeseq2.core.utils.layers import reconstruct_adatas
 from fedpydeseq2.core.utils.logging import log_remote_data
+from fedpydeseq2.core.utils.logging.logging_decorators import log_organisation_method
 from fedpydeseq2.core.utils.pass_on_results import AggPassOnResults
 
 
@@ -36,7 +37,6 @@ class SavePipelineResults(AggPassOnResults):
 
     get_results_from_local_states
         Get the results to share from the local states.
-
     """
 
     local_adata: ad.AnnData
@@ -63,6 +63,7 @@ class SavePipelineResults(AggPassOnResults):
         "contrast",
     ]
 
+    @log_organisation_method
     def save_pipeline_results(
         self,
         train_data_nodes,
@@ -89,7 +90,6 @@ class SavePipelineResults(AggPassOnResults):
 
         clean_models: bool
             Whether to clean the models after the computation.
-
         """
         local_states, shared_states, round_idx = local_step(
             local_method=self.get_results_from_local_states,
@@ -122,8 +122,7 @@ class SavePipelineResults(AggPassOnResults):
         data_from_opener,
         shared_state: dict | None,
     ) -> dict:
-        """
-        Get the results to share from the local states.
+        """Get the results to share from the local states.
 
         Parameters
         ----------
@@ -138,7 +137,6 @@ class SavePipelineResults(AggPassOnResults):
         dict
             Shared state containing the gene names, as well
             as selected fields from the varm and uns attributes.
-
         """
         shared_state = {
             "gene_names": self.local_adata.var_names,

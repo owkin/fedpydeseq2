@@ -15,7 +15,6 @@ def set_basic_refit_adata(self: Any):
     ----------
     self : Any
         The object containing the local adata and the refit adata.
-
     """
     assert (
         self.local_adata is not None
@@ -60,7 +59,6 @@ def set_imputed_counts_refit_adata(self: Any):
         The object containing the refit adata, the local adata, the replaced
         genes, the trimmed mean normed counts, the size factors, the cooks G
         cutoff, and the replaceable genes.
-
     """
     assert (
         self.refit_adata is not None

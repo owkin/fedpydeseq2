@@ -1,6 +1,5 @@
 def trimfn(x: float) -> int:
-    """
-    Determine the use-case of the trim ratio and scale based on cell counts.
+    """Determine the use-case of the trim ratio and scale based on cell counts.
 
     Parameters
     ----------
@@ -16,8 +15,7 @@ def trimfn(x: float) -> int:
 
 
 def get_trim_ratio(x):
-    """
-    Get the trim ratio based on the number of cells.
+    """Get the trim ratio based on the number of cells.
 
     Parameters
     ----------
@@ -34,8 +32,7 @@ def get_trim_ratio(x):
 
 
 def get_scale(x):
-    """
-    Get the scale based on the number of cells.
+    """Get the scale based on the number of cells.
 
     Parameters
     ----------
@@ -46,7 +43,6 @@ def get_scale(x):
     -------
     float
         The scale used to compute the dispersion during cook distance calculation.
-
     """
     scales = (2.04, 1.86, 1.51)
     return scales[trimfn(x)]

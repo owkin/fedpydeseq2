@@ -40,8 +40,7 @@ class LocGridLoss:
         prior_reg: bool = False,
         refit_mode: bool = False,
     ) -> dict:
-        """
-        Compute local MLE losses and Cox-Reid summands on a grid.
+        """Compute local MLE losses and Cox-Reid summands on a grid.
 
         Parameters
         ----------

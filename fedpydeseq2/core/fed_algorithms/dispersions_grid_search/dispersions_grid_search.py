@@ -8,14 +8,18 @@ from fedpydeseq2.core.fed_algorithms.dispersions_grid_search.substeps import (
 from fedpydeseq2.core.fed_algorithms.dispersions_grid_search.substeps import LocGridLoss
 from fedpydeseq2.core.utils import aggregation_step
 from fedpydeseq2.core.utils import local_step
+from fedpydeseq2.core.utils.logging.logging_decorators import end_iteration
+from fedpydeseq2.core.utils.logging.logging_decorators import end_loop
+from fedpydeseq2.core.utils.logging.logging_decorators import log_organisation_method
+from fedpydeseq2.core.utils.logging.logging_decorators import start_iteration
+from fedpydeseq2.core.utils.logging.logging_decorators import start_loop
 
 
 class ComputeDispersionsGridSearch(
     AggGridUpdate,
     LocGridLoss,
 ):
-    """
-    Mixin class to implement the computation of genewise dispersions.
+    """Mixin class to implement the computation of genewise dispersions.
 
     The switch between genewise and MAP dispersions is done by setting the `fit_mode`
     argument in the `fit_dispersions` to either "MLE" or "MAP".
@@ -24,13 +28,13 @@ class ComputeDispersionsGridSearch(
     -------
     fit_dispersions
         A method to fit dispersions using grid search.
-
     """
 
     grid_batch_size: int
     grid_depth: int
     grid_length: int
 
+    @log_organisation_method
     def fit_dispersions(
         self,
         train_data_nodes,
@@ -98,7 +102,9 @@ class ComputeDispersionsGridSearch(
         round_idx: int
             The updated round index.
         """
-        for _ in range(self.grid_depth):
+        start_loop()
+        for iteration in range(self.grid_depth):
+            start_iteration(iteration)
             # Compute local loss summands at all grid points.
             local_states, shared_states, round_idx = local_step(
                 local_method=self.local_grid_loss,
@@ -132,5 +138,7 @@ class ComputeDispersionsGridSearch(
                     else "MAP_dispersions",
                 },
             )
+            end_iteration()
+        end_loop()
 
         return local_states, shared_state, round_idx
