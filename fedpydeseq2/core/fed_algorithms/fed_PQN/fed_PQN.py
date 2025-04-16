@@ -107,9 +107,9 @@ class FedProxQuasiNewton(
             ) = local_step(
                 local_method=self.make_local_fisher_gradient_nll,
                 method_params={
-                    "first_iteration_mode": first_iteration_mode
-                    if pqn_iter == 0
-                    else None,
+                    "first_iteration_mode": (
+                        first_iteration_mode if pqn_iter == 0 else None
+                    ),
                     "refit_mode": refit_mode,
                 },
                 train_data_nodes=train_data_nodes,

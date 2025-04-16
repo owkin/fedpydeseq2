@@ -4,7 +4,6 @@ Most of these functions have the _batch suffix, which means that they are vector
 work over batches of genes in the parralel_backend file in the same module.
 """
 
-
 import numpy as np
 
 from fedpydeseq2.core.utils.negative_binomial import grid_nb_nll

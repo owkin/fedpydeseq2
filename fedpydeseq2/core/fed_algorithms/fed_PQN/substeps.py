@@ -262,11 +262,11 @@ class LocMakeFedPQNFisherGradientNLL:
                     beta=beta_on_mask[i : i + self.irls_batch_size],
                     dispersions=dispersions[i : i + self.irls_batch_size],
                     counts=counts[:, i : i + self.irls_batch_size],
-                    ascent_direction=ascent_direction_on_mask[
-                        i : i + self.irls_batch_size
-                    ]
-                    if ascent_direction_on_mask is not None
-                    else None,
+                    ascent_direction=(
+                        ascent_direction_on_mask[i : i + self.irls_batch_size]
+                        if ascent_direction_on_mask is not None
+                        else None
+                    ),
                     step_sizes=step_sizes,
                     beta_min=-self.max_beta,
                     beta_max=self.max_beta,

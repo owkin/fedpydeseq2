@@ -1,6 +1,5 @@
 """Substeps for the ComputeLFC testing class, to aggregate information."""
 
-
 import numpy as np
 from anndata import AnnData
 from substrafl.remote import remote

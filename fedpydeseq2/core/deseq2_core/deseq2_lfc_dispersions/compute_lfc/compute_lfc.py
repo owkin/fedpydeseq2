@@ -1,4 +1,5 @@
 """Module containing the ComputeLFC method."""
+
 from typing import Literal
 
 from substrafl.nodes import AggregationNode

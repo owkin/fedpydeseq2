@@ -1,4 +1,5 @@
 """Module to implement the step to set the local reference for the DESeq2Strategy."""
+
 import pickle as pkl
 from pathlib import Path
 from typing import Any

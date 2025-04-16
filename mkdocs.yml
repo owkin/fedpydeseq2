@@ -102,22 +102,22 @@ nav:
     - Home: api/index.md
     - Running an experiment: api/fedpydeseq2_pipeline.md
     - Core:
-      - Home: api/core/deseq2_core/index.md
-      - Build design matrix: api/core/deseq2_core/build_design_matrix.md
-      - Compute size factors: api/core/deseq2_core/compute_size_factors.md
-      - Estimating LFCs and dispersions: api/core/deseq2_core/deseq2_lfc_dispersions.md
-      - Computing the Cooks distance: api/core/deseq2_core/compute_cook_distance.md
-      - Replacing outliers: api/core/deseq2_core/replace_outliers.md
-      - Replace refitted values: api/core/deseq2_core/replace_refitted_values.md
-      - Computing statistics and p-values: api/core/deseq2_core/deseq2_stats.md
-      - Saving results: api/core/deseq2_core/save_pipeline_results.md
+      - Home: api/core/deseq2_core/deseq2_core.md
+      - Build design matrix: api/core/deseq2_core/build_design_matrix/build_design_matrix.md
+      - Compute size factors: api/core/deseq2_core/compute_size_factors/compute_size_factors.md
+      - Estimating LFCs and dispersions: api/core/deseq2_core/deseq2_lfc_dispersions/deseq2_lfc_dispersions.md
+      - Computing the Cooks distance: api/core/deseq2_core/compute_cook_distance/compute_cook_distance.md
+      - Replacing outliers: api/core/deseq2_core/replace_outliers/replace_outliers.md
+      - Replace refitted values: api/core/deseq2_core/replace_refitted_values/replace_refitted_values.md
+      - Computing statistics and p-values: api/core/deseq2_core/deseq2_stats/deseq2_stats.md
+      - Saving results: api/core/deseq2_core/save_pipeline_results/save_pipeline_results.md
       - Strategy: api/core/strategy.md
     - Utils:
       - Core: api/core/utils.md
       - Substra: api/substra_utils.md
     - Federated algorithms:
-      - Home: api/core/federated_algorithms/index.md
-      - Compute trimmed mean: api/core/federated_algorithms/compute_trimmed_mean.md
-      - Compute dispersions with grid search: api/core/federated_algorithms/dispersions_grid_search.md
-      - Federated IRLS: api/core/federated_algorithms/fed_irls.md
-      - Federated ProxQuasiNewton: api/core/federated_algorithms/fed_pqn.md
+      - Home: api/core/federated_algorithms/federated_algorithms.md
+      - Compute trimmed mean: api/core/federated_algorithms/compute_trimmed_mean/compute_trimmed_mean.md
+      - Compute dispersions with grid search: api/core/federated_algorithms/dispersions_grid_search/dispersions_grid_search.md
+      - Federated IRLS: api/core/federated_algorithms/fed_irls/fed_irls.md
+      - Federated ProxQuasiNewton: api/core/federated_algorithms/fed_pqn/fed_pqn.md

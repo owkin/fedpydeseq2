@@ -1,4 +1,5 @@
 """A class to implement a unit tester class for ComputeLFC."""
+
 from pathlib import Path
 from typing import Any
 from typing import Literal

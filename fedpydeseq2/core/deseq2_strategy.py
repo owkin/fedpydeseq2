@@ -160,8 +160,9 @@ class DESeq2Strategy(ComputePlanBuilder, DESeq2FullPipe):
         continuous_factors: list[str] | None = None,
         contrast: list[str] | None = None,
         lfc_null: float = 0.0,
-        alt_hypothesis: Literal["greaterAbs", "lessAbs", "greater", "less"]
-        | None = None,
+        alt_hypothesis: (
+            Literal["greaterAbs", "lessAbs", "greater", "less"] | None
+        ) = None,
         min_replicates: int = 7,
         min_disp: float = 1e-8,
         max_disp: float = 10.0,

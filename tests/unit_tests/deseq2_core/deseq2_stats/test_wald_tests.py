@@ -398,8 +398,9 @@ class WaldTestTester(UnitTester, RunWaldTests, AggPassOnResults):
         continuous_factors: list[str] | None = None,
         contrast: list[str] | None = None,
         lfc_null: float = 0.0,
-        alt_hypothesis: Literal["greaterAbs", "lessAbs", "greater", "less"]
-        | None = None,
+        alt_hypothesis: (
+            Literal["greaterAbs", "lessAbs", "greater", "less"] | None
+        ) = None,
         joblib_backend: str = "loky",
         irls_batch_size: int = 100,
         num_jobs: int = 8,

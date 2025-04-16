@@ -1,4 +1,5 @@
 """A class to implement a unit tester class for FedIRLS."""
+
 from pathlib import Path
 
 import anndata as ad

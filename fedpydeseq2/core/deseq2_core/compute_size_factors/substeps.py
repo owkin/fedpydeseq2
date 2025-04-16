@@ -1,6 +1,5 @@
 """Module containing the substeps for the computation of size factors."""
 
-
 import anndata as ad
 import numpy as np
 from substrafl.remote import remote

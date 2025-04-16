@@ -1,4 +1,5 @@
 """Module containing the substeps for the computation of size factors."""
+
 import warnings
 
 import anndata as ad
@@ -267,9 +268,11 @@ class LocUpdateFittedDispersions:
             self.refit_adata.varm["_normed_means"][non_zero],
             disp_function_type=self.refit_adata.uns["disp_function_type"],
             coeffs=self.refit_adata.uns["trend_coeffs"],
-            mean_disp=self.refit_adata.uns["mean_disp"]
-            if self.refit_adata.uns["disp_function_type"] == "parametric"
-            else None,
+            mean_disp=(
+                self.refit_adata.uns["mean_disp"]
+                if self.refit_adata.uns["disp_function_type"] == "parametric"
+                else None
+            ),
         )
 
         self.refit_adata.varm["fitted_dispersions"] = fitted_dispersions

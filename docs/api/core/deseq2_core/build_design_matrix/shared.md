@@ -1,0 +1,9 @@
+| ID | Name | Type | Shape | Description | Computed by | Sent to |
+|---|---|---|---|---|---|---|
+| 1 | local\_levels | dict |  | A dictionary whose keys are the names of the categorical factors, and whose values are the list of values taken by this factor in a given center. For example $\texttt{\{stage: [Advanced, Non-advanced], gender: [female]\}}$. | Each center | Server |
+| 2 | merged\_levels | dict |  | A dictionary whose keys are the names of the categorical factors and whose values are arrays containing the list of values taken by this factor across all centers. For example $\texttt{\{stage: [Advanced , Non-advanced], gender: [female, male]\}}$. | Server | Center |
+| 3 | design\_columns | Index | $(p,)$ | The name of the columns of the local design matrix, before aggregation. They are of the form intercept, factor for continuous factors, and factor\_level\_vs\_factor\_ref\_level otherwise. For example, $\texttt{[intercept, stage\_Advanced\_vs\_Non-advanced, gender\_male\_vs\_female]}$. | Each center | Server |
+| 4 | merged\_columns | Index | $(p,)$ | The union of the design columns across all centers. Local design matrices will then be updated to include all columns. | Server | Center |
+| 4 | contrast | list |  | A list of three strings representing the contrast of interest, in case it is not specified by the user. Of the form $\texttt{[factor, level1, level2]}$. For example, $\texttt{[stage, Advanced, Non-advanced]}$. | Server | Center |
+| 5 | log\_mean | nparray | $(G,)$ | For each gene, the mean of the log of the counts across all samples in a center $\overline{\log(Y)}^{(k)}_{g} = \tfrac{1}{n_k}\sum_{i=1}^{n_k}\log(Y^{(k)}_{ig})$. | Each center | Server |
+| 5 | n\_samples | int |  | The number of samples in a center $n_k$ for each center $k$. | Each center | Server |

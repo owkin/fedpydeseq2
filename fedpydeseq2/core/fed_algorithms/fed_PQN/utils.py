@@ -3,7 +3,6 @@
 This optimization is used in the catching of the IRLS algorithm.
 """
 
-
 import numpy as np
 from joblib import Parallel
 from joblib import delayed
