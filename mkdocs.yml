@@ -93,7 +93,7 @@ nav:
   - General:
     - Home: index.md
     - Installation: usage/installation.md
-    - Installation for delevopers: usage/installation_developers.md
+    - Installation for developers: usage/installation_developers.md
     - Contributing: usage/contributing.md
     - Logging: usage/logging.md
     - References: usage/references.md
