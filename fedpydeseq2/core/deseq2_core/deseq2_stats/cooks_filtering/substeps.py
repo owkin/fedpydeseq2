@@ -325,9 +325,9 @@ class LocGetMaxCooksCounts:
         del self.local_adata.uns["max_cooks_gene_counts"]
         del self.local_adata.uns["max_cooks_value"]
 
-        max_cooks_gene_counts[
-            max_cooks_value < max_cooks
-        ] = -1  # We can use a < because the count value are non negative integers.
+        max_cooks_gene_counts[max_cooks_value < max_cooks] = (
+            -1
+        )  # We can use a < because the count value are non negative integers.
 
         max_cooks_gene_counts_ma = np.ma.masked_array(
             max_cooks_gene_counts, max_cooks_gene_counts == -1

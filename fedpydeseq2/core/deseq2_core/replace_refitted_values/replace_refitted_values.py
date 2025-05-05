@@ -87,9 +87,9 @@ class ReplaceRefittedValues:
             "dispersions",
         ]
         for key in list_varm_keys:
-            self.local_adata.varm[key][
-                self.local_adata.varm["refitted"]
-            ] = self.refit_adata.varm[key]
+            self.local_adata.varm[key][self.local_adata.varm["refitted"]] = (
+                self.refit_adata.varm[key]
+            )
 
         # Take into account new all-zero genes
         new_all_zeroes_genes = self.local_adata.uns["new_all_zeroes_genes"]
