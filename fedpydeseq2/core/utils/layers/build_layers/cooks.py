@@ -1,6 +1,5 @@
 """Module to set the cooks layer."""
 
-
 import anndata as ad
 import numpy as np
 

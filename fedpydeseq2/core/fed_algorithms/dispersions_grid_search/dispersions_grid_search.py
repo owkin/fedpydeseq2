@@ -133,9 +133,11 @@ class ComputeDispersionsGridSearch(
                 clean_models=clean_models,
                 method_params={
                     "prior_reg": fit_mode == "MAP",
-                    "dispersions_param_name": "genewise_dispersions"
-                    if fit_mode == "MLE"
-                    else "MAP_dispersions",
+                    "dispersions_param_name": (
+                        "genewise_dispersions"
+                        if fit_mode == "MLE"
+                        else "MAP_dispersions"
+                    ),
                 },
             )
             end_iteration()

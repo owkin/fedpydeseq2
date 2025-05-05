@@ -1,4 +1,5 @@
 """Module testing the logmeans computed in the DESeq2Strategy."""
+
 import os
 from itertools import product
 

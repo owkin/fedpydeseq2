@@ -1,4 +1,5 @@
 """Module testing the logmeans computed in the DESeq2Strategy."""
+
 from itertools import product
 
 import pytest

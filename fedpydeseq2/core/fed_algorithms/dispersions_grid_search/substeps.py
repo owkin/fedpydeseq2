@@ -3,7 +3,6 @@
 This module contains all the substeps to fit dispersions using a grid search.
 """
 
-
 import numpy as np
 from anndata import AnnData
 from joblib import Parallel  # type: ignore

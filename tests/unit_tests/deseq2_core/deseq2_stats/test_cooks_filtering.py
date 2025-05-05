@@ -323,8 +323,9 @@ class CooksFilteringTester(UnitTester, CooksFiltering, AggPassOnResults):
         cooks_filter: bool = True,
         refit_cooks: bool = False,
         lfc_null: float = 0.0,
-        alt_hypothesis: Literal["greaterAbs", "lessAbs", "greater", "less"]
-        | None = None,
+        alt_hypothesis: (
+            Literal["greaterAbs", "lessAbs", "greater", "less"] | None
+        ) = None,
         joblib_backend: str = "loky",
         irls_batch_size: int = 100,
         num_jobs: int = 8,

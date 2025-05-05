@@ -1,4 +1,5 @@
 """A class to implement a unit tester class for Fed Prox Quasi Newton."""
+
 from pathlib import Path
 
 import anndata as ad

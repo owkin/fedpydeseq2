@@ -155,9 +155,9 @@ class SimpleLayersTester(
             and test_layers_to_save_on_disk_attribute
         ):
             self.layers_to_save_on_disk = {
-                "local_adata": ["_fit_lin_mu_hat", "cooks"]
-                if save_cooks
-                else ["_fit_lin_mu_hat"],
+                "local_adata": (
+                    ["_fit_lin_mu_hat", "cooks"] if save_cooks else ["_fit_lin_mu_hat"]
+                ),
                 "refit_adata": None,
             }
         elif save_cooks:
@@ -218,9 +218,9 @@ class SimpleLayersTester(
             layers_to_save_on_disk = None
         if self.test_layers_to_load:
             layers_to_load = {
-                "local_adata": ["_mu_hat"]
-                if not self.save_cooks
-                else ["_mu_hat", "cooks"],
+                "local_adata": (
+                    ["_mu_hat"] if not self.save_cooks else ["_mu_hat", "cooks"]
+                ),
                 "refit_adata": None,
             }
         else:

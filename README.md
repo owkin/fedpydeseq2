@@ -5,6 +5,14 @@ Differential Expression Analysis based on [PyDESeq2](https://github.com/owkin/py
 which is itself a python implementation of
 [DESeq2](https://bioconductor.org/packages/release/bioc/html/DESeq2.html).
 
+## Documentation
+
+For detailed documentation, please visit:
+- [Online Documentation](https://owkin.github.io/fedpydeseq2/) - Complete API reference and usage examples
+- [Quick Start Guide](https://owkin.github.io/fedpydeseq2/generated/gallery/) - Get started with basic usage
+- [API Reference](https://owkin.github.io/fedpydeseq2/api/index.html) - Detailed API documentation
+
+
 ## Setup
 
 ### Package installation through PyPI
