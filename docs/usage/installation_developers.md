@@ -1,4 +1,4 @@
-# Package installation for developpers
+# Package installation for developers
 
 ## 0 - Clone the repository
 
