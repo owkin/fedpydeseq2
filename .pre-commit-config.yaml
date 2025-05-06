@@ -38,6 +38,7 @@ repos:
         name: Format docstrings with `docformatter`
         language: system
         types: [python]
+        entry: docformatter
         require_serial: true
         args:
           [--in-place, --wrap-summaries=88, --wrap-descriptions=87, --recursive]
