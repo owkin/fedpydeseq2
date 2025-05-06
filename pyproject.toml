@@ -29,7 +29,7 @@ optional = true
 
 [tool.poetry.group.linting.dependencies]
 ruff = "^0.2.2"
-pre-commit = "^3.6.2"
+pre-commit = "^4.2.0"
 mypy = "^1.8.0"
 black = "^24.2.0"
 pandas-stubs = "^2.2.0.240218"

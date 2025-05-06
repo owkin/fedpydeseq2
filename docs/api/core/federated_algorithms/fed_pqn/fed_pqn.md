@@ -14,4 +14,4 @@ For a detailed breakdown of the shared states and their contents at each step, p
 
 # Table with shared quantities between centers and server
 
-{% include "api/core/federated_algorithms/fed_PQN/shared.md" %}
+{% include "api/core/federated_algorithms/fed_pqn/shared.md" %}
