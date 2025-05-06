@@ -31,14 +31,15 @@ repos:
     hooks:
       - id: mypy
         exclude: ^(tests/|docs/source/conf.py|datasets/)
-  - repo: local
+  - repo: https://github.com/PyCQA/docformatter
+    rev: v1.6.0
     hooks:
       - id: docformatter
         name: Format docstrings with `docformatter`
         language: system
         types: [python]
         require_serial: true
-        entry: poetry run docformatter
+        #entry: poetry run docformatter
         args:
           [--in-place, --wrap-summaries=88, --wrap-descriptions=87, --recursive]
         files: ^(fedpydeseq2|tests)/
