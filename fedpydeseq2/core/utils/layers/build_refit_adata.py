@@ -100,6 +100,6 @@ def set_imputed_counts_refit_adata(self: Any):
         idx = idx[:, self.local_adata.varm["refitted"]]
 
     # Replace the counts
-    self.refit_adata.X[
-        self.refit_adata.obsm["replaceable"][:, None] & idx
-    ] = replacement_counts.values[self.refit_adata.obsm["replaceable"][:, None] & idx]
+    self.refit_adata.X[self.refit_adata.obsm["replaceable"][:, None] & idx] = (
+        replacement_counts.values[self.refit_adata.obsm["replaceable"][:, None] & idx]
+    )

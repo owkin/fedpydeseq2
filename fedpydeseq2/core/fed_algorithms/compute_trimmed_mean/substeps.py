@@ -93,7 +93,7 @@ class LocInitTrimmedMean:
                 adata.uns["num_replicates"] >= min_replicates_trimmed_mean
             ].index
 
-            shared_state = {lvl: shared_state for lvl in admissible_levels}
+            shared_state = dict.fromkeys(admissible_levels, shared_state)
             for lvl in admissible_levels:
                 mask = adata.obs["cells"] == lvl
                 result[lvl] = self.loc_init_trimmed_mean_per_lvl(  # type: ignore
@@ -691,9 +691,9 @@ class LocFinalTrimmedMean:
             local_adata_filtered.layers[layer_used]
             <= current_thresholds[..., 1][None, :]
         )
-        local_adata_filtered.layers[
-            f"trimmed_{layer_used}"
-        ] = local_adata_filtered.layers[layer_used].copy()
+        local_adata_filtered.layers[f"trimmed_{layer_used}"] = (
+            local_adata_filtered.layers[layer_used].copy()
+        )
         local_adata_filtered.layers[f"trimmed_{layer_used}"][
             mask_upper_threshold | mask_lower_threshold
         ] = 0
