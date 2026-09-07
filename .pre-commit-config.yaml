@@ -2,7 +2,7 @@ default_language_version:
     python: python3.11
 repos:
   - repo: https://github.com/sirosen/check-jsonschema
-    rev: 0.33.3
+    rev: 0.38.0
     hooks:
       - id: check-github-actions
       - id: check-github-workflows
@@ -14,20 +14,20 @@ repos:
       - id: end-of-file-fixer
         name: Fix end of files
         exclude: \.ipynb$
-  - repo: https://github.com/psf/black
-    rev: 25.1.0
+  - repo: https://github.com/psf/black-pre-commit-mirror
+    rev: 26.5.1
     hooks:
       - id: black
         additional_dependencies: ["click==8.0.4"]
         args: # arguments to configure black
           - --line-length=88
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.12.9
+    rev: v0.16.6
     hooks:
       - id: ruff
         args: [--fix, --exit-non-zero-on-fix]
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.17.1
+    rev: v2.3.1
     hooks:
       - id: mypy
         exclude: ^(tests/|docs/source/conf.py|datasets/)
